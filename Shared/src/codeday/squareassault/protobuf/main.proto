@@ -1,0 +1,28 @@
+package tutorial;
+
+option java_package = "codeday.squareassault.protobuf";
+option java_outer_classname = "Messages";
+
+message Identify {
+  required string name = 1;
+}
+
+message LineMessage {
+  required string text = 1;
+}
+
+message EchoMessage {
+  required string text = 1;
+}
+
+message ToClient {
+  oneof message {
+    LineMessage line = 1;
+  } 
+}
+
+message ToServer {
+  oneof message {
+    EchoMessage echo = 1;
+  }
+}
