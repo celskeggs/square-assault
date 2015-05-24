@@ -67,18 +67,18 @@ public class ServerContext {
 		for (ObjectContext object : objects.values()) {
 			object.tick();
 		}
-		if (isRoundInProgress() && !hasSentFinalization.get()) {
+		if (isRoundInProgress()) {
 			int count = 0;
 			for (ObjectContext context : objects.values()) {
 				if (context.getType() == ObjectType.PLAYER && !context.isDead()) {
 					count++;
 				}
 			}
-			if (count == 1) {
+			if (count == 1 && !hasSentFinalization.get()) {
 				hasSentFinalization.set(true);
 				broadcastChat("[SERVER MONKEY] There is a winner! Type /end to finish the round.", -1);
 			} else if (count <= 0) {
-				tryEndRound();
+				System.out.println("Result of ending: " + tryEndRound());
 			}
 		}
 	}
@@ -263,7 +263,7 @@ public class ServerContext {
 				name = ((ClientContext) context).name;
 			}
 		}
-		if (count >= 2 || name == null) {
+		if (count >= 2) {
 			return "Exactly one player may remain!";
 		}
 		roundInProgress.set(false);
