@@ -1,8 +1,10 @@
 package codeday.squareassault.client;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Timer;
@@ -20,6 +22,7 @@ public class Launcher extends JPanel implements KeyListener {
 		main.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		main.setContentPane(panel);
 		main.setSize(768, 768);
+		main.setResizable(false);
 		main.addKeyListener(panel);
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -52,6 +55,20 @@ public class Launcher extends JPanel implements KeyListener {
 					e.printStackTrace();
 				}
 				view.tick(getWidth(), getHeight());
+
+				if (getWidth() == 0 && getHeight() == 0) {
+					return;
+				} else if (image == null) {
+					image = new BufferedImage(getWidth(), getHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+					imgG = image.createGraphics();
+				}
+
+				synchronized (image) {
+					imgG.setColor(View.BACKGROUND_COLOR);
+					imgG.fillRect(0, 0, getWidth(), getHeight());
+					view.paint(imgG);
+				}
+
 				repaint();
 			}
 		}, View.UPDATE_DELAY_MILLIS, View.UPDATE_DELAY_MILLIS);
@@ -60,12 +77,14 @@ public class Launcher extends JPanel implements KeyListener {
 	private final Network net;
 	private final Context context;
 	private final View view;
+	private BufferedImage image;
+	private Graphics2D imgG;
 
 	@Override
 	public void paint(Graphics go) {
-		go.setColor(View.BACKGROUND_COLOR);
-		go.fillRect(0, 0, this.getWidth(), this.getHeight());
-		view.paint(go);
+		if (image != null) {
+			go.drawImage(image, 0, 0, null);
+		}
 	}
 
 	@Override

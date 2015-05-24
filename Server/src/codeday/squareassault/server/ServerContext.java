@@ -71,7 +71,6 @@ public class ServerContext {
 	private boolean isEmptyAt(int wantX, int wantY) {
 		int cX = wantX >> 6; // / 64;
 		int cY = wantY >> 6; // / 64;
-		System.out.println("Checking at: " + cX + ", " + cY);
 		if (cX < 0 || cX >= map.getWidth()) {
 			return false;
 		}

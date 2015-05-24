@@ -23,7 +23,7 @@ public final class ClientContext {
 		this.y = serverContext.getMap().getSpawnY();
 		resendStatus();
 	}
-	
+
 	public synchronized void setCanMove() {
 		canMove = true;
 	}
@@ -36,6 +36,47 @@ public final class ClientContext {
 					x = wantX;
 					y = wantY;
 					resendStatus();
+				} else {
+					boolean changed = false;
+					if (wantX > x) {
+						for (int rx = wantX - 1; rx > x; rx--) {
+							if (server.canMoveTo(rx, y)) {
+								x = rx;
+								changed = true;
+								break;
+							}
+						}
+					} else if (wantX < x) {
+						for (int rx = wantX + 1; rx < x; rx++) {
+							if (server.canMoveTo(rx, y)) {
+								x = rx;
+								changed = true;
+								break;
+							}
+						}
+					}
+
+					if (wantY > y) {
+						for (int ry = wantY - 1; ry > y; ry--) {
+							if (server.canMoveTo(x, ry)) {
+								y = ry;
+								changed = true;
+								break;
+							}
+						}
+					} else if (wantY < y) {
+						for (int ry = wantY + 1; ry < y; ry++) {
+							if (server.canMoveTo(x, ry)) {
+								y = ry;
+								changed = true;
+								break;
+							}
+						}
+					}
+
+					if (changed) {
+						resendStatus();
+					}
 				}
 			}
 		} else {
