@@ -21,7 +21,7 @@ import codeday.squareassault.protobuf.SharedConfig;
 
 public class Main implements Runnable {
 
-	private static final long TICK_DELAY = 20;
+	private static final long TICK_DELAY = 25;
 	private final Socket conn;
 	private final InputStream input;
 	private final OutputStream output;
@@ -55,16 +55,27 @@ public class Main implements Runnable {
 		ServerContext server = new ServerContext(map);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
+			long total = 0;
+			long count = 0;
 			@Override
 			public void run() {
+				long start = System.nanoTime();
 				server.tick();
+				long len = System.nanoTime() - start;
+				total += len;
+				count++;
+				if (count % 500 == 0) {
+					System.out.println("Completed " + count + " in " + len / 1000000.0 + " ms: " + (len / 1000000.0 / count) + " ms.");
+				}
 			}
 		}, TICK_DELAY, TICK_DELAY);
 		ServerSocket sock = new ServerSocket(SharedConfig.PORT);
+		//sock.setPerformancePreferences(1, 2, 0);
 		try {
 			int n = 0;
 			while (true) {
 				Socket conn = sock.accept();
+				conn.setTcpNoDelay(true);
 				try {
 					new Thread(new Main(server, conn, n), "ClientHandler-" + (n)).start();
 				} catch (IOException ex) {

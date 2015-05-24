@@ -1,5 +1,6 @@
 package codeday.squareassault.server;
 
+import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 
 import codeday.squareassault.protobuf.Messages;
@@ -31,8 +32,12 @@ public class ServerContext {
 			throw new RuntimeException("Attempt to recreate object!");
 		}
 		this.objects.put(context.objectID, context);
-		for (ObjectContext object : objects.values()) {
-			object.resendStatus();
+		if (context.getType() == ObjectType.PLAYER) {
+			for (ObjectContext object : objects.values()) {
+				object.resendStatus();
+			}
+		} else {
+			context.resendStatus();
 		}
 	}
 
@@ -69,8 +74,11 @@ public class ServerContext {
 		}
 	}
 
-	public boolean canMoveTo(int wantX, int wantY) {
-		return isEmptyAt(wantX, wantY) && isEmptyAt(wantX + 63, wantY) && isEmptyAt(wantX, wantY + 63) && isEmptyAt(wantX + 63, wantY + 63);
+	public boolean canMoveTo(int wantX, int wantY, ObjectContext what) {
+		int centerCoord = what.getCenterCoord(), radius = what.getRadius();
+		int x1 = wantX + centerCoord - radius, x2 = wantX + centerCoord + radius - 1;
+		int y1 = wantY + centerCoord - radius, y2 = wantY + centerCoord + radius - 1;
+		return isEmptyAt(x1, y1) && isEmptyAt(x2, y1) && isEmptyAt(x1, y2) && isEmptyAt(x2, y2);
 	}
 
 	private boolean isEmptyAt(int wantX, int wantY) {
@@ -87,5 +95,45 @@ public class ServerContext {
 
 	public ObjectContext getObject(int objectID) {
 		return objects.get(objectID);
+	}
+
+	public Iterable<ObjectContext> findColliding(ObjectContext from, ObjectType type) {
+		return new Iterable<ObjectContext>() {
+			@Override
+			public Iterator<ObjectContext> iterator() {
+				return new Iterator<ObjectContext>() {
+					private ObjectContext next = null;
+					private Iterator<ObjectContext> iterator = objects.values().iterator();
+
+					@Override
+					public boolean hasNext() {
+						if (next != null) {
+							return true;
+						}
+						while (iterator.hasNext()) {
+							ObjectContext object = iterator.next();
+							int dist = object.getRadius() + from.getRadius();
+							if (object.getType() == type && distanceSq(from, object) < dist * dist && object != from) {
+								next = object;
+								return true;
+							}
+						}
+						return false;
+					}
+
+					@Override
+					public ObjectContext next() {
+						ObjectContext out = next;
+						next = null;
+						return out;
+					}
+				};
+			}
+		};
+	}
+
+	private int distanceSq(ObjectContext from, ObjectContext to) {
+		int xd = from.x + from.getCenterCoord() - to.x - to.getCenterCoord(), yd = from.y + from.getCenterCoord() - to.y - to.getCenterCoord();
+		return xd * xd + yd * yd;
 	}
 }

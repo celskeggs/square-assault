@@ -19,7 +19,8 @@ public class QueueSender<T extends MessageLite> implements Runnable {
 	public void run() {
 		try {
 			while (true) {
-				sendQueue.take().writeDelimitedTo(output);
+				T taken = sendQueue.take();
+				taken.writeDelimitedTo(output);
 			}
 		} catch (InterruptedException | IOException e) {
 			e.printStackTrace(); // TODO: logging

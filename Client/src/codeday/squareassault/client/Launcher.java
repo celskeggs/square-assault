@@ -58,7 +58,11 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 					e.printStackTrace();
 				}
 				view.tick(getWidth(), getHeight());
-
+			}
+		}, View.UPDATE_DELAY_MILLIS, View.UPDATE_DELAY_MILLIS);
+		new Timer().schedule(new TimerTask() {
+			@Override
+			public void run() {
 				if (getWidth() == 0 && getHeight() == 0) {
 					return;
 				} else if (image == null) {

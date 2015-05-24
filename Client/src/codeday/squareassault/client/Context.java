@@ -95,7 +95,6 @@ public class Context {
 			if (!entities.remove(target)) {
 				System.out.println("Failed to disconnect object: " + target);
 			}
-			System.out.println("Disconnected object...");
 		} else {
 			System.out.println("Couldn't find object: " + disconnect.getObject() + "; " + entities);
 		}
@@ -119,7 +118,7 @@ public class Context {
 				return;
 			}
 		}
-		entities.add(new Entity(position.getObject(), position.getIcon(), position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY(), position.getParent()));
+		entities.add(new Entity(this, position.getObject(), position.getIcon(), position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY(), position.getParent()));
 	}
 
 	public int getX() {
@@ -136,5 +135,14 @@ public class Context {
 
 	public void mousePress(int x, int y, int button) throws InterruptedException {
 		net.send(Messages.ToServer.newBuilder().setTurret(Messages.PlaceTurret.newBuilder().setX(x - 32).setY(y - 32)).build());
+	}
+
+	public Entity getObjectByID(int parentID) {
+		for (Entity ent : entities) {
+			if (ent.objectID == parentID) {
+				return ent;
+			}
+		}
+		return null;
 	}
 }

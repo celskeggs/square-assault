@@ -27,7 +27,7 @@ public class View {
 		}
 
 		for (Entity ent : context.entities) {
-			go.drawImage(Loader.load(ent.getIconForRender(context.getPlayerID())), ent.x + shiftX, ent.y + shiftY, null);
+			go.drawImage(Loader.load(ent.getIconForRender()), ent.x + shiftX, ent.y + shiftY, null);
 		}
 	}
 

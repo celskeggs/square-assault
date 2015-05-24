@@ -30,5 +30,13 @@ public abstract class ObjectContext {
 
 	protected abstract ObjectType getType();
 
-	public abstract void tick();
+	public void tick() {
+		if (server.getObject(parentID) == null) {
+			server.delete(this);
+		}
+	}
+
+	public abstract int getRadius();
+
+	public abstract int getCenterCoord();
 }

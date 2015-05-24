@@ -24,6 +24,7 @@ message Map {
 enum ObjectType {
   PLAYER = 0;
   TURRET = 1;
+  BULLET = 2;
 }
 
 message SetPosition {
@@ -32,7 +33,7 @@ message SetPosition {
   required uint32 y = 3;
   optional string icon = 4;
   optional ObjectType type = 5;
-  optional uint32 parent = 6 [default = -1];
+  optional int32 parent = 6 [default = -1];
 }
 
 message Disconnect {

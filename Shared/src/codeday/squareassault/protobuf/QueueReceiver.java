@@ -1,8 +1,12 @@
 package codeday.squareassault.protobuf;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.concurrent.BlockingQueue;
+
+import codeday.squareassault.protobuf.Messages.ObjectType;
+import codeday.squareassault.protobuf.Messages.ToClient;
 
 import com.google.protobuf.MessageLite;
 import com.google.protobuf.MessageLite.Builder;

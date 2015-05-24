@@ -8,8 +8,10 @@ public class Entity {
 	public ObjectType type;
 	public int x, y;
 	public int parentID;
+	private final Context context;
 
-	public Entity(int object, String icon, ObjectType type, int x, int y, int parentID) {
+	public Entity(Context context, int object, String icon, ObjectType type, int x, int y, int parentID) {
+		this.context = context;
 		this.objectID = object;
 		this.parentID = parentID;
 		this.icon = icon;
@@ -27,16 +29,24 @@ public class Entity {
 		this.icon = icon;
 	}
 
-	public String getIconForRender(int playerID) {
-		if (objectID == playerID) {
+	public String getIconForRender() {
+		if (objectID == context.getPlayerID()) {
 			return "user";
-		} else if (parentID == playerID) {
+		} else if (isAncestor(context.getPlayerID())) {
 			return "user" + icon;
 		} else if (icon == null) {
 			return "none";
 		} else {
 			return icon;
 		}
+	}
+
+	private boolean isAncestor(int acceptedID) {
+		if (parentID == acceptedID) {
+			return true;
+		}
+		Entity parent = context.getObjectByID(parentID);
+		return parent != null && parent.isAncestor(acceptedID);
 	}
 
 	public void updateType(ObjectType type) {
