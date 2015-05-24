@@ -63,6 +63,8 @@ public class Context {
 	private void sendRelativeMove(int x, int y) throws InterruptedException {
 		int curX = this.x + x, curY = this.y + y;
 		net.send(Messages.ToServer.newBuilder().setPosition(Messages.SetPosition.newBuilder().setX(curX).setY(curY)).build());
+		this.x = curX;
+		this.y = curY;
 	}
 
 	public void handleMap(Map map) {

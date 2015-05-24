@@ -14,6 +14,7 @@ public final class ClientContext extends ObjectContext {
 	private static final int SIZE = 57, COOLDOWN = 1000;
 	private static final int TURRETS_MAX = 8;
 	private static final int MAX_TURRET_DISTANCE = 5 * 64;
+	private static final int MAX_MOVE = 8;
 	public final LinkedBlockingQueue<ToClient> sendQueue = new LinkedBlockingQueue<>();
 	public final String name;
 	private boolean canMove = false;
@@ -68,6 +69,12 @@ public final class ClientContext extends ObjectContext {
 			return;
 		}
 		int wantX = position.getX(), wantY = position.getY();
+		{
+			int rx = wantX - x, ry = wantY - y;
+			if (rx * rx + ry * ry > MAX_MOVE) {
+				resendStatus();
+			}
+		}
 		if (server.canMoveTo(wantX, wantY, this)) {
 			x = wantX;
 			y = wantY;
