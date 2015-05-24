@@ -63,6 +63,7 @@ import java.util.List;
  *
  * @author jonp@google.com (Jon Perlow)
  */
+@SuppressWarnings("rawtypes")
 public class RepeatedFieldBuilder
     <MType extends GeneratedMessage,
      BType extends GeneratedMessage.Builder,

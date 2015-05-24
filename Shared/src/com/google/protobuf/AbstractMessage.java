@@ -46,6 +46,7 @@ import java.util.Map;
  *
  * @author kenton@google.com Kenton Varda
  */
+@SuppressWarnings("rawtypes")
 public abstract class AbstractMessage extends AbstractMessageLite
                                       implements Message {
   public boolean isInitialized() {
