@@ -1,5 +1,6 @@
 package codeday.squareassault.server;
 
+import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import codeday.squareassault.protobuf.Messages;
@@ -27,29 +28,43 @@ public final class ClientContext extends ObjectContext {
 	private int updateCount = UPDATE_TICKS;
 	private int updateSelf = UPDATE_SELF_MUL;
 
-	public ClientContext(ServerContext serverContext, String name, int spawnX, int spawnY) {
-		super(serverContext, spawnX, spawnY);
+	public ClientContext(ServerContext serverContext, String name) {
+		super(serverContext, -100, -100);
 		this.name = name;
 	}
 
 	public synchronized void tick() {
-		canMove = true;
-		if (--cooldown <= 0) {
-			cooldown = COOLDOWN;
-			if (turretCount < TURRETS_MAX) {
-				turretCount++;
-				resendTurretCount();
+		if (!server.isRoundInProgress()) {
+			cooldown = 0;
+			turretCount = 4;
+			health = 100;
+			dirty = true;
+			avoidSelf = false;
+			canMove = false;
+			if (--updateCount <= 0) {
+				updateCount = UPDATE_TICKS;
+				resendStatus();
 			}
-		}
-		if (dirty && --updateCount <= 0) {
-			updateCount = UPDATE_TICKS;
-			if (--updateSelf == 0) {
-				avoidSelf = true;
-				resendStatus();
-				avoidSelf = false;
-				updateSelf = UPDATE_SELF_MUL;
-			} else {
-				resendStatus();
+			updateSelf = UPDATE_SELF_MUL;
+		} else {
+			canMove = true;
+			if (--cooldown <= 0) {
+				cooldown = COOLDOWN;
+				if (turretCount < TURRETS_MAX) {
+					turretCount++;
+					resendTurretCount();
+				}
+			}
+			if (dirty && --updateCount <= 0) {
+				updateCount = UPDATE_TICKS;
+				if (--updateSelf == 0) {
+					avoidSelf = true;
+					resendStatus();
+					avoidSelf = false;
+					updateSelf = UPDATE_SELF_MUL;
+				} else {
+					resendStatus();
+				}
 			}
 		}
 	}
@@ -65,23 +80,40 @@ public final class ClientContext extends ObjectContext {
 	}
 
 	public synchronized void receiveMessage(ToServer taken) {
-		if (taken.hasPosition()) {
+		if (taken.hasChat()) {
+			performChat(taken.getChat());
+		} else if (taken.hasPosition()) {
 			performMove(taken.getPosition());
 		} else if (taken.hasTurret()) {
 			performTurretPlace(taken.getTurret());
-		} else if (taken.hasChat()) {
-			performChat(taken.getChat());
 		} else {
 			Logger.warning("Bad message: " + taken);
 		}
 	}
 
 	private void performChat(SendChat chat) {
-		server.broadcastChat("[" + name + "] " + chat.getText(), objectID);
+		if (chat.getText().startsWith("/")) {
+			switch (chat.getText()) {
+			case "/start":
+				String msg = server.tryStartRound();
+				if (msg != null) {
+					personalChat("[SERVER MONKEY] " + msg, -1);
+				}
+				break;
+			case "/end":
+				msg = server.tryEndRound();
+				if (msg != null) {
+					personalChat("[SERVER MONKEY] " + msg, -1);
+				}
+				break;
+			}
+		} else {
+			server.broadcastChat("[" + name + "] " + chat.getText(), objectID);
+		}
 	}
 
 	private synchronized void performTurretPlace(PlaceTurret turret) {
-		if (isDead()) {
+		if (isDead() || !server.isRoundInProgress()) {
 			return;
 		}
 		TurretContext newTurret = new TurretContext(server, turret.getX(), turret.getY(), objectID);
@@ -93,7 +125,7 @@ public final class ClientContext extends ObjectContext {
 	}
 
 	private void performMove(SetPosition position) {
-		if (!canMove || isDead()) {
+		if (!canMove || isDead() || !server.isRoundInProgress()) {
 			return;
 		}
 		int wantX = position.getX(), wantY = position.getY();
@@ -108,7 +140,8 @@ public final class ClientContext extends ObjectContext {
 			y = wantY;
 			dirty = true;
 		} else {
-			resendStatus(); // because we need to tell the client that they couldn't move
+			resendStatus(); // because we need to tell the client that they
+							// couldn't move
 		}
 	}
 
@@ -155,5 +188,18 @@ public final class ClientContext extends ObjectContext {
 	@Override
 	public int getHealth() {
 		return health <= 0 ? 0 : health;
+	}
+
+	public void personalChat(String msg, int playerID) {
+		sendMessage(Messages.ToClient.newBuilder().setChat(Messages.ChatMessage.newBuilder().setPlayer(playerID).setText(msg)).build());
+	}
+
+	private static final Random rand = new Random();
+
+	public void reset() {
+		int spawnID = rand.nextInt(server.getMap().getSpawnXCount());
+		x = server.getMap().getSpawnX(spawnID);
+		y = server.getMap().getSpawnY(spawnID);
+		resendStatus();
 	}
 }

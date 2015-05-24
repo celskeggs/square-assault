@@ -47,7 +47,7 @@ public abstract class ObjectContext {
 	protected abstract ObjectType getType();
 
 	public void tick() {
-		if (server.getObject(parentID) == null) {
+		if (server.getObject(parentID) == null || (this.getType() != ObjectType.PLAYER && !server.isRoundInProgress())) {
 			server.delete(this);
 		}
 	}

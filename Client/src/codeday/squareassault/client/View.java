@@ -53,10 +53,10 @@ public class View {
 		synchronized (context.chatMessages) {
 			for (String line : context.chatMessages) {
 				y += h;
-				go.drawString(line, METER_SHIFT + METER_RADIUS * 2, y);
+				go.drawString(line, METER_SHIFT + METER_RADIUS, y);
 			}
 		}
-		go.drawString(">>> " + context.newMessage.toString(), METER_SHIFT + METER_RADIUS * 2, h * (Context.MAX_CHAT_LINES + 1));
+		go.drawString(">>> " + context.newMessage.toString(), METER_SHIFT + METER_RADIUS, h * (Context.MAX_CHAT_LINES + 1));
 	}
 
 	private void drawMeter(Graphics go, boolean atLeft, int width, int height, Color low, Color high, int health, int max) {

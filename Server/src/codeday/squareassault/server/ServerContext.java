@@ -3,6 +3,7 @@ package codeday.squareassault.server;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.Messages.Map;
@@ -13,25 +14,30 @@ public class ServerContext {
 	private final ConcurrentHashMap<Integer, ObjectContext> objects = new ConcurrentHashMap<>();
 	private int nextID = 0;
 	private Map map;
+	private final AtomicBoolean roundInProgress = new AtomicBoolean();
 
 	public ServerContext(Map map) {
 		this.map = map;
+	}
+	
+	public boolean isRoundInProgress() {
+		return roundInProgress.get();
 	}
 
 	public synchronized int getObjectID() {
 		return nextID++;
 	}
 
-	private final Random rand = new Random();
-
 	public ClientContext newClient(String name) {
 		if (name.toLowerCase().contains("server")) {
 			throw new RuntimeException("Bad name.");
 		}
-		int spawnID = rand.nextInt(map.getSpawnXCount());
-		ClientContext context = new ClientContext(this, name, map.getSpawnX(spawnID), map.getSpawnY(spawnID));
+		ClientContext context = new ClientContext(this, name);
+		context.reset();
 		register(context);
 		broadcastChat("[SERVER MONKEY] Welcome, " + name + "!", -1);
+		String intromsg = isRoundInProgress() ? "[SERVER MONKEY] You have joined a round-in-progress!" : "[SERVER MONKEY] No round is in progress. Feel free to start one with \"/start\"!";
+		context.personalChat(intromsg, -1);
 		return context;
 	}
 
@@ -204,5 +210,50 @@ public class ServerContext {
 	public void broadcastChat(String text, int objectID) {
 		System.out.println("CHAT: " + text + " from " + objectID);
 		broadcast(Messages.ToClient.newBuilder().setChat(Messages.ChatMessage.newBuilder().setPlayer(objectID).setText(text)).build());
+	}
+
+	public String tryStartRound() {
+		if (isRoundInProgress()) {
+			return "A round is already in progress!";
+		}
+		int count = 0;
+		for (ObjectContext context : objects.values()) {
+			if (context.getType() == ObjectType.PLAYER) {
+				count++;
+			}
+		}
+		if (count < 2) {
+			return "There must be at least two players!";
+		}
+		for (ObjectContext context : objects.values()) {
+			if (context instanceof ClientContext) {
+				((ClientContext) context).reset();
+			}
+		}
+		roundInProgress.set(true);
+		broadcastChat("[SERVER MONKEY] The round has been started!", -1);
+		broadcastChat("[SERVER MONKEY] There are " + count + " participants!", -1);
+		return null;
+	}
+
+	public String tryEndRound() {
+		if (!isRoundInProgress()) {
+			return "No round is in progress!";
+		}
+		int count = 0;
+		String name = null;
+		for (ObjectContext context : objects.values()) {
+			if (context.getType() == ObjectType.PLAYER && !context.isDead()) {
+				count++;
+				name = ((ClientContext) context).name;
+			}
+		}
+		if (count >= 2 || name == null) {
+			return "Exactly one player may remain!";
+		}
+		roundInProgress.set(false);
+		broadcastChat("[SERVER MONKEY] The round has completed!", -1);
+		broadcastChat("[SERVER MONKEY] The winner is... " + name + "!", -1);
+		return null;
 	}
 }
