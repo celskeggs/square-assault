@@ -52,7 +52,7 @@ public class Main implements Runnable {
 		try (FileInputStream fin = new FileInputStream(target)) {
 			map = Messages.Map.parseFrom(fin);
 		}
-		ServerContext server = new ServerContext(map);
+		final ServerContext server = new ServerContext(map);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			long total = 0;

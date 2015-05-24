@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Launcher extends JPanel implements KeyListener, MouseListener {
+	private static final String SERVER_ADDR = "10.105.176.242";//"127.0.0.1";
 	private static final long serialVersionUID = -4540493147431023697L;
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
@@ -46,7 +47,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 	}
 
 	private Launcher() throws UnknownHostException, IOException {
-		this.net = new Network("127.0.0.1", "unknown user");
+		this.net = new Network(SERVER_ADDR, "unknown user");
 		context = new Context(net);
 		view = new View(context);
 		new Timer().schedule(new TimerTask() {

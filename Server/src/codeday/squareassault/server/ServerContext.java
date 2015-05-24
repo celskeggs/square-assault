@@ -105,7 +105,7 @@ public class ServerContext {
 		return objects.get(objectID);
 	}
 
-	public Iterable<ObjectContext> findColliding(ObjectContext from) {
+	public Iterable<ObjectContext> findColliding(final ObjectContext from) {
 		return new Iterable<ObjectContext>() {
 			@Override
 			public Iterator<ObjectContext> iterator() {
