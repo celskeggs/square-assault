@@ -1,5 +1,7 @@
 package codeday.squareassault.server;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -10,6 +12,8 @@ import java.util.TimerTask;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import javax.swing.JFileChooser;
+
 import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.QueueReceiver;
 import codeday.squareassault.protobuf.QueueSender;
@@ -17,7 +21,7 @@ import codeday.squareassault.protobuf.SharedConfig;
 
 public class Main implements Runnable {
 
-	private static final long TICK_DELAY = 100;
+	private static final long TICK_DELAY = 20;
 	private final Socket conn;
 	private final InputStream input;
 	private final OutputStream output;
@@ -34,7 +38,22 @@ public class Main implements Runnable {
 	}
 
 	public static void main(String[] args) throws IOException {
-		ServerContext server = new ServerContext();
+		File target;
+		if (args.length >= 1) {
+			target = new File(args[0]);
+		} else {
+			JFileChooser jfc = new JFileChooser(new File("."));
+			if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+				target = jfc.getSelectedFile();
+			} else {
+				return;
+			}
+		}
+		Messages.Map map;
+		try (FileInputStream fin = new FileInputStream(target)) {
+			map = Messages.Map.parseFrom(fin);
+		}
+		ServerContext server = new ServerContext(map);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override
@@ -66,11 +85,12 @@ public class Main implements Runnable {
 			if (!ident.hasName()) {
 				throw new RuntimeException("Failed: client did not provide name.");
 			}
-			Messages.Connect.newBuilder().setMap(server.getMap()).build().writeDelimitedTo(output);
+			ClientContext context = server.newClient(this.sendQueue, ident.getName());
+			Messages.Connect.newBuilder().setMap(server.getMap()).setObjectID(context.objectID).build().writeDelimitedTo(output);
 			new Thread(new QueueSender<>(sendQueue, output), "Sender-" + tid).start();
 			ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
-			new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder()), "Receiver-" + tid).start();
-			ClientContext context = server.newClient(this.sendQueue, ident.getName());
+			Messages.ToServer sentinel = Messages.ToServer.newBuilder().build();
+			new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder(), sentinel), "Receiver-" + tid).start();
 			try {
 				while (true) {
 					Messages.ToServer taken;
@@ -80,7 +100,7 @@ public class Main implements Runnable {
 						Logger.warning("Queue read interrupted", e);
 						continue;
 					}
-					if (taken == null) {
+					if (taken == sentinel) {
 						break;
 					}
 					context.receiveMessage(taken);

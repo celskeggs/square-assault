@@ -19,7 +19,7 @@ public class Launcher extends JPanel implements KeyListener {
 		final JFrame main = new JFrame("Square Assault");
 		main.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		main.setContentPane(panel);
-		main.setSize(1024, 768);
+		main.setSize(768, 768);
 		main.addKeyListener(panel);
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -46,6 +46,11 @@ public class Launcher extends JPanel implements KeyListener {
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
+				try {
+					context.tick();
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 				repaint();
 			}
 		}, View.UPDATE_DELAY_MILLIS, View.UPDATE_DELAY_MILLIS);
@@ -64,9 +69,8 @@ public class Launcher extends JPanel implements KeyListener {
 
 	@Override
 	public void keyPressed(KeyEvent arg0) {
-		System.out.println("Said: " + arg0);
 		try {
-			context.handleKey(arg0.getKeyCode(), arg0.getKeyChar());
+			context.handleKey(arg0.getKeyCode(), arg0.getKeyChar(), true);
 		} catch (InterruptedException e) {
 			e.printStackTrace(); // TODO: logging
 		}
@@ -74,7 +78,11 @@ public class Launcher extends JPanel implements KeyListener {
 
 	@Override
 	public void keyReleased(KeyEvent arg0) {
-
+		try {
+			context.handleKey(arg0.getKeyCode(), arg0.getKeyChar(), false);
+		} catch (InterruptedException e) {
+			e.printStackTrace(); // TODO: logging
+		}
 	}
 
 	@Override

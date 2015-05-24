@@ -11,11 +11,13 @@ public class QueueReceiver<T extends MessageLite> implements Runnable {
 	private final InputStream input;
 	private final BlockingQueue<T> recvQueue;
 	private final Builder builder;
+	private final T sentinel;
 
-	public QueueReceiver(BlockingQueue<T> recvQueue, InputStream output, MessageLite.Builder builder) {
+	public QueueReceiver(BlockingQueue<T> recvQueue, InputStream output, MessageLite.Builder builder, T sentinel) {
 		this.recvQueue = recvQueue;
 		this.input = output;
 		this.builder = builder;
+		this.sentinel = sentinel;
 	}
 
 	@Override
@@ -32,7 +34,7 @@ public class QueueReceiver<T extends MessageLite> implements Runnable {
 			e.printStackTrace(); // TODO: logging
 		}
 		try {
-			recvQueue.put(null); // TODO: this doesn't work
+			recvQueue.put(sentinel);
 		} catch (InterruptedException e) {
 			e.printStackTrace(); // TODO: logging
 		}

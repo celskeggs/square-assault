@@ -1,6 +1,6 @@
 package codeday.squareassault.server;
 
-import java.util.ArrayList;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import codeday.squareassault.protobuf.Messages;
@@ -9,32 +9,58 @@ import codeday.squareassault.protobuf.Messages.ToClient;
 
 public class ServerContext {
 
-	private final ArrayList<ClientContext> clients = new ArrayList<>();
+	private final CopyOnWriteArrayList<ClientContext> clients = new CopyOnWriteArrayList<>();
+	private int nextID = 0;
+	private Map map;
+
+	public ServerContext(Map map) {
+		this.map = map;
+	}
+
+	private synchronized int getObjectID() {
+		return nextID++;
+	}
 
 	public ClientContext newClient(LinkedBlockingQueue<ToClient> sendQueue, String name) {
 		return new ClientContext(this, sendQueue, name);
 	}
 
-	public synchronized void register(ClientContext context) {
+	public int register(ClientContext context) {
 		this.clients.add(context);
+		for (ClientContext client : clients) {
+			if (client != context) {
+				client.resendStatus();
+			}
+		}
+		return getObjectID();
 	}
 
-	public synchronized void removeClient(ClientContext context) {
+	public void removeClient(ClientContext context) {
 		this.clients.remove(context);
+		context.onRemove();
 	}
 
-	public synchronized void tick() {
-		
+	public void tick() {
+		for (ClientContext client : clients) {
+			client.setCanMove();
+		}
 	}
 
 	public Map getMap() {
-		Map.Builder builder = Messages.Map.newBuilder().setWidth(5).setHeight(5).addTilenames("tiletest").addTilenames("tiletest2");
-		for (int x=0; x<5; x++) {
-			for (int y=0; y<5; y++) {
-				builder.addCells((x + y) % 2);
-			}
-		}
-		return builder.build();
+		return map;
 	}
 
+	public void destroyObject(int objectID) {
+		broadcast(Messages.ToClient.newBuilder().setDisconnect(Messages.Disconnect.newBuilder().setObject(objectID)).build());
+	}
+
+	public void updateObjectPosition(int objectID, int x, int y) {
+		broadcast(Messages.ToClient.newBuilder().setPosition(Messages.SetPosition.newBuilder().setObject(objectID).setX(x).setY(y)).build());
+	}
+
+	private void broadcast(Messages.ToClient built) {
+		for (ClientContext client : clients) {
+			client.sendMessage(built);
+		}
+	}
 }

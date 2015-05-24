@@ -20,6 +20,8 @@ public class Network {
 	private final LinkedBlockingQueue<Messages.ToServer> sendQueue = new LinkedBlockingQueue<>();
 	private final LinkedBlockingQueue<Messages.ToClient> recvQueue = new LinkedBlockingQueue<>();
 	private final Connect info;
+	
+	private static final Messages.ToClient sentinel = Messages.ToClient.newBuilder().build();
 
 	public Network(String server, String username) throws UnknownHostException, IOException {
 		socket = new Socket(InetAddress.getByName(server), SharedConfig.PORT);
@@ -30,7 +32,7 @@ public class Network {
 		System.out.println("Sent");
 		this.info = Messages.Connect.parseDelimitedFrom(input);
 		System.out.println("Got");
-		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder()), "Receiver").start();
+		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder(), sentinel), "Receiver").start();
 		new Thread(new QueueSender<>(this.sendQueue, output), "Sender").start();
 	}
 	
@@ -42,11 +44,13 @@ public class Network {
 		context.handleConnectInfo(info);
 		while (true) {
 			ToClient taken = recvQueue.take();
-			if (taken == null) {
+			if (taken == sentinel) {
 				break;
 			}
-			if (taken.hasLine()) {
-				context.handleLineMessage(taken.getLine());
+			if (taken.hasDisconnect()) {
+				context.handleDisconnect(taken.getDisconnect());
+			} else if (taken.hasPosition()) {
+				context.handleSetPosition(taken.getPosition());
 			} else {
 				System.out.println("Bad input: " + taken);
 			}
