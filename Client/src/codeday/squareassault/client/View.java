@@ -18,7 +18,7 @@ public class View {
 		this.context = context;
 	}
 
-	public void paint(Graphics go, int width, int height) {
+	public synchronized void paint(Graphics go, int width, int height) {
 		for (int i = 0; i < context.backgroundImages.length; i++) {
 			int[] column = context.backgroundImages[i];
 			for (int j = 0; j < column.length; j++) {
@@ -28,7 +28,11 @@ public class View {
 		}
 
 		for (Entity ent : context.entities) {
-			go.drawImage(Loader.load(ent.getIconForRender()), ent.x + shiftX, ent.y + shiftY, null);
+			if (ent.objectID == context.getPlayerID()) {
+				go.drawImage(Loader.load(ent.getIconForRender()), context.getX() + shiftX, context.getY() + shiftY, null);
+			} else {
+				go.drawImage(Loader.load(ent.getIconForRender()), ent.x + shiftX, ent.y + shiftY, null);
+			}
 		}
 
 		int health = context.getHealth();
@@ -59,7 +63,7 @@ public class View {
 		return new Color((int) (one.getRed() * d + zero.getRed() * remain), (int) (one.getGreen() * d + zero.getGreen() * remain), (int) (one.getBlue() * d + zero.getBlue() * remain));
 	}
 
-	public void tick(int width, int height) {
+	public synchronized void tick(int width, int height) {
 		int realX = context.getX() + shiftX;
 		if (realX < BORDER_SIZE_MIN) {
 			shiftX += (BORDER_SIZE_MIN - realX) / SHIFT_SCALE_FACTOR;

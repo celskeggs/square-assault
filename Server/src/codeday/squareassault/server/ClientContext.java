@@ -8,19 +8,23 @@ import codeday.squareassault.protobuf.Messages.PlaceTurret;
 import codeday.squareassault.protobuf.Messages.SetPosition;
 import codeday.squareassault.protobuf.Messages.ToClient;
 import codeday.squareassault.protobuf.Messages.ToServer;
+import codeday.squareassault.protobuf.SharedConfig;
 
 public final class ClientContext extends ObjectContext {
 
-	private static final int SIZE = 57, COOLDOWN = 1000;
+	private static final int COOLDOWN = 1000, UPDATE_TICKS = 5, UPDATE_SELF_MUL = 2;
 	private static final int TURRETS_MAX = 8;
 	private static final int MAX_TURRET_DISTANCE = 5 * 64;
-	private static final int MAX_MOVE = 8;
+	private static final int MAX_MOVE = 15;
 	public final LinkedBlockingQueue<ToClient> sendQueue = new LinkedBlockingQueue<>();
 	public final String name;
 	private boolean canMove = false;
 	private int turretCount = 4;
 	private int health = 100;
 	private int cooldown = 0;
+	private boolean dirty = false, avoidSelf = false;
+	private int updateCount = UPDATE_TICKS;
+	private int updateSelf = UPDATE_SELF_MUL;
 
 	public ClientContext(ServerContext serverContext, String name) {
 		super(serverContext, serverContext.getMap().getSpawnX(), serverContext.getMap().getSpawnY());
@@ -36,6 +40,23 @@ public final class ClientContext extends ObjectContext {
 				resendTurretCount();
 			}
 		}
+		if (dirty && --updateCount <= 0) {
+			updateCount = UPDATE_TICKS;
+			if (--updateSelf == 0) {
+				avoidSelf = true;
+				resendStatus();
+				avoidSelf = false;
+				updateSelf = UPDATE_SELF_MUL;
+			} else {
+				resendStatus();
+			}
+		}
+	}
+
+	@Override
+	public void resendStatus() {
+		super.resendStatus();
+		dirty = false;
 	}
 
 	private void resendTurretCount() {
@@ -71,59 +92,23 @@ public final class ClientContext extends ObjectContext {
 		int wantX = position.getX(), wantY = position.getY();
 		{
 			int rx = wantX - x, ry = wantY - y;
-			if (rx * rx + ry * ry > MAX_MOVE) {
+			if (rx * rx + ry * ry > MAX_MOVE * MAX_MOVE) {
 				resendStatus();
 			}
 		}
 		if (server.canMoveTo(wantX, wantY, this)) {
 			x = wantX;
 			y = wantY;
-			resendStatus();
+			dirty = true;
 		} else {
-			boolean changed = false;
-			if (wantX > x) {
-				for (int rx = wantX - 1; rx > x; rx--) {
-					if (server.canMoveTo(rx, y, this)) {
-						x = rx;
-						changed = true;
-						break;
-					}
-				}
-			} else if (wantX < x) {
-				for (int rx = wantX + 1; rx < x; rx++) {
-					if (server.canMoveTo(rx, y, this)) {
-						x = rx;
-						changed = true;
-						break;
-					}
-				}
-			}
-
-			if (wantY > y) {
-				for (int ry = wantY - 1; ry > y; ry--) {
-					if (server.canMoveTo(x, ry, this)) {
-						y = ry;
-						changed = true;
-						break;
-					}
-				}
-			} else if (wantY < y) {
-				for (int ry = wantY + 1; ry < y; ry++) {
-					if (server.canMoveTo(x, ry, this)) {
-						y = ry;
-						changed = true;
-						break;
-					}
-				}
-			}
-
-			if (changed) {
-				resendStatus();
-			}
+			resendStatus(); // because we need to tell the client that they couldn't move
 		}
 	}
 
 	public void sendMessage(ToClient built) {
+		if (avoidSelf && built.hasPosition() && built.getPosition().getObject() == objectID) {
+			return;
+		}
 		sendQueue.add(built);
 	}
 
@@ -139,7 +124,7 @@ public final class ClientContext extends ObjectContext {
 
 	@Override
 	public int getRadius() {
-		return (SIZE + 1) / 2;
+		return SharedConfig.PLAYER_RADIUS;
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import codeday.squareassault.protobuf.Messages;
+import codeday.squareassault.protobuf.SharedConfig;
 import codeday.squareassault.protobuf.Messages.Connect;
 import codeday.squareassault.protobuf.Messages.Disconnect;
 import codeday.squareassault.protobuf.Messages.Map;
@@ -14,6 +15,7 @@ import codeday.squareassault.protobuf.Messages.TurretCount;
 
 public class Context {
 
+	private static final int SNAP_DISTANCE = 10;
 	private int objectID;
 	private final Network net;
 	public String[] cells;
@@ -60,11 +62,49 @@ public class Context {
 		}
 	}
 
-	private void sendRelativeMove(int x, int y) throws InterruptedException {
-		int curX = this.x + x, curY = this.y + y;
+	private void sendRelativeMove(int dx, int dy) throws InterruptedException {
+		if (tryRelativeMove(dx, dy)) {
+			return;
+		}
+
+		if (dx > 0) {
+			for (int rx = dx - 1; rx > 0; rx--) {
+				if (tryRelativeMove(rx, 0)) {
+					break;
+				}
+			}
+		} else if (dx < 0) {
+			for (int rx = dx + 1; rx < 0; rx++) {
+				if (tryRelativeMove(rx, 0)) {
+					break;
+				}
+			}
+		}
+
+		if (dy > 0) {
+			for (int ry = dy - 1; ry > 0; ry--) {
+				if (tryRelativeMove(0, ry)) {
+					break;
+				}
+			}
+		} else if (dy < 0) {
+			for (int ry = dy + 1; ry < 0; ry++) {
+				if (tryRelativeMove(0, ry)) {
+					break;
+				}
+			}
+		}
+	}
+
+	private boolean tryRelativeMove(int dx, int dy) throws InterruptedException {
+		int curX = this.x + dx, curY = this.y + dy;
+		if (!canMoveTo(curX, curY)) {
+			return false;
+		}
 		net.send(Messages.ToServer.newBuilder().setPosition(Messages.SetPosition.newBuilder().setX(curX).setY(curY)).build());
 		this.x = curX;
 		this.y = curY;
+		return true;
 	}
 
 	public void handleMap(Map map) {
@@ -106,8 +146,11 @@ public class Context {
 
 	public synchronized void handleSetPosition(SetPosition position) {
 		if (position.getObject() == objectID) {
-			this.x = position.getX();
-			this.y = position.getY();
+			int tx = position.getX(), ty = position.getY();
+			if ((tx - x) * (tx - x) + (ty - y) * (ty - y) >= SNAP_DISTANCE * SNAP_DISTANCE) {
+				x = tx;
+				y = ty;
+			}
 		}
 		for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) {
 			Entity e = iterator.next();
@@ -164,5 +207,25 @@ public class Context {
 	public void handleTurretCount(TurretCount count) {
 		turretCount = count.getCount();
 		turretMaximum = count.getMaximum();
+	}
+
+	public boolean canMoveTo(int wantX, int wantY) {
+		// hard-coded client values
+		int centerCoord = 32, radius = SharedConfig.PLAYER_RADIUS;
+		int x1 = wantX + centerCoord - radius, x2 = wantX + centerCoord + radius - 1;
+		int y1 = wantY + centerCoord - radius, y2 = wantY + centerCoord + radius - 1;
+		return isEmptyAt(x1, y1) && isEmptyAt(x2, y1) && isEmptyAt(x1, y2) && isEmptyAt(x2, y2);
+	}
+
+	private boolean isEmptyAt(int wantX, int wantY) {
+		int cX = wantX >> 6; // / 64;
+		int cY = wantY >> 6; // / 64;
+		if (cX < 0 || cX >= backgroundImages.length) {
+			return false;
+		}
+		if (cY < 0 || cY >= backgroundImages[cX].length) {
+			return false;
+		}
+		return backgroundImages[cX][cY] == 0;
 	}
 }

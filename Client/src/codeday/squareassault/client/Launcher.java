@@ -16,7 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Launcher extends JPanel implements KeyListener, MouseListener {
-	private static final String SERVER_ADDR = "10.105.176.242";//"127.0.0.1";
+	private static final String SERVER_ADDR = "tethys.colbyskeggs.com";//"10.105.176.242";//"127.0.0.1";
 	private static final long serialVersionUID = -4540493147431023697L;
 
 	public static void main(String[] args) throws UnknownHostException, IOException {

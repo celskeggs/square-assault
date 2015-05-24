@@ -35,7 +35,8 @@ public class BulletContext extends ObjectContext {
 		}
 		boolean any = false;
 		for (ObjectContext colliding : server.findColliding(this)) {
-			if (!colliding.hasHealth() || colliding.getHealth() <= 0 || colliding.parentID == server.getObject(parentID).parentID) {
+			ObjectContext pobj;
+			if (!colliding.hasHealth() || colliding.getHealth() <= 0 || (pobj = server.getObject(parentID)) == null || colliding.parentID == pobj.parentID) {
 				continue;
 			}
 			if (colliding.objectID != server.getObject(parentID).parentID) {
