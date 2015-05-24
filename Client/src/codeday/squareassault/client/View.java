@@ -3,6 +3,8 @@ package codeday.squareassault.client;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import codeday.squareassault.protobuf.Messages.ObjectType;
+
 public class View {
 
 	public static final long UPDATE_DELAY_MILLIS = 20;
@@ -32,6 +34,10 @@ public class View {
 				go.drawImage(Loader.load(ent.getIconForRender()), context.getX() + shiftX, context.getY() + shiftY, null);
 			} else {
 				go.drawImage(Loader.load(ent.getIconForRender()), ent.x + shiftX, ent.y + shiftY, null);
+				if (ent.type == ObjectType.TURRET) {
+					String str = String.valueOf(ent.health);
+					go.drawString(str, ent.x + 32 + shiftX - go.getFontMetrics().stringWidth(str) / 2, ent.y + shiftY + 32);
+				}
 			}
 		}
 
@@ -64,24 +70,33 @@ public class View {
 	}
 
 	public synchronized void tick(int width, int height) {
-		int realX = context.getX() + shiftX;
-		if (realX < BORDER_SIZE_MIN) {
-			shiftX += (BORDER_SIZE_MIN - realX) / SHIFT_SCALE_FACTOR;
-		}
-		if (realX > width - BORDER_SIZE_MAX) {
-			shiftX -= (realX - width + BORDER_SIZE_MAX) / SHIFT_SCALE_FACTOR;
-		}
+		if (!context.isDead()) {
+			int realX = context.getX() + shiftX;
+			if (realX < BORDER_SIZE_MIN) {
+				shiftX += (BORDER_SIZE_MIN - realX) / SHIFT_SCALE_FACTOR;
+			}
+			if (realX > width - BORDER_SIZE_MAX) {
+				shiftX -= (realX - width + BORDER_SIZE_MAX) / SHIFT_SCALE_FACTOR;
+			}
 
-		int realY = context.getY() + shiftY;
-		if (realY < BORDER_SIZE_MIN) {
-			shiftY += (BORDER_SIZE_MIN - realY) / SHIFT_SCALE_FACTOR;
-		}
-		if (realY > height - BORDER_SIZE_MAX) {
-			shiftY -= (realY - height + BORDER_SIZE_MAX) / SHIFT_SCALE_FACTOR;
+			int realY = context.getY() + shiftY;
+			if (realY < BORDER_SIZE_MIN) {
+				shiftY += (BORDER_SIZE_MIN - realY) / SHIFT_SCALE_FACTOR;
+			}
+			if (realY > height - BORDER_SIZE_MAX) {
+				shiftY -= (realY - height + BORDER_SIZE_MAX) / SHIFT_SCALE_FACTOR;
+			}
 		}
 	}
 
 	public void mousePress(int x, int y, int button) throws InterruptedException {
 		context.mousePress(x - shiftX, y - shiftY, button);
+	}
+
+	public synchronized void shiftViewForSpectate(int dx, int dy) {
+		if (context.isDead()) {
+			shiftX -= dx;
+			shiftY -= dy;
+		}
 	}
 }

@@ -21,8 +21,9 @@ public class Context {
 	public String[] cells;
 	public int[][] backgroundImages;
 	public final CopyOnWriteArrayList<Entity> entities = new CopyOnWriteArrayList<>();
-	private int x, y, dx, dy;
+	private int x, y, dx, dy, health;
 	public int turretCount = -1, turretMaximum = 1;
+	public View view;
 
 	public Context(Network net) {
 		this.net = net;
@@ -57,8 +58,14 @@ public class Context {
 	}
 
 	public void tick() throws InterruptedException {
-		if (dx != 0 || dy != 0) {
-			sendRelativeMove(dx, dy);
+		if (isDead()) {
+			if (view != null) {
+				view.shiftViewForSpectate(dx, dy);
+			}
+		} else {
+			if (dx != 0 || dy != 0) {
+				sendRelativeMove(dx, dy);
+			}
 		}
 	}
 
@@ -97,14 +104,22 @@ public class Context {
 	}
 
 	private boolean tryRelativeMove(int dx, int dy) throws InterruptedException {
-		int curX = this.x + dx, curY = this.y + dy;
-		if (!canMoveTo(curX, curY)) {
-			return false;
+		if (isDead()) {
+			return true;
+		} else {
+			int curX = this.x + dx, curY = this.y + dy;
+			if (!canMoveTo(curX, curY)) {
+				return false;
+			}
+			net.send(Messages.ToServer.newBuilder().setPosition(Messages.SetPosition.newBuilder().setX(curX).setY(curY)).build());
+			this.x = curX;
+			this.y = curY;
+			return true;
 		}
-		net.send(Messages.ToServer.newBuilder().setPosition(Messages.SetPosition.newBuilder().setX(curX).setY(curY)).build());
-		this.x = curX;
-		this.y = curY;
-		return true;
+	}
+
+	public boolean isDead() {
+		return this.getHealth() <= 0;
 	}
 
 	public void handleMap(Map map) {
@@ -150,6 +165,9 @@ public class Context {
 			if ((tx - x) * (tx - x) + (ty - y) * (ty - y) >= SNAP_DISTANCE * SNAP_DISTANCE) {
 				x = tx;
 				y = ty;
+			}
+			if (position.hasHealth()) {
+				this.health = position.getHealth();
 			}
 		}
 		for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) {
@@ -201,7 +219,7 @@ public class Context {
 	}
 
 	public int getHealth() {
-		return getObjectByID(getPlayerID()).health;
+		return health;
 	}
 
 	public void handleTurretCount(TurretCount count) {

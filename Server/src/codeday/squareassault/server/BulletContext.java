@@ -26,7 +26,10 @@ public class BulletContext extends ObjectContext {
 
 	@Override
 	public void tick() {
-		super.tick();
+		if (server.getObject(parentID) == null) {
+			server.delete(this);
+			return;
+		}
 		this.x += this.vx;
 		this.y += this.vy;
 		if (!server.canMoveTo(x, y, this)) {

@@ -50,6 +50,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 		this.net = new Network(SERVER_ADDR, "unknown user");
 		context = new Context(net);
 		view = new View(context);
+		context.view = view;
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
