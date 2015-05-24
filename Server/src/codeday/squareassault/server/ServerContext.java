@@ -1,6 +1,7 @@
 package codeday.squareassault.server;
 
 import java.util.Iterator;
+import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 
 import codeday.squareassault.protobuf.Messages;
@@ -21,8 +22,11 @@ public class ServerContext {
 		return nextID++;
 	}
 
+	private final Random rand = new Random();
+
 	public ClientContext newClient(String name) {
-		ClientContext context = new ClientContext(this, name);
+		int spawnID = rand.nextInt(map.getSpawnXCount());
+		ClientContext context = new ClientContext(this, name, map.getSpawnX(spawnID), map.getSpawnY(spawnID));
 		register(context);
 		return context;
 	}

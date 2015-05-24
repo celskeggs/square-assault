@@ -26,8 +26,8 @@ public final class ClientContext extends ObjectContext {
 	private int updateCount = UPDATE_TICKS;
 	private int updateSelf = UPDATE_SELF_MUL;
 
-	public ClientContext(ServerContext serverContext, String name) {
-		super(serverContext, serverContext.getMap().getSpawnX(), serverContext.getMap().getSpawnY());
+	public ClientContext(ServerContext serverContext, String name, int spawnX, int spawnY) {
+		super(serverContext, spawnX, spawnY);
 		this.name = name;
 	}
 

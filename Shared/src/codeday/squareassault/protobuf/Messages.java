@@ -1236,22 +1236,30 @@ public final class Messages {
     int getCells(int index);
 
     /**
-     * <code>optional uint32 spawnX = 5 [default = 100];</code>
+     * <code>repeated uint32 spawnX = 5;</code>
      */
-    boolean hasSpawnX();
+    java.util.List<java.lang.Integer> getSpawnXList();
     /**
-     * <code>optional uint32 spawnX = 5 [default = 100];</code>
+     * <code>repeated uint32 spawnX = 5;</code>
      */
-    int getSpawnX();
+    int getSpawnXCount();
+    /**
+     * <code>repeated uint32 spawnX = 5;</code>
+     */
+    int getSpawnX(int index);
 
     /**
-     * <code>optional uint32 spawnY = 6 [default = 100];</code>
+     * <code>repeated uint32 spawnY = 6;</code>
      */
-    boolean hasSpawnY();
+    java.util.List<java.lang.Integer> getSpawnYList();
     /**
-     * <code>optional uint32 spawnY = 6 [default = 100];</code>
+     * <code>repeated uint32 spawnY = 6;</code>
      */
-    int getSpawnY();
+    int getSpawnYCount();
+    /**
+     * <code>repeated uint32 spawnY = 6;</code>
+     */
+    int getSpawnY(int index);
   }
   /**
    * Protobuf type {@code tutorial.Map}
@@ -1346,13 +1354,45 @@ public final class Messages {
               break;
             }
             case 40: {
-              bitField0_ |= 0x00000004;
-              spawnX_ = input.readUInt32();
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+                spawnX_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              spawnX_.add(input.readUInt32());
+              break;
+            }
+            case 42: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000010) == 0x00000010) && input.getBytesUntilLimit() > 0) {
+                spawnX_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000010;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                spawnX_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
               break;
             }
             case 48: {
-              bitField0_ |= 0x00000008;
-              spawnY_ = input.readUInt32();
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+                spawnY_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              spawnY_.add(input.readUInt32());
+              break;
+            }
+            case 50: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000020) == 0x00000020) && input.getBytesUntilLimit() > 0) {
+                spawnY_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000020;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                spawnY_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
               break;
             }
           }
@@ -1368,6 +1408,12 @@ public final class Messages {
         }
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
           cells_ = java.util.Collections.unmodifiableList(cells_);
+        }
+        if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
+          spawnX_ = java.util.Collections.unmodifiableList(spawnX_);
+        }
+        if (((mutable_bitField0_ & 0x00000020) == 0x00000020)) {
+          spawnY_ = java.util.Collections.unmodifiableList(spawnY_);
         }
         this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
@@ -1483,33 +1529,47 @@ public final class Messages {
     }
 
     public static final int SPAWNX_FIELD_NUMBER = 5;
-    private int spawnX_;
+    private java.util.List<java.lang.Integer> spawnX_;
     /**
-     * <code>optional uint32 spawnX = 5 [default = 100];</code>
+     * <code>repeated uint32 spawnX = 5;</code>
      */
-    public boolean hasSpawnX() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+    public java.util.List<java.lang.Integer>
+        getSpawnXList() {
+      return spawnX_;
     }
     /**
-     * <code>optional uint32 spawnX = 5 [default = 100];</code>
+     * <code>repeated uint32 spawnX = 5;</code>
      */
-    public int getSpawnX() {
-      return spawnX_;
+    public int getSpawnXCount() {
+      return spawnX_.size();
+    }
+    /**
+     * <code>repeated uint32 spawnX = 5;</code>
+     */
+    public int getSpawnX(int index) {
+      return spawnX_.get(index);
     }
 
     public static final int SPAWNY_FIELD_NUMBER = 6;
-    private int spawnY_;
+    private java.util.List<java.lang.Integer> spawnY_;
     /**
-     * <code>optional uint32 spawnY = 6 [default = 100];</code>
+     * <code>repeated uint32 spawnY = 6;</code>
      */
-    public boolean hasSpawnY() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+    public java.util.List<java.lang.Integer>
+        getSpawnYList() {
+      return spawnY_;
     }
     /**
-     * <code>optional uint32 spawnY = 6 [default = 100];</code>
+     * <code>repeated uint32 spawnY = 6;</code>
      */
-    public int getSpawnY() {
-      return spawnY_;
+    public int getSpawnYCount() {
+      return spawnY_.size();
+    }
+    /**
+     * <code>repeated uint32 spawnY = 6;</code>
+     */
+    public int getSpawnY(int index) {
+      return spawnY_.get(index);
     }
 
     private void initFields() {
@@ -1517,8 +1577,8 @@ public final class Messages {
       height_ = 0;
       tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
       cells_ = java.util.Collections.emptyList();
-      spawnX_ = 100;
-      spawnY_ = 100;
+      spawnX_ = java.util.Collections.emptyList();
+      spawnY_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1553,11 +1613,11 @@ public final class Messages {
       for (int i = 0; i < cells_.size(); i++) {
         output.writeUInt32(4, cells_.get(i));
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeUInt32(5, spawnX_);
+      for (int i = 0; i < spawnX_.size(); i++) {
+        output.writeUInt32(5, spawnX_.get(i));
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeUInt32(6, spawnY_);
+      for (int i = 0; i < spawnY_.size(); i++) {
+        output.writeUInt32(6, spawnY_.get(i));
       }
       getUnknownFields().writeTo(output);
     }
@@ -1594,13 +1654,23 @@ public final class Messages {
         size += dataSize;
         size += 1 * getCellsList().size();
       }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(5, spawnX_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < spawnX_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(spawnX_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getSpawnXList().size();
       }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(6, spawnY_);
+      {
+        int dataSize = 0;
+        for (int i = 0; i < spawnY_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(spawnY_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getSpawnYList().size();
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1727,9 +1797,9 @@ public final class Messages {
         bitField0_ = (bitField0_ & ~0x00000004);
         cells_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
-        spawnX_ = 100;
+        spawnX_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000010);
-        spawnY_ = 100;
+        spawnY_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
@@ -1777,12 +1847,14 @@ public final class Messages {
           bitField0_ = (bitField0_ & ~0x00000008);
         }
         result.cells_ = cells_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000004;
+        if (((bitField0_ & 0x00000010) == 0x00000010)) {
+          spawnX_ = java.util.Collections.unmodifiableList(spawnX_);
+          bitField0_ = (bitField0_ & ~0x00000010);
         }
         result.spawnX_ = spawnX_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000008;
+        if (((bitField0_ & 0x00000020) == 0x00000020)) {
+          spawnY_ = java.util.Collections.unmodifiableList(spawnY_);
+          bitField0_ = (bitField0_ & ~0x00000020);
         }
         result.spawnY_ = spawnY_;
         result.bitField0_ = to_bitField0_;
@@ -1827,11 +1899,25 @@ public final class Messages {
           }
           onChanged();
         }
-        if (other.hasSpawnX()) {
-          setSpawnX(other.getSpawnX());
+        if (!other.spawnX_.isEmpty()) {
+          if (spawnX_.isEmpty()) {
+            spawnX_ = other.spawnX_;
+            bitField0_ = (bitField0_ & ~0x00000010);
+          } else {
+            ensureSpawnXIsMutable();
+            spawnX_.addAll(other.spawnX_);
+          }
+          onChanged();
         }
-        if (other.hasSpawnY()) {
-          setSpawnY(other.getSpawnY());
+        if (!other.spawnY_.isEmpty()) {
+          if (spawnY_.isEmpty()) {
+            spawnY_ = other.spawnY_;
+            bitField0_ = (bitField0_ & ~0x00000020);
+          } else {
+            ensureSpawnYIsMutable();
+            spawnY_.addAll(other.spawnY_);
+          }
+          onChanged();
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2091,66 +2177,134 @@ public final class Messages {
         return this;
       }
 
-      private int spawnX_ = 100;
-      /**
-       * <code>optional uint32 spawnX = 5 [default = 100];</code>
-       */
-      public boolean hasSpawnX() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+      private java.util.List<java.lang.Integer> spawnX_ = java.util.Collections.emptyList();
+      private void ensureSpawnXIsMutable() {
+        if (!((bitField0_ & 0x00000010) == 0x00000010)) {
+          spawnX_ = new java.util.ArrayList<java.lang.Integer>(spawnX_);
+          bitField0_ |= 0x00000010;
+         }
       }
       /**
-       * <code>optional uint32 spawnX = 5 [default = 100];</code>
+       * <code>repeated uint32 spawnX = 5;</code>
        */
-      public int getSpawnX() {
-        return spawnX_;
+      public java.util.List<java.lang.Integer>
+          getSpawnXList() {
+        return java.util.Collections.unmodifiableList(spawnX_);
       }
       /**
-       * <code>optional uint32 spawnX = 5 [default = 100];</code>
+       * <code>repeated uint32 spawnX = 5;</code>
        */
-      public Builder setSpawnX(int value) {
-        bitField0_ |= 0x00000010;
-        spawnX_ = value;
+      public int getSpawnXCount() {
+        return spawnX_.size();
+      }
+      /**
+       * <code>repeated uint32 spawnX = 5;</code>
+       */
+      public int getSpawnX(int index) {
+        return spawnX_.get(index);
+      }
+      /**
+       * <code>repeated uint32 spawnX = 5;</code>
+       */
+      public Builder setSpawnX(
+          int index, int value) {
+        ensureSpawnXIsMutable();
+        spawnX_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 spawnX = 5 [default = 100];</code>
+       * <code>repeated uint32 spawnX = 5;</code>
+       */
+      public Builder addSpawnX(int value) {
+        ensureSpawnXIsMutable();
+        spawnX_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 spawnX = 5;</code>
+       */
+      public Builder addAllSpawnX(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureSpawnXIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, spawnX_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 spawnX = 5;</code>
        */
       public Builder clearSpawnX() {
+        spawnX_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000010);
-        spawnX_ = 100;
         onChanged();
         return this;
       }
 
-      private int spawnY_ = 100;
-      /**
-       * <code>optional uint32 spawnY = 6 [default = 100];</code>
-       */
-      public boolean hasSpawnY() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+      private java.util.List<java.lang.Integer> spawnY_ = java.util.Collections.emptyList();
+      private void ensureSpawnYIsMutable() {
+        if (!((bitField0_ & 0x00000020) == 0x00000020)) {
+          spawnY_ = new java.util.ArrayList<java.lang.Integer>(spawnY_);
+          bitField0_ |= 0x00000020;
+         }
       }
       /**
-       * <code>optional uint32 spawnY = 6 [default = 100];</code>
+       * <code>repeated uint32 spawnY = 6;</code>
        */
-      public int getSpawnY() {
-        return spawnY_;
+      public java.util.List<java.lang.Integer>
+          getSpawnYList() {
+        return java.util.Collections.unmodifiableList(spawnY_);
       }
       /**
-       * <code>optional uint32 spawnY = 6 [default = 100];</code>
+       * <code>repeated uint32 spawnY = 6;</code>
        */
-      public Builder setSpawnY(int value) {
-        bitField0_ |= 0x00000020;
-        spawnY_ = value;
+      public int getSpawnYCount() {
+        return spawnY_.size();
+      }
+      /**
+       * <code>repeated uint32 spawnY = 6;</code>
+       */
+      public int getSpawnY(int index) {
+        return spawnY_.get(index);
+      }
+      /**
+       * <code>repeated uint32 spawnY = 6;</code>
+       */
+      public Builder setSpawnY(
+          int index, int value) {
+        ensureSpawnYIsMutable();
+        spawnY_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 spawnY = 6 [default = 100];</code>
+       * <code>repeated uint32 spawnY = 6;</code>
+       */
+      public Builder addSpawnY(int value) {
+        ensureSpawnYIsMutable();
+        spawnY_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 spawnY = 6;</code>
+       */
+      public Builder addAllSpawnY(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureSpawnYIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, spawnY_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 spawnY = 6;</code>
        */
       public Builder clearSpawnY() {
+        spawnY_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000020);
-        spawnY_ = 100;
         onChanged();
         return this;
       }
@@ -6412,25 +6566,25 @@ public final class Messages {
       "\n)codeday/squareassault/protobuf/main.pr" +
       "oto\022\010tutorial\"\030\n\010Identify\022\014\n\004name\030\001 \001(\t\"" +
       "7\n\007Connect\022\032\n\003map\030\001 \001(\0132\r.tutorial.Map\022\020" +
-      "\n\010objectID\030\002 \002(\r\"p\n\003Map\022\r\n\005width\030\001 \002(\r\022\016" +
+      "\n\010objectID\030\002 \002(\r\"f\n\003Map\022\r\n\005width\030\001 \002(\r\022\016" +
       "\n\006height\030\002 \002(\r\022\021\n\ttilenames\030\003 \003(\t\022\r\n\005cel" +
-      "ls\030\004 \003(\r\022\023\n\006spawnX\030\005 \001(\r:\003100\022\023\n\006spawnY\030" +
-      "\006 \001(\r:\003100\"\211\001\n\013SetPosition\022\016\n\006object\030\001 \001" +
-      "(\r\022\t\n\001x\030\002 \002(\r\022\t\n\001y\030\003 \002(\r\022\014\n\004icon\030\004 \001(\t\022\"" +
-      "\n\004type\030\005 \001(\0162\024.tutorial.ObjectType\022\022\n\006pa" +
-      "rent\030\006 \001(\005:\002-1\022\016\n\006health\030\007 \001(\r\"\034\n\nDiscon",
-      "nect\022\016\n\006object\030\001 \002(\r\"#\n\013PlaceTurret\022\t\n\001x" +
-      "\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\"-\n\013TurretCount\022\r\n\005coun" +
-      "t\030\001 \002(\r\022\017\n\007maximum\030\002 \002(\r\"\224\001\n\010ToClient\022)\n" +
-      "\010position\030\002 \001(\0132\025.tutorial.SetPositionH\000" +
-      "\022*\n\ndisconnect\030\003 \001(\0132\024.tutorial.Disconne" +
-      "ctH\000\022&\n\005count\030\004 \001(\0132\025.tutorial.TurretCou" +
-      "ntH\000B\t\n\007message\"i\n\010ToServer\022)\n\010position\030" +
-      "\002 \001(\0132\025.tutorial.SetPositionH\000\022\'\n\006turret" +
-      "\030\003 \001(\0132\025.tutorial.PlaceTurretH\000B\t\n\007messa" +
-      "ge*0\n\nObjectType\022\n\n\006PLAYER\020\000\022\n\n\006TURRET\020\001",
-      "\022\n\n\006BULLET\020\002B*\n\036codeday.squareassault.pr" +
-      "otobufB\010Messages"
+      "ls\030\004 \003(\r\022\016\n\006spawnX\030\005 \003(\r\022\016\n\006spawnY\030\006 \003(\r" +
+      "\"\211\001\n\013SetPosition\022\016\n\006object\030\001 \001(\r\022\t\n\001x\030\002 " +
+      "\002(\r\022\t\n\001y\030\003 \002(\r\022\014\n\004icon\030\004 \001(\t\022\"\n\004type\030\005 \001" +
+      "(\0162\024.tutorial.ObjectType\022\022\n\006parent\030\006 \001(\005" +
+      ":\002-1\022\016\n\006health\030\007 \001(\r\"\034\n\nDisconnect\022\016\n\006ob",
+      "ject\030\001 \002(\r\"#\n\013PlaceTurret\022\t\n\001x\030\001 \002(\r\022\t\n\001" +
+      "y\030\002 \002(\r\"-\n\013TurretCount\022\r\n\005count\030\001 \002(\r\022\017\n" +
+      "\007maximum\030\002 \002(\r\"\224\001\n\010ToClient\022)\n\010position\030" +
+      "\002 \001(\0132\025.tutorial.SetPositionH\000\022*\n\ndiscon" +
+      "nect\030\003 \001(\0132\024.tutorial.DisconnectH\000\022&\n\005co" +
+      "unt\030\004 \001(\0132\025.tutorial.TurretCountH\000B\t\n\007me" +
+      "ssage\"i\n\010ToServer\022)\n\010position\030\002 \001(\0132\025.tu" +
+      "torial.SetPositionH\000\022\'\n\006turret\030\003 \001(\0132\025.t" +
+      "utorial.PlaceTurretH\000B\t\n\007message*0\n\nObje" +
+      "ctType\022\n\n\006PLAYER\020\000\022\n\n\006TURRET\020\001\022\n\n\006BULLET",
+      "\020\002B*\n\036codeday.squareassault.protobufB\010Me" +
+      "ssages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

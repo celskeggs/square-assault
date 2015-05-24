@@ -10,6 +10,7 @@ import codeday.squareassault.client.Loader;
 public class View {
 
 	public static final Color BACKGROUND_COLOR = Color.BLACK;
+	private static final int OVERLAP_RADIUS = 64;
 	private int shiftX, shiftY, dX, dY;
 	private boolean shiftKeyHeld;
 	private final Map map;
@@ -45,6 +46,8 @@ public class View {
 			noff[2 * i + 1] = x;
 			x += 10;
 		}
+		x += 10;
+		go.drawString("Total spawnpoints: " + map.spawnXes.size(), x, fm.getHeight());
 		offsets = noff;
 		fontHeight = fm.getHeight();
 	}
@@ -70,7 +73,9 @@ public class View {
 				go.drawImage(Loader.load(map.names.get(column[y])), x * 64 + shiftX, y * 64 + shiftY, null);
 			}
 		}
-		go.drawImage(Loader.load("user"), map.spawnX + shiftX, map.spawnY + shiftY, null);
+		for (int i = 0; i < map.spawnXes.size(); i++) {
+			go.drawImage(Loader.load("user"), map.spawnXes.get(i) + shiftX, map.spawnYes.get(i) + shiftY, null);
+		}
 	}
 
 	public void pressed(int x, int y, int width, int height) {
@@ -84,8 +89,22 @@ public class View {
 		}
 		if (x >= 64 && x < width - 64 && y >= 64 && y < height - 64) {
 			if (shiftKeyHeld) {
-				map.spawnX = x - shiftX - 96;
-				map.spawnY = y - shiftY - 96;
+				int ex = x - shiftX - 96, ey = y - shiftY - 96;
+				boolean done = false;
+				for (int i = 0; i < map.spawnXes.size(); i++) {
+					int dx = map.spawnXes.get(i) - ex, dy = map.spawnYes.get(i) - ey;
+					int distSq = dx * dx + dy * dy;
+					if (distSq < OVERLAP_RADIUS * OVERLAP_RADIUS) {
+						map.spawnXes.remove(i);
+						map.spawnYes.remove(i);
+						done = true;
+						break;
+					}
+				}
+				if (!done) {
+					map.spawnXes.add(ex);
+					map.spawnYes.add(ey);
+				}
 			} else {
 				int ix = (x - shiftX) / 64 - 1;
 				int iy = (y - shiftY) / 64 - 1;
