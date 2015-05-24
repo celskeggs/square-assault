@@ -4676,6 +4676,1060 @@ public final class Messages {
     // @@protoc_insertion_point(class_scope:tutorial.TurretCount)
   }
 
+  public interface SendChatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.SendChat)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required string text = 1;</code>
+     */
+    boolean hasText();
+    /**
+     * <code>required string text = 1;</code>
+     */
+    java.lang.String getText();
+    /**
+     * <code>required string text = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTextBytes();
+  }
+  /**
+   * Protobuf type {@code tutorial.SendChat}
+   */
+  public static final class SendChat extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.SendChat)
+      SendChatOrBuilder {
+    // Use SendChat.newBuilder() to construct.
+    private SendChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SendChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SendChat defaultInstance;
+    public static SendChat getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SendChat getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SendChat(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              text_ = bs;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.SendChat.class, codeday.squareassault.protobuf.Messages.SendChat.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SendChat> PARSER =
+        new com.google.protobuf.AbstractParser<SendChat>() {
+      public SendChat parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SendChat(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendChat> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int TEXT_FIELD_NUMBER = 1;
+    private java.lang.Object text_;
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public java.lang.String getText() {
+      java.lang.Object ref = text_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          text_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTextBytes() {
+      java.lang.Object ref = text_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        text_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      text_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasText()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTextBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTextBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.SendChat prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.SendChat}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.SendChat)
+        codeday.squareassault.protobuf.Messages.SendChatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.SendChat.class, codeday.squareassault.protobuf.Messages.SendChat.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.SendChat.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendChat getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendChat build() {
+        codeday.squareassault.protobuf.Messages.SendChat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendChat buildPartial() {
+        codeday.squareassault.protobuf.Messages.SendChat result = new codeday.squareassault.protobuf.Messages.SendChat(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.text_ = text_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.SendChat) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.SendChat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.SendChat other) {
+        if (other == codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance()) return this;
+        if (other.hasText()) {
+          bitField0_ |= 0x00000001;
+          text_ = other.text_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasText()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.SendChat parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.SendChat) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object text_ = "";
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public java.lang.String getText() {
+        java.lang.Object ref = text_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            text_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTextBytes() {
+        java.lang.Object ref = text_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          text_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder setText(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        text_ = getDefaultInstance().getText();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder setTextBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.SendChat)
+    }
+
+    static {
+      defaultInstance = new SendChat(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.SendChat)
+  }
+
+  public interface ChatMessageOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.ChatMessage)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required string text = 1;</code>
+     */
+    boolean hasText();
+    /**
+     * <code>required string text = 1;</code>
+     */
+    java.lang.String getText();
+    /**
+     * <code>required string text = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTextBytes();
+
+    /**
+     * <code>required uint32 player = 2;</code>
+     */
+    boolean hasPlayer();
+    /**
+     * <code>required uint32 player = 2;</code>
+     */
+    int getPlayer();
+  }
+  /**
+   * Protobuf type {@code tutorial.ChatMessage}
+   */
+  public static final class ChatMessage extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.ChatMessage)
+      ChatMessageOrBuilder {
+    // Use ChatMessage.newBuilder() to construct.
+    private ChatMessage(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ChatMessage(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ChatMessage defaultInstance;
+    public static ChatMessage getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ChatMessage getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ChatMessage(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              text_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              player_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ChatMessage_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ChatMessage_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.ChatMessage.class, codeday.squareassault.protobuf.Messages.ChatMessage.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ChatMessage> PARSER =
+        new com.google.protobuf.AbstractParser<ChatMessage>() {
+      public ChatMessage parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ChatMessage(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ChatMessage> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int TEXT_FIELD_NUMBER = 1;
+    private java.lang.Object text_;
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public java.lang.String getText() {
+      java.lang.Object ref = text_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          text_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTextBytes() {
+      java.lang.Object ref = text_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        text_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    public static final int PLAYER_FIELD_NUMBER = 2;
+    private int player_;
+    /**
+     * <code>required uint32 player = 2;</code>
+     */
+    public boolean hasPlayer() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required uint32 player = 2;</code>
+     */
+    public int getPlayer() {
+      return player_;
+    }
+
+    private void initFields() {
+      text_ = "";
+      player_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasText()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPlayer()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, player_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTextBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, player_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.ChatMessage parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.ChatMessage prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.ChatMessage}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.ChatMessage)
+        codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ChatMessage_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ChatMessage_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.ChatMessage.class, codeday.squareassault.protobuf.Messages.ChatMessage.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.ChatMessage.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        player_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ChatMessage_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.ChatMessage getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.ChatMessage build() {
+        codeday.squareassault.protobuf.Messages.ChatMessage result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.ChatMessage buildPartial() {
+        codeday.squareassault.protobuf.Messages.ChatMessage result = new codeday.squareassault.protobuf.Messages.ChatMessage(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.text_ = text_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.player_ = player_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.ChatMessage) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.ChatMessage)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.ChatMessage other) {
+        if (other == codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance()) return this;
+        if (other.hasText()) {
+          bitField0_ |= 0x00000001;
+          text_ = other.text_;
+          onChanged();
+        }
+        if (other.hasPlayer()) {
+          setPlayer(other.getPlayer());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasText()) {
+          
+          return false;
+        }
+        if (!hasPlayer()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.ChatMessage parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.ChatMessage) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object text_ = "";
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public java.lang.String getText() {
+        java.lang.Object ref = text_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            text_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTextBytes() {
+        java.lang.Object ref = text_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          text_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder setText(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        text_ = getDefaultInstance().getText();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder setTextBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+
+      private int player_ ;
+      /**
+       * <code>required uint32 player = 2;</code>
+       */
+      public boolean hasPlayer() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required uint32 player = 2;</code>
+       */
+      public int getPlayer() {
+        return player_;
+      }
+      /**
+       * <code>required uint32 player = 2;</code>
+       */
+      public Builder setPlayer(int value) {
+        bitField0_ |= 0x00000002;
+        player_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 player = 2;</code>
+       */
+      public Builder clearPlayer() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        player_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.ChatMessage)
+    }
+
+    static {
+      defaultInstance = new ChatMessage(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.ChatMessage)
+  }
+
   public interface ToClientOrBuilder extends
       // @@protoc_insertion_point(interface_extends:tutorial.ToClient)
       com.google.protobuf.MessageOrBuilder {
@@ -4718,6 +5772,19 @@ public final class Messages {
      * <code>optional .tutorial.TurretCount count = 4;</code>
      */
     codeday.squareassault.protobuf.Messages.TurretCountOrBuilder getCountOrBuilder();
+
+    /**
+     * <code>optional .tutorial.ChatMessage chat = 5;</code>
+     */
+    boolean hasChat();
+    /**
+     * <code>optional .tutorial.ChatMessage chat = 5;</code>
+     */
+    codeday.squareassault.protobuf.Messages.ChatMessage getChat();
+    /**
+     * <code>optional .tutorial.ChatMessage chat = 5;</code>
+     */
+    codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder getChatOrBuilder();
   }
   /**
    * Protobuf type {@code tutorial.ToClient}
@@ -4810,6 +5877,19 @@ public final class Messages {
               messageCase_ = 4;
               break;
             }
+            case 42: {
+              codeday.squareassault.protobuf.Messages.ChatMessage.Builder subBuilder = null;
+              if (messageCase_ == 5) {
+                subBuilder = ((codeday.squareassault.protobuf.Messages.ChatMessage) message_).toBuilder();
+              }
+              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.ChatMessage.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.ChatMessage) message_);
+                message_ = subBuilder.buildPartial();
+              }
+              messageCase_ = 5;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4857,6 +5937,7 @@ public final class Messages {
       POSITION(2),
       DISCONNECT(3),
       COUNT(4),
+      CHAT(5),
       MESSAGE_NOT_SET(0);
       private int value = 0;
       private MessageCase(int value) {
@@ -4867,6 +5948,7 @@ public final class Messages {
           case 2: return POSITION;
           case 3: return DISCONNECT;
           case 4: return COUNT;
+          case 5: return CHAT;
           case 0: return MESSAGE_NOT_SET;
           default: throw new java.lang.IllegalArgumentException(
             "Value is undefined for this oneof enum.");
@@ -4961,6 +6043,32 @@ public final class Messages {
       return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
     }
 
+    public static final int CHAT_FIELD_NUMBER = 5;
+    /**
+     * <code>optional .tutorial.ChatMessage chat = 5;</code>
+     */
+    public boolean hasChat() {
+      return messageCase_ == 5;
+    }
+    /**
+     * <code>optional .tutorial.ChatMessage chat = 5;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.ChatMessage getChat() {
+      if (messageCase_ == 5) {
+         return (codeday.squareassault.protobuf.Messages.ChatMessage) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+    }
+    /**
+     * <code>optional .tutorial.ChatMessage chat = 5;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder getChatOrBuilder() {
+      if (messageCase_ == 5) {
+         return (codeday.squareassault.protobuf.Messages.ChatMessage) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+    }
+
     private void initFields() {
     }
     private byte memoizedIsInitialized = -1;
@@ -4987,6 +6095,12 @@ public final class Messages {
           return false;
         }
       }
+      if (hasChat()) {
+        if (!getChat().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -5002,6 +6116,9 @@ public final class Messages {
       }
       if (messageCase_ == 4) {
         output.writeMessage(4, (codeday.squareassault.protobuf.Messages.TurretCount) message_);
+      }
+      if (messageCase_ == 5) {
+        output.writeMessage(5, (codeday.squareassault.protobuf.Messages.ChatMessage) message_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5023,6 +6140,10 @@ public final class Messages {
       if (messageCase_ == 4) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, (codeday.squareassault.protobuf.Messages.TurretCount) message_);
+      }
+      if (messageCase_ == 5) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, (codeday.squareassault.protobuf.Messages.ChatMessage) message_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5192,6 +6313,13 @@ public final class Messages {
             result.message_ = countBuilder_.build();
           }
         }
+        if (messageCase_ == 5) {
+          if (chatBuilder_ == null) {
+            result.message_ = message_;
+          } else {
+            result.message_ = chatBuilder_.build();
+          }
+        }
         result.bitField0_ = to_bitField0_;
         result.messageCase_ = messageCase_;
         onBuilt();
@@ -5222,6 +6350,10 @@ public final class Messages {
             mergeCount(other.getCount());
             break;
           }
+          case CHAT: {
+            mergeChat(other.getChat());
+            break;
+          }
           case MESSAGE_NOT_SET: {
             break;
           }
@@ -5245,6 +6377,12 @@ public final class Messages {
         }
         if (hasCount()) {
           if (!getCount().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasChat()) {
+          if (!getChat().isInitialized()) {
             
             return false;
           }
@@ -5691,6 +6829,141 @@ public final class Messages {
         return countBuilder_;
       }
 
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.ChatMessage, codeday.squareassault.protobuf.Messages.ChatMessage.Builder, codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder> chatBuilder_;
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public boolean hasChat() {
+        return messageCase_ == 5;
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.ChatMessage getChat() {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 5) {
+            return (codeday.squareassault.protobuf.Messages.ChatMessage) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+        } else {
+          if (messageCase_ == 5) {
+            return chatBuilder_.getMessage();
+          }
+          return codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public Builder setChat(codeday.squareassault.protobuf.Messages.ChatMessage value) {
+        if (chatBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          message_ = value;
+          onChanged();
+        } else {
+          chatBuilder_.setMessage(value);
+        }
+        messageCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public Builder setChat(
+          codeday.squareassault.protobuf.Messages.ChatMessage.Builder builderForValue) {
+        if (chatBuilder_ == null) {
+          message_ = builderForValue.build();
+          onChanged();
+        } else {
+          chatBuilder_.setMessage(builderForValue.build());
+        }
+        messageCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public Builder mergeChat(codeday.squareassault.protobuf.Messages.ChatMessage value) {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 5 &&
+              message_ != codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance()) {
+            message_ = codeday.squareassault.protobuf.Messages.ChatMessage.newBuilder((codeday.squareassault.protobuf.Messages.ChatMessage) message_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            message_ = value;
+          }
+          onChanged();
+        } else {
+          if (messageCase_ == 5) {
+            chatBuilder_.mergeFrom(value);
+          }
+          chatBuilder_.setMessage(value);
+        }
+        messageCase_ = 5;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public Builder clearChat() {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 5) {
+            messageCase_ = 0;
+            message_ = null;
+            onChanged();
+          }
+        } else {
+          if (messageCase_ == 5) {
+            messageCase_ = 0;
+            message_ = null;
+          }
+          chatBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.ChatMessage.Builder getChatBuilder() {
+        return getChatFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder getChatOrBuilder() {
+        if ((messageCase_ == 5) && (chatBuilder_ != null)) {
+          return chatBuilder_.getMessageOrBuilder();
+        } else {
+          if (messageCase_ == 5) {
+            return (codeday.squareassault.protobuf.Messages.ChatMessage) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.ChatMessage chat = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.ChatMessage, codeday.squareassault.protobuf.Messages.ChatMessage.Builder, codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder> 
+          getChatFieldBuilder() {
+        if (chatBuilder_ == null) {
+          if (!(messageCase_ == 5)) {
+            message_ = codeday.squareassault.protobuf.Messages.ChatMessage.getDefaultInstance();
+          }
+          chatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.ChatMessage, codeday.squareassault.protobuf.Messages.ChatMessage.Builder, codeday.squareassault.protobuf.Messages.ChatMessageOrBuilder>(
+                  (codeday.squareassault.protobuf.Messages.ChatMessage) message_,
+                  getParentForChildren(),
+                  isClean());
+          message_ = null;
+        }
+        messageCase_ = 5;
+        return chatBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:tutorial.ToClient)
     }
 
@@ -5731,6 +7004,19 @@ public final class Messages {
      * <code>optional .tutorial.PlaceTurret turret = 3;</code>
      */
     codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder();
+
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    boolean hasChat();
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    codeday.squareassault.protobuf.Messages.SendChat getChat();
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder();
   }
   /**
    * Protobuf type {@code tutorial.ToServer}
@@ -5810,6 +7096,19 @@ public final class Messages {
               messageCase_ = 3;
               break;
             }
+            case 34: {
+              codeday.squareassault.protobuf.Messages.SendChat.Builder subBuilder = null;
+              if (messageCase_ == 4) {
+                subBuilder = ((codeday.squareassault.protobuf.Messages.SendChat) message_).toBuilder();
+              }
+              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.SendChat.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.SendChat) message_);
+                message_ = subBuilder.buildPartial();
+              }
+              messageCase_ = 4;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -5856,6 +7155,7 @@ public final class Messages {
         implements com.google.protobuf.Internal.EnumLite {
       POSITION(2),
       TURRET(3),
+      CHAT(4),
       MESSAGE_NOT_SET(0);
       private int value = 0;
       private MessageCase(int value) {
@@ -5865,6 +7165,7 @@ public final class Messages {
         switch (value) {
           case 2: return POSITION;
           case 3: return TURRET;
+          case 4: return CHAT;
           case 0: return MESSAGE_NOT_SET;
           default: throw new java.lang.IllegalArgumentException(
             "Value is undefined for this oneof enum.");
@@ -5933,6 +7234,32 @@ public final class Messages {
       return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
     }
 
+    public static final int CHAT_FIELD_NUMBER = 4;
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    public boolean hasChat() {
+      return messageCase_ == 4;
+    }
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.SendChat getChat() {
+      if (messageCase_ == 4) {
+         return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+    }
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder() {
+      if (messageCase_ == 4) {
+         return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+    }
+
     private void initFields() {
     }
     private byte memoizedIsInitialized = -1;
@@ -5953,6 +7280,12 @@ public final class Messages {
           return false;
         }
       }
+      if (hasChat()) {
+        if (!getChat().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -5965,6 +7298,9 @@ public final class Messages {
       }
       if (messageCase_ == 3) {
         output.writeMessage(3, (codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
+      }
+      if (messageCase_ == 4) {
+        output.writeMessage(4, (codeday.squareassault.protobuf.Messages.SendChat) message_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5982,6 +7318,10 @@ public final class Messages {
       if (messageCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
+      }
+      if (messageCase_ == 4) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, (codeday.squareassault.protobuf.Messages.SendChat) message_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6144,6 +7484,13 @@ public final class Messages {
             result.message_ = turretBuilder_.build();
           }
         }
+        if (messageCase_ == 4) {
+          if (chatBuilder_ == null) {
+            result.message_ = message_;
+          } else {
+            result.message_ = chatBuilder_.build();
+          }
+        }
         result.bitField0_ = to_bitField0_;
         result.messageCase_ = messageCase_;
         onBuilt();
@@ -6170,6 +7517,10 @@ public final class Messages {
             mergeTurret(other.getTurret());
             break;
           }
+          case CHAT: {
+            mergeChat(other.getChat());
+            break;
+          }
           case MESSAGE_NOT_SET: {
             break;
           }
@@ -6187,6 +7538,12 @@ public final class Messages {
         }
         if (hasTurret()) {
           if (!getTurret().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasChat()) {
+          if (!getChat().isInitialized()) {
             
             return false;
           }
@@ -6498,6 +7855,141 @@ public final class Messages {
         return turretBuilder_;
       }
 
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder> chatBuilder_;
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public boolean hasChat() {
+        return messageCase_ == 4;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendChat getChat() {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 4) {
+            return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+        } else {
+          if (messageCase_ == 4) {
+            return chatBuilder_.getMessage();
+          }
+          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder setChat(codeday.squareassault.protobuf.Messages.SendChat value) {
+        if (chatBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          message_ = value;
+          onChanged();
+        } else {
+          chatBuilder_.setMessage(value);
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder setChat(
+          codeday.squareassault.protobuf.Messages.SendChat.Builder builderForValue) {
+        if (chatBuilder_ == null) {
+          message_ = builderForValue.build();
+          onChanged();
+        } else {
+          chatBuilder_.setMessage(builderForValue.build());
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder mergeChat(codeday.squareassault.protobuf.Messages.SendChat value) {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 4 &&
+              message_ != codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance()) {
+            message_ = codeday.squareassault.protobuf.Messages.SendChat.newBuilder((codeday.squareassault.protobuf.Messages.SendChat) message_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            message_ = value;
+          }
+          onChanged();
+        } else {
+          if (messageCase_ == 4) {
+            chatBuilder_.mergeFrom(value);
+          }
+          chatBuilder_.setMessage(value);
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder clearChat() {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 4) {
+            messageCase_ = 0;
+            message_ = null;
+            onChanged();
+          }
+        } else {
+          if (messageCase_ == 4) {
+            messageCase_ = 0;
+            message_ = null;
+          }
+          chatBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendChat.Builder getChatBuilder() {
+        return getChatFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder() {
+        if ((messageCase_ == 4) && (chatBuilder_ != null)) {
+          return chatBuilder_.getMessageOrBuilder();
+        } else {
+          if (messageCase_ == 4) {
+            return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder> 
+          getChatFieldBuilder() {
+        if (chatBuilder_ == null) {
+          if (!(messageCase_ == 4)) {
+            message_ = codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+          }
+          chatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder>(
+                  (codeday.squareassault.protobuf.Messages.SendChat) message_,
+                  getParentForChildren(),
+                  isClean());
+          message_ = null;
+        }
+        messageCase_ = 4;
+        return chatBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:tutorial.ToServer)
     }
 
@@ -6545,6 +8037,16 @@ public final class Messages {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_TurretCount_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_SendChat_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_SendChat_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_ChatMessage_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_ChatMessage_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_ToClient_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -6575,16 +8077,19 @@ public final class Messages {
       ":\002-1\022\016\n\006health\030\007 \001(\r\"\034\n\nDisconnect\022\016\n\006ob",
       "ject\030\001 \002(\r\"#\n\013PlaceTurret\022\t\n\001x\030\001 \002(\r\022\t\n\001" +
       "y\030\002 \002(\r\"-\n\013TurretCount\022\r\n\005count\030\001 \002(\r\022\017\n" +
-      "\007maximum\030\002 \002(\r\"\224\001\n\010ToClient\022)\n\010position\030" +
-      "\002 \001(\0132\025.tutorial.SetPositionH\000\022*\n\ndiscon" +
-      "nect\030\003 \001(\0132\024.tutorial.DisconnectH\000\022&\n\005co" +
-      "unt\030\004 \001(\0132\025.tutorial.TurretCountH\000B\t\n\007me" +
-      "ssage\"i\n\010ToServer\022)\n\010position\030\002 \001(\0132\025.tu" +
-      "torial.SetPositionH\000\022\'\n\006turret\030\003 \001(\0132\025.t" +
-      "utorial.PlaceTurretH\000B\t\n\007message*0\n\nObje" +
-      "ctType\022\n\n\006PLAYER\020\000\022\n\n\006TURRET\020\001\022\n\n\006BULLET",
-      "\020\002B*\n\036codeday.squareassault.protobufB\010Me" +
-      "ssages"
+      "\007maximum\030\002 \002(\r\"\030\n\010SendChat\022\014\n\004text\030\001 \002(\t" +
+      "\"+\n\013ChatMessage\022\014\n\004text\030\001 \002(\t\022\016\n\006player\030" +
+      "\002 \002(\r\"\273\001\n\010ToClient\022)\n\010position\030\002 \001(\0132\025.t" +
+      "utorial.SetPositionH\000\022*\n\ndisconnect\030\003 \001(" +
+      "\0132\024.tutorial.DisconnectH\000\022&\n\005count\030\004 \001(\013" +
+      "2\025.tutorial.TurretCountH\000\022%\n\004chat\030\005 \001(\0132" +
+      "\025.tutorial.ChatMessageH\000B\t\n\007message\"\215\001\n\010" +
+      "ToServer\022)\n\010position\030\002 \001(\0132\025.tutorial.Se",
+      "tPositionH\000\022\'\n\006turret\030\003 \001(\0132\025.tutorial.P" +
+      "laceTurretH\000\022\"\n\004chat\030\004 \001(\0132\022.tutorial.Se" +
+      "ndChatH\000B\t\n\007message*0\n\nObjectType\022\n\n\006PLA" +
+      "YER\020\000\022\n\n\006TURRET\020\001\022\n\n\006BULLET\020\002B*\n\036codeday" +
+      ".squareassault.protobufB\010Messages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -6640,18 +8145,30 @@ public final class Messages {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_TurretCount_descriptor,
         new java.lang.String[] { "Count", "Maximum", });
-    internal_static_tutorial_ToClient_descriptor =
+    internal_static_tutorial_SendChat_descriptor =
       getDescriptor().getMessageTypes().get(7);
+    internal_static_tutorial_SendChat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_SendChat_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_tutorial_ChatMessage_descriptor =
+      getDescriptor().getMessageTypes().get(8);
+    internal_static_tutorial_ChatMessage_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_ChatMessage_descriptor,
+        new java.lang.String[] { "Text", "Player", });
+    internal_static_tutorial_ToClient_descriptor =
+      getDescriptor().getMessageTypes().get(9);
     internal_static_tutorial_ToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToClient_descriptor,
-        new java.lang.String[] { "Position", "Disconnect", "Count", "Message", });
+        new java.lang.String[] { "Position", "Disconnect", "Count", "Chat", "Message", });
     internal_static_tutorial_ToServer_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_tutorial_ToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToServer_descriptor,
-        new java.lang.String[] { "Position", "Turret", "Message", });
+        new java.lang.String[] { "Position", "Turret", "Chat", "Message", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

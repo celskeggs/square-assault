@@ -5,6 +5,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.Messages.ObjectType;
 import codeday.squareassault.protobuf.Messages.PlaceTurret;
+import codeday.squareassault.protobuf.Messages.SendChat;
 import codeday.squareassault.protobuf.Messages.SetPosition;
 import codeday.squareassault.protobuf.Messages.ToClient;
 import codeday.squareassault.protobuf.Messages.ToServer;
@@ -68,9 +69,15 @@ public final class ClientContext extends ObjectContext {
 			performMove(taken.getPosition());
 		} else if (taken.hasTurret()) {
 			performTurretPlace(taken.getTurret());
+		} else if (taken.hasChat()) {
+			performChat(taken.getChat());
 		} else {
 			Logger.warning("Bad message: " + taken);
 		}
+	}
+
+	private void performChat(SendChat chat) {
+		server.broadcastChat("[" + name + "] " + chat.getText(), objectID);
 	}
 
 	private synchronized void performTurretPlace(PlaceTurret turret) {

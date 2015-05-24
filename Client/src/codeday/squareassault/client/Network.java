@@ -58,6 +58,8 @@ public class Network {
 				context.handleSetPosition(taken.getPosition());
 			} else if (taken.hasCount()) {
 				context.handleTurretCount(taken.getCount());
+			} else if (taken.hasChat()) {
+				context.handleChat(taken.getChat());
 			} else {
 				System.out.println("Bad input: " + taken);
 			}

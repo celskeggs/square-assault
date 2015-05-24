@@ -1,10 +1,12 @@
 package codeday.squareassault.client;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import codeday.squareassault.protobuf.Messages;
+import codeday.squareassault.protobuf.Messages.ChatMessage;
 import codeday.squareassault.protobuf.SharedConfig;
 import codeday.squareassault.protobuf.Messages.Connect;
 import codeday.squareassault.protobuf.Messages.Disconnect;
@@ -16,6 +18,7 @@ import codeday.squareassault.protobuf.Messages.TurretCount;
 public class Context {
 
 	private static final int SNAP_DISTANCE = 10;
+	public static final int MAX_CHAT_LINES = 10;
 	private int objectID;
 	private final Network net;
 	public String[] cells;
@@ -24,12 +27,31 @@ public class Context {
 	private int x, y, dx, dy, health;
 	public int turretCount = -1, turretMaximum = 1;
 	public View view;
+	public final ArrayList<String> chatMessages = new ArrayList<>();
+	public final StringBuilder newMessage = new StringBuilder();
 
 	public Context(Network net) {
 		this.net = net;
 	}
 
 	public void handleKey(int keyCode, char keyChar, boolean isPress) throws InterruptedException {
+		if (keyChar != KeyEvent.CHAR_UNDEFINED && !Character.isISOControl(keyChar)) {
+			if (isPress) {
+				newMessage.append(keyChar);
+			}
+			return;
+		} else if (keyCode == KeyEvent.VK_ENTER) {
+			if (isPress) {
+				net.send(Messages.ToServer.newBuilder().setChat(Messages.SendChat.newBuilder().setText(newMessage.toString())).build());
+				newMessage.setLength(0);
+			}
+			return;
+		} else if (keyCode == KeyEvent.VK_BACK_SPACE) {
+			if (isPress && newMessage.length() > 0) {
+				newMessage.setLength(newMessage.length() - 1);
+			}
+			return;
+		}
 		int mul = isPress ? 1 : -1;
 		switch (keyCode) {
 		case KeyEvent.VK_UP:
@@ -245,5 +267,14 @@ public class Context {
 			return false;
 		}
 		return backgroundImages[cX][cY] == 0;
+	}
+
+	public void handleChat(ChatMessage chat) {
+		synchronized (chatMessages) {
+			chatMessages.add(chat.getText());
+			while (chatMessages.size() > MAX_CHAT_LINES) {
+				chatMessages.remove(0);
+			}
+		}
 	}
 }

@@ -51,11 +51,21 @@ message TurretCount {
   required uint32 maximum = 2;
 }
 
+message SendChat {
+  required string text = 1;
+}
+
+message ChatMessage {
+  required string text = 1;
+  required uint32 player = 2;
+}
+
 message ToClient {
   oneof message {
     SetPosition position = 2;
     Disconnect disconnect = 3;
     TurretCount count = 4;
+    ChatMessage chat = 5;
   }
 }
 
@@ -63,5 +73,6 @@ message ToServer {
   oneof message {
     SetPosition position = 2;
     PlaceTurret turret = 3;
+    SendChat chat = 4;
   }
 }

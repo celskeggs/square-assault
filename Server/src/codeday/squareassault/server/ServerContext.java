@@ -94,7 +94,6 @@ public class ServerContext {
 	}
 
 	private boolean isEmptyAt(int wantX, int wantY) {
-		System.out.println("check " + wantX + "," + wantY);
 		int cX = wantX >> 6; // / 64;
 		int cY = wantY >> 6; // / 64;
 		if (cX < 0 || cX >= map.getWidth()) {
@@ -157,7 +156,6 @@ public class ServerContext {
 	public boolean freeLineOfSight(ObjectContext from, ObjectContext to) {
 		int x1 = from.x + from.getCenterCoord(), x2 = to.x + to.getCenterCoord();
 		int y1 = from.y + from.getCenterCoord(), y2 = to.y + to.getCenterCoord();
-		System.out.println("check " + x1 + "," + y1 + " -> " + x2 + "," + y2);
 		if (x1 > x2) {
 			int t = x1;
 			x1 = x2;
@@ -194,5 +192,10 @@ public class ServerContext {
 			}
 		}
 		return true;
+	}
+
+	public void broadcastChat(String text, int objectID) {
+		System.out.println("CHAT: " + text + " from " + objectID);
+		broadcast(Messages.ToClient.newBuilder().setChat(Messages.ChatMessage.newBuilder().setPlayer(objectID).setText(text)).build());
 	}
 }
