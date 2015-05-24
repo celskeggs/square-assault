@@ -18,8 +18,8 @@ public class Map {
 	public int spawnX = 100, spawnY = 100;
 
 	{
-		names.add("tiletest");
-		names.add("tiletest2");
+		names.add("tilefloor");
+		names.add("tilewall");
 	}
 
 	public Map(int w, int h) {
@@ -36,7 +36,7 @@ public class Map {
 		}
 	}
 
-	public static final String[] commands = new String[] { "LOAD", "SAVE", "ADD", "REMOVE" };
+	public static final String[] commands = new String[] { "LOAD", "SAVE", "ADD", "REMOVE", "RESIZE" };
 
 	public void command(int i) {
 		JFileChooser chooser;
@@ -81,12 +81,27 @@ public class Map {
 				remap(names.size(), ind);
 			}
 			break;
+		case 4: // RESIZE
+			String size = JOptionPane.showInputDialog("Enter dimensions (WxH)", cells.length + "x" + cells[0].length);
+			if (size != null) {
+				String[] out = size.split("x");
+				if (out.length == 2) {
+					try {
+						int w = Integer.parseInt(out[0]);
+						int h = Integer.parseInt(out[1]);
+						resize(w, h);
+					} catch (NumberFormatException ex) {
+						ex.printStackTrace();
+					}
+				}
+			}
+			break;
 		}
 	}
 
 	private void remap(int old, int updated) {
-		for (int x=0; x<cells.length; x++) {
-			for (int y=0; y<cells[x].length; y++) {
+		for (int x = 0; x < cells.length; x++) {
+			for (int y = 0; y < cells[x].length; y++) {
 				if (cells[x][y] == old) {
 					cells[x][y] = updated;
 				}

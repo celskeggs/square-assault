@@ -7,8 +7,8 @@ public class View {
 
 	public static final long UPDATE_DELAY_MILLIS = 20;
 	public static final Color BACKGROUND_COLOR = Color.BLACK;
-	private static final int BORDER_SIZE_MIN = 128;
-	private static final int BORDER_SIZE_MAX = 196;
+	private static final int BORDER_SIZE_MIN = 256;
+	private static final int BORDER_SIZE_MAX = 320;
 	private static final int SHIFT_SCALE_FACTOR = 16;
 	private static final int METER_SHIFT = 70, METER_RADIUS = 48;
 	private final Context context;
@@ -32,13 +32,21 @@ public class View {
 		}
 
 		int health = context.getHealth();
+		drawMeter(go, false, width, height, Color.RED, Color.GREEN, health, 100);
+		if (context.turretCount != -1) {
+			drawMeter(go, true, width, height, Color.BLACK, Color.YELLOW, context.turretCount, context.turretMaximum);
+		}
+	}
+
+	private void drawMeter(Graphics go, boolean atLeft, int width, int height, Color low, Color high, int health, int max) {
 		go.setColor(Color.LIGHT_GRAY);
-		go.fillArc(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 290, 320);
-		go.setColor(blendColors(Color.RED, Color.GREEN, health / 100.0));
-		go.fillArc(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 250 - health * 320 / 100, health * 320 / 100);
+		int baseX = atLeft ? METER_SHIFT - METER_RADIUS : width - METER_SHIFT - METER_RADIUS;
+		go.fillArc(baseX, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 290, 320);
+		go.setColor(blendColors(low, high, health / (double) max));
+		go.fillArc(baseX, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 250 - health * 320 / max, health * 320 / max);
 		go.setColor(Color.GRAY);
-		go.fillArc(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 250, 40);
-		go.drawOval(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2);
+		go.fillArc(baseX, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 250, 40);
+		go.drawOval(baseX, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2);
 	}
 
 	private Color blendColors(Color zero, Color one, double d) {

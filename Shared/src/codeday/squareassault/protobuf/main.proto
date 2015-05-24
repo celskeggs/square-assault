@@ -46,11 +46,17 @@ message PlaceTurret {
   required uint32 y = 2;
 }
 
+message TurretCount {
+  required uint32 count = 1;
+  required uint32 maximum = 2;
+}
+
 message ToClient {
   oneof message {
     SetPosition position = 2;
     Disconnect disconnect = 3;
-  } 
+    TurretCount count = 4;
+  }
 }
 
 message ToServer {

@@ -10,6 +10,7 @@ import codeday.squareassault.protobuf.Messages.Disconnect;
 import codeday.squareassault.protobuf.Messages.Map;
 import codeday.squareassault.protobuf.Messages.ObjectType;
 import codeday.squareassault.protobuf.Messages.SetPosition;
+import codeday.squareassault.protobuf.Messages.TurretCount;
 
 public class Context {
 
@@ -19,6 +20,7 @@ public class Context {
 	public int[][] backgroundImages;
 	public final CopyOnWriteArrayList<Entity> entities = new CopyOnWriteArrayList<>();
 	private int x, y, dx, dy;
+	public int turretCount = -1, turretMaximum = 1;
 
 	public Context(Network net) {
 		this.net = net;
@@ -155,5 +157,10 @@ public class Context {
 
 	public int getHealth() {
 		return getObjectByID(getPlayerID()).health;
+	}
+
+	public void handleTurretCount(TurretCount count) {
+		turretCount = count.getCount();
+		turretMaximum = count.getMaximum();
 	}
 }

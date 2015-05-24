@@ -38,6 +38,10 @@ public abstract class ObjectContext {
 		return false;
 	}
 
+	public boolean isDead() {
+		return hasHealth() && getHealth() <= 0;
+	}
+
 	protected abstract String getIcon();
 
 	protected abstract ObjectType getType();
@@ -51,4 +55,8 @@ public abstract class ObjectContext {
 	public abstract int getRadius();
 
 	public abstract int getCenterCoord();
+
+	public void damage(int damage) {
+		// do nothing by default
+	}
 }

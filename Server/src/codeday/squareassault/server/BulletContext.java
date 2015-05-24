@@ -34,12 +34,12 @@ public class BulletContext extends ObjectContext {
 			return;
 		}
 		boolean any = false;
-		for (ObjectContext colliding : server.findColliding(this, ObjectType.PLAYER)) {
-			if (colliding.getHealth() <= 0) {
+		for (ObjectContext colliding : server.findColliding(this)) {
+			if (!colliding.hasHealth() || colliding.getHealth() <= 0 || colliding.parentID == server.getObject(parentID).parentID) {
 				continue;
 			}
 			if (colliding.objectID != server.getObject(parentID).parentID) {
-				((ClientContext) colliding).damage(10);
+				colliding.damage(10);
 			}
 			any = true;
 		}

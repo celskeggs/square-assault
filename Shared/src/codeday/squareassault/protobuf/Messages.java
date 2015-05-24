@@ -4031,6 +4031,497 @@ public final class Messages {
     // @@protoc_insertion_point(class_scope:tutorial.PlaceTurret)
   }
 
+  public interface TurretCountOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.TurretCount)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required uint32 count = 1;</code>
+     */
+    boolean hasCount();
+    /**
+     * <code>required uint32 count = 1;</code>
+     */
+    int getCount();
+
+    /**
+     * <code>required uint32 maximum = 2;</code>
+     */
+    boolean hasMaximum();
+    /**
+     * <code>required uint32 maximum = 2;</code>
+     */
+    int getMaximum();
+  }
+  /**
+   * Protobuf type {@code tutorial.TurretCount}
+   */
+  public static final class TurretCount extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.TurretCount)
+      TurretCountOrBuilder {
+    // Use TurretCount.newBuilder() to construct.
+    private TurretCount(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private TurretCount(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final TurretCount defaultInstance;
+    public static TurretCount getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public TurretCount getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private TurretCount(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              count_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              maximum_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_TurretCount_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_TurretCount_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.TurretCount.class, codeday.squareassault.protobuf.Messages.TurretCount.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<TurretCount> PARSER =
+        new com.google.protobuf.AbstractParser<TurretCount>() {
+      public TurretCount parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new TurretCount(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<TurretCount> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int COUNT_FIELD_NUMBER = 1;
+    private int count_;
+    /**
+     * <code>required uint32 count = 1;</code>
+     */
+    public boolean hasCount() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required uint32 count = 1;</code>
+     */
+    public int getCount() {
+      return count_;
+    }
+
+    public static final int MAXIMUM_FIELD_NUMBER = 2;
+    private int maximum_;
+    /**
+     * <code>required uint32 maximum = 2;</code>
+     */
+    public boolean hasMaximum() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required uint32 maximum = 2;</code>
+     */
+    public int getMaximum() {
+      return maximum_;
+    }
+
+    private void initFields() {
+      count_ = 0;
+      maximum_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasCount()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasMaximum()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, count_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, maximum_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, count_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, maximum_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.TurretCount parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.TurretCount prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.TurretCount}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.TurretCount)
+        codeday.squareassault.protobuf.Messages.TurretCountOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_TurretCount_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_TurretCount_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.TurretCount.class, codeday.squareassault.protobuf.Messages.TurretCount.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.TurretCount.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        count_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        maximum_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_TurretCount_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.TurretCount getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.TurretCount build() {
+        codeday.squareassault.protobuf.Messages.TurretCount result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.TurretCount buildPartial() {
+        codeday.squareassault.protobuf.Messages.TurretCount result = new codeday.squareassault.protobuf.Messages.TurretCount(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.count_ = count_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.maximum_ = maximum_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.TurretCount) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.TurretCount)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.TurretCount other) {
+        if (other == codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance()) return this;
+        if (other.hasCount()) {
+          setCount(other.getCount());
+        }
+        if (other.hasMaximum()) {
+          setMaximum(other.getMaximum());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasCount()) {
+          
+          return false;
+        }
+        if (!hasMaximum()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.TurretCount parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.TurretCount) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int count_ ;
+      /**
+       * <code>required uint32 count = 1;</code>
+       */
+      public boolean hasCount() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required uint32 count = 1;</code>
+       */
+      public int getCount() {
+        return count_;
+      }
+      /**
+       * <code>required uint32 count = 1;</code>
+       */
+      public Builder setCount(int value) {
+        bitField0_ |= 0x00000001;
+        count_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 count = 1;</code>
+       */
+      public Builder clearCount() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        count_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int maximum_ ;
+      /**
+       * <code>required uint32 maximum = 2;</code>
+       */
+      public boolean hasMaximum() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required uint32 maximum = 2;</code>
+       */
+      public int getMaximum() {
+        return maximum_;
+      }
+      /**
+       * <code>required uint32 maximum = 2;</code>
+       */
+      public Builder setMaximum(int value) {
+        bitField0_ |= 0x00000002;
+        maximum_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 maximum = 2;</code>
+       */
+      public Builder clearMaximum() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        maximum_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.TurretCount)
+    }
+
+    static {
+      defaultInstance = new TurretCount(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.TurretCount)
+  }
+
   public interface ToClientOrBuilder extends
       // @@protoc_insertion_point(interface_extends:tutorial.ToClient)
       com.google.protobuf.MessageOrBuilder {
@@ -4060,6 +4551,19 @@ public final class Messages {
      * <code>optional .tutorial.Disconnect disconnect = 3;</code>
      */
     codeday.squareassault.protobuf.Messages.DisconnectOrBuilder getDisconnectOrBuilder();
+
+    /**
+     * <code>optional .tutorial.TurretCount count = 4;</code>
+     */
+    boolean hasCount();
+    /**
+     * <code>optional .tutorial.TurretCount count = 4;</code>
+     */
+    codeday.squareassault.protobuf.Messages.TurretCount getCount();
+    /**
+     * <code>optional .tutorial.TurretCount count = 4;</code>
+     */
+    codeday.squareassault.protobuf.Messages.TurretCountOrBuilder getCountOrBuilder();
   }
   /**
    * Protobuf type {@code tutorial.ToClient}
@@ -4139,6 +4643,19 @@ public final class Messages {
               messageCase_ = 3;
               break;
             }
+            case 34: {
+              codeday.squareassault.protobuf.Messages.TurretCount.Builder subBuilder = null;
+              if (messageCase_ == 4) {
+                subBuilder = ((codeday.squareassault.protobuf.Messages.TurretCount) message_).toBuilder();
+              }
+              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.TurretCount.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.TurretCount) message_);
+                message_ = subBuilder.buildPartial();
+              }
+              messageCase_ = 4;
+              break;
+            }
           }
         }
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
@@ -4185,6 +4702,7 @@ public final class Messages {
         implements com.google.protobuf.Internal.EnumLite {
       POSITION(2),
       DISCONNECT(3),
+      COUNT(4),
       MESSAGE_NOT_SET(0);
       private int value = 0;
       private MessageCase(int value) {
@@ -4194,6 +4712,7 @@ public final class Messages {
         switch (value) {
           case 2: return POSITION;
           case 3: return DISCONNECT;
+          case 4: return COUNT;
           case 0: return MESSAGE_NOT_SET;
           default: throw new java.lang.IllegalArgumentException(
             "Value is undefined for this oneof enum.");
@@ -4262,6 +4781,32 @@ public final class Messages {
       return codeday.squareassault.protobuf.Messages.Disconnect.getDefaultInstance();
     }
 
+    public static final int COUNT_FIELD_NUMBER = 4;
+    /**
+     * <code>optional .tutorial.TurretCount count = 4;</code>
+     */
+    public boolean hasCount() {
+      return messageCase_ == 4;
+    }
+    /**
+     * <code>optional .tutorial.TurretCount count = 4;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.TurretCount getCount() {
+      if (messageCase_ == 4) {
+         return (codeday.squareassault.protobuf.Messages.TurretCount) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+    }
+    /**
+     * <code>optional .tutorial.TurretCount count = 4;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.TurretCountOrBuilder getCountOrBuilder() {
+      if (messageCase_ == 4) {
+         return (codeday.squareassault.protobuf.Messages.TurretCount) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+    }
+
     private void initFields() {
     }
     private byte memoizedIsInitialized = -1;
@@ -4282,6 +4827,12 @@ public final class Messages {
           return false;
         }
       }
+      if (hasCount()) {
+        if (!getCount().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -4294,6 +4845,9 @@ public final class Messages {
       }
       if (messageCase_ == 3) {
         output.writeMessage(3, (codeday.squareassault.protobuf.Messages.Disconnect) message_);
+      }
+      if (messageCase_ == 4) {
+        output.writeMessage(4, (codeday.squareassault.protobuf.Messages.TurretCount) message_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -4311,6 +4865,10 @@ public final class Messages {
       if (messageCase_ == 3) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, (codeday.squareassault.protobuf.Messages.Disconnect) message_);
+      }
+      if (messageCase_ == 4) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, (codeday.squareassault.protobuf.Messages.TurretCount) message_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4473,6 +5031,13 @@ public final class Messages {
             result.message_ = disconnectBuilder_.build();
           }
         }
+        if (messageCase_ == 4) {
+          if (countBuilder_ == null) {
+            result.message_ = message_;
+          } else {
+            result.message_ = countBuilder_.build();
+          }
+        }
         result.bitField0_ = to_bitField0_;
         result.messageCase_ = messageCase_;
         onBuilt();
@@ -4499,6 +5064,10 @@ public final class Messages {
             mergeDisconnect(other.getDisconnect());
             break;
           }
+          case COUNT: {
+            mergeCount(other.getCount());
+            break;
+          }
           case MESSAGE_NOT_SET: {
             break;
           }
@@ -4516,6 +5085,12 @@ public final class Messages {
         }
         if (hasDisconnect()) {
           if (!getDisconnect().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasCount()) {
+          if (!getCount().isInitialized()) {
             
             return false;
           }
@@ -4825,6 +5400,141 @@ public final class Messages {
         }
         messageCase_ = 3;
         return disconnectBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.TurretCount, codeday.squareassault.protobuf.Messages.TurretCount.Builder, codeday.squareassault.protobuf.Messages.TurretCountOrBuilder> countBuilder_;
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public boolean hasCount() {
+        return messageCase_ == 4;
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.TurretCount getCount() {
+        if (countBuilder_ == null) {
+          if (messageCase_ == 4) {
+            return (codeday.squareassault.protobuf.Messages.TurretCount) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+        } else {
+          if (messageCase_ == 4) {
+            return countBuilder_.getMessage();
+          }
+          return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public Builder setCount(codeday.squareassault.protobuf.Messages.TurretCount value) {
+        if (countBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          message_ = value;
+          onChanged();
+        } else {
+          countBuilder_.setMessage(value);
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public Builder setCount(
+          codeday.squareassault.protobuf.Messages.TurretCount.Builder builderForValue) {
+        if (countBuilder_ == null) {
+          message_ = builderForValue.build();
+          onChanged();
+        } else {
+          countBuilder_.setMessage(builderForValue.build());
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public Builder mergeCount(codeday.squareassault.protobuf.Messages.TurretCount value) {
+        if (countBuilder_ == null) {
+          if (messageCase_ == 4 &&
+              message_ != codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance()) {
+            message_ = codeday.squareassault.protobuf.Messages.TurretCount.newBuilder((codeday.squareassault.protobuf.Messages.TurretCount) message_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            message_ = value;
+          }
+          onChanged();
+        } else {
+          if (messageCase_ == 4) {
+            countBuilder_.mergeFrom(value);
+          }
+          countBuilder_.setMessage(value);
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public Builder clearCount() {
+        if (countBuilder_ == null) {
+          if (messageCase_ == 4) {
+            messageCase_ = 0;
+            message_ = null;
+            onChanged();
+          }
+        } else {
+          if (messageCase_ == 4) {
+            messageCase_ = 0;
+            message_ = null;
+          }
+          countBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.TurretCount.Builder getCountBuilder() {
+        return getCountFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.TurretCountOrBuilder getCountOrBuilder() {
+        if ((messageCase_ == 4) && (countBuilder_ != null)) {
+          return countBuilder_.getMessageOrBuilder();
+        } else {
+          if (messageCase_ == 4) {
+            return (codeday.squareassault.protobuf.Messages.TurretCount) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.TurretCount count = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.TurretCount, codeday.squareassault.protobuf.Messages.TurretCount.Builder, codeday.squareassault.protobuf.Messages.TurretCountOrBuilder> 
+          getCountFieldBuilder() {
+        if (countBuilder_ == null) {
+          if (!(messageCase_ == 4)) {
+            message_ = codeday.squareassault.protobuf.Messages.TurretCount.getDefaultInstance();
+          }
+          countBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.TurretCount, codeday.squareassault.protobuf.Messages.TurretCount.Builder, codeday.squareassault.protobuf.Messages.TurretCountOrBuilder>(
+                  (codeday.squareassault.protobuf.Messages.TurretCount) message_,
+                  getParentForChildren(),
+                  isClean());
+          message_ = null;
+        }
+        messageCase_ = 4;
+        return countBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:tutorial.ToClient)
@@ -5676,6 +6386,11 @@ public final class Messages {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_PlaceTurret_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_TurretCount_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_TurretCount_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_ToClient_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -5705,15 +6420,17 @@ public final class Messages {
       "\n\004type\030\005 \001(\0162\024.tutorial.ObjectType\022\022\n\006pa" +
       "rent\030\006 \001(\005:\002-1\022\016\n\006health\030\007 \001(\r\"\034\n\nDiscon",
       "nect\022\016\n\006object\030\001 \002(\r\"#\n\013PlaceTurret\022\t\n\001x" +
-      "\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\"l\n\010ToClient\022)\n\010positio" +
-      "n\030\002 \001(\0132\025.tutorial.SetPositionH\000\022*\n\ndisc" +
-      "onnect\030\003 \001(\0132\024.tutorial.DisconnectH\000B\t\n\007" +
-      "message\"i\n\010ToServer\022)\n\010position\030\002 \001(\0132\025." +
-      "tutorial.SetPositionH\000\022\'\n\006turret\030\003 \001(\0132\025" +
-      ".tutorial.PlaceTurretH\000B\t\n\007message*0\n\nOb" +
-      "jectType\022\n\n\006PLAYER\020\000\022\n\n\006TURRET\020\001\022\n\n\006BULL" +
-      "ET\020\002B*\n\036codeday.squareassault.protobufB\010" +
-      "Messages"
+      "\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\"-\n\013TurretCount\022\r\n\005coun" +
+      "t\030\001 \002(\r\022\017\n\007maximum\030\002 \002(\r\"\224\001\n\010ToClient\022)\n" +
+      "\010position\030\002 \001(\0132\025.tutorial.SetPositionH\000" +
+      "\022*\n\ndisconnect\030\003 \001(\0132\024.tutorial.Disconne" +
+      "ctH\000\022&\n\005count\030\004 \001(\0132\025.tutorial.TurretCou" +
+      "ntH\000B\t\n\007message\"i\n\010ToServer\022)\n\010position\030" +
+      "\002 \001(\0132\025.tutorial.SetPositionH\000\022\'\n\006turret" +
+      "\030\003 \001(\0132\025.tutorial.PlaceTurretH\000B\t\n\007messa" +
+      "ge*0\n\nObjectType\022\n\n\006PLAYER\020\000\022\n\n\006TURRET\020\001",
+      "\022\n\n\006BULLET\020\002B*\n\036codeday.squareassault.pr" +
+      "otobufB\010Messages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5763,14 +6480,20 @@ public final class Messages {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_PlaceTurret_descriptor,
         new java.lang.String[] { "X", "Y", });
-    internal_static_tutorial_ToClient_descriptor =
+    internal_static_tutorial_TurretCount_descriptor =
       getDescriptor().getMessageTypes().get(6);
+    internal_static_tutorial_TurretCount_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_TurretCount_descriptor,
+        new java.lang.String[] { "Count", "Maximum", });
+    internal_static_tutorial_ToClient_descriptor =
+      getDescriptor().getMessageTypes().get(7);
     internal_static_tutorial_ToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToClient_descriptor,
-        new java.lang.String[] { "Position", "Disconnect", "Message", });
+        new java.lang.String[] { "Position", "Disconnect", "Count", "Message", });
     internal_static_tutorial_ToServer_descriptor =
-      getDescriptor().getMessageTypes().get(7);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_tutorial_ToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToServer_descriptor,

@@ -105,7 +105,7 @@ public class ServerContext {
 		return objects.get(objectID);
 	}
 
-	public Iterable<ObjectContext> findColliding(ObjectContext from, ObjectType type) {
+	public Iterable<ObjectContext> findColliding(ObjectContext from) {
 		return new Iterable<ObjectContext>() {
 			@Override
 			public Iterator<ObjectContext> iterator() {
@@ -121,7 +121,7 @@ public class ServerContext {
 						while (iterator.hasNext()) {
 							ObjectContext object = iterator.next();
 							int dist = object.getRadius() + from.getRadius();
-							if (object.getType() == type && distanceSq(from, object) < dist * dist && object != from) {
+							if (distanceSq(from, object) < dist * dist && object != from) {
 								next = object;
 								return true;
 							}
