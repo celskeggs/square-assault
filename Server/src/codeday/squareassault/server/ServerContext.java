@@ -14,6 +14,7 @@ public class ServerContext {
 	private int nextID = 0;
 	private Map map;
 	private final AtomicBoolean roundInProgress = new AtomicBoolean();
+	private final AtomicBoolean hasSentFinalization = new AtomicBoolean();
 
 	public ServerContext(Map map) {
 		this.map = map;
@@ -65,6 +66,20 @@ public class ServerContext {
 	public void tick() {
 		for (ObjectContext object : objects.values()) {
 			object.tick();
+		}
+		if (isRoundInProgress() && !hasSentFinalization.get()) {
+			int count = 0;
+			for (ObjectContext context : objects.values()) {
+				if (context.getType() == ObjectType.PLAYER && !context.isDead()) {
+					count++;
+				}
+			}
+			if (count == 1) {
+				hasSentFinalization.set(true);
+				broadcastChat("[SERVER MONKEY] There is a winner! Type /end to finish the round.", -1);
+			} else if (count <= 0) {
+				tryEndRound();
+			}
 		}
 	}
 
@@ -230,6 +245,7 @@ public class ServerContext {
 			}
 		}
 		roundInProgress.set(true);
+		hasSentFinalization.set(false);
 		broadcastChat("[SERVER MONKEY] The round has been started!", -1);
 		broadcastChat("[SERVER MONKEY] There are " + count + " participants!", -1);
 		return null;
@@ -251,6 +267,7 @@ public class ServerContext {
 			return "Exactly one player may remain!";
 		}
 		roundInProgress.set(false);
+		hasSentFinalization.set(false);
 		broadcastChat("[SERVER MONKEY] The round has completed!", -1);
 		broadcastChat("[SERVER MONKEY] The winner is... " + name + "!", -1);
 		return null;
