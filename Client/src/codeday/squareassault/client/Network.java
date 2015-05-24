@@ -1,12 +1,15 @@
 package codeday.squareassault.client;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import codeday.squareassault.protobuf.Messages;
+import codeday.squareassault.protobuf.Messages.Connect;
 import codeday.squareassault.protobuf.Messages.ToClient;
 import codeday.squareassault.protobuf.QueueReceiver;
 import codeday.squareassault.protobuf.QueueSender;
@@ -16,11 +19,16 @@ public class Network {
 	private final Socket socket;
 	private final LinkedBlockingQueue<Messages.ToServer> sendQueue = new LinkedBlockingQueue<>();
 	private final LinkedBlockingQueue<Messages.ToClient> recvQueue = new LinkedBlockingQueue<>();
+	private final Connect info;
 
-	public Network(String server) throws UnknownHostException, IOException {
+	public Network(String server, String username) throws UnknownHostException, IOException {
 		socket = new Socket(InetAddress.getByName(server), SharedConfig.PORT);
-		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, socket.getInputStream(), Messages.ToClient.newBuilder()), "Receiver").start();
-		new Thread(new QueueSender<>(this.sendQueue, socket.getOutputStream()), "Sender").start();
+		InputStream input = socket.getInputStream();
+		this.info = Messages.Connect.parseDelimitedFrom(input);
+		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder()), "Receiver").start();
+		OutputStream output = socket.getOutputStream();
+		Messages.Identify.newBuilder().setName(username).build().writeDelimitedTo(output);
+		new Thread(new QueueSender<>(this.sendQueue, output), "Sender").start();
 	}
 	
 	public void send(Messages.ToServer serv) throws InterruptedException {
@@ -28,6 +36,7 @@ public class Network {
 	}
 
 	public void handleAll(Context context) throws InterruptedException {
+		context.handleConnectInfo(info);
 		while (true) {
 			ToClient taken = recvQueue.take();
 			if (taken == null) {

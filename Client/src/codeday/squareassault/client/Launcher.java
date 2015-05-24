@@ -40,7 +40,7 @@ public class Launcher extends JPanel implements KeyListener {
 	}
 
 	private Launcher() throws UnknownHostException, IOException {
-		this.net = new Network("127.0.0.1");
+		this.net = new Network("127.0.0.1", "unknown user");
 		context = new Context(net);
 		gui = new View(context);
 		new Timer().schedule(new TimerTask() {
