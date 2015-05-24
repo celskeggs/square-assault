@@ -32,6 +32,7 @@ message SetPosition {
   required uint32 y = 3;
   optional string icon = 4;
   optional ObjectType type = 5;
+  optional uint32 parent = 6 [default = -1];
 }
 
 message Disconnect {

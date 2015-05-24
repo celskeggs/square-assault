@@ -102,19 +102,15 @@ public class Context {
 	}
 
 	public synchronized void handleSetPosition(SetPosition position) {
-		System.out.println("Set position: " + position.getIcon() + "::" + position.getType());
-		String icon = "user";
 		if (position.getObject() == objectID) {
 			this.x = position.getX();
 			this.y = position.getY();
-		} else if (position.hasIcon()) {
-			icon = position.getIcon();
 		}
 		for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) {
 			Entity e = iterator.next();
 			if (e.objectID == position.getObject()) {
 				if (position.hasIcon()) {
-					e.updateIcon(icon);
+					e.updateIcon(position.getIcon());
 				}
 				if (position.hasType()) {
 					e.updateType(position.getType());
@@ -123,7 +119,7 @@ public class Context {
 				return;
 			}
 		}
-		entities.add(new Entity(position.getObject(), icon, position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY()));
+		entities.add(new Entity(position.getObject(), position.getIcon(), position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY(), position.getParent()));
 	}
 
 	public int getX() {
@@ -132,6 +128,10 @@ public class Context {
 
 	public int getY() {
 		return y;
+	}
+
+	public int getPlayerID() {
+		return objectID;
 	}
 
 	public void mousePress(int x, int y, int button) throws InterruptedException {

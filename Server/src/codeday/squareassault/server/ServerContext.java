@@ -55,8 +55,10 @@ public class ServerContext {
 		broadcast(Messages.ToClient.newBuilder().setDisconnect(Messages.Disconnect.newBuilder().setObject(objectID)).build());
 	}
 
-	public void updateObjectPosition(int objectID, String icon, ObjectType type, int x, int y) {
-		broadcast(Messages.ToClient.newBuilder().setPosition(Messages.SetPosition.newBuilder().setIcon(icon).setObject(objectID).setType(type).setX(x).setY(y)).build());
+	public void updateObjectPosition(int objectID, String icon, ObjectType type, int x, int y, int parentID) {
+		Messages.SetPosition.Builder builder = Messages.SetPosition.newBuilder();
+		builder.setIcon(icon).setObject(objectID).setType(type).setX(x).setY(y).setParent(parentID);
+		broadcast(Messages.ToClient.newBuilder().setPosition(builder).build());
 	}
 
 	private void broadcast(Messages.ToClient built) {

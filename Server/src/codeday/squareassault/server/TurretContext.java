@@ -4,11 +4,8 @@ import codeday.squareassault.protobuf.Messages.ObjectType;
 
 public class TurretContext extends ObjectContext {
 
-	private int playerID;
-	
 	public TurretContext(ServerContext server, int x, int y, int playerID) {
-		super(server, x, y);
-		this.playerID = playerID;
+		super(server, x, y, playerID);
 	}
 
 	@Override
@@ -18,7 +15,7 @@ public class TurretContext extends ObjectContext {
 
 	@Override
 	public void tick() {
-		if (server.getObject(playerID) == null) {
+		if (server.getObject(parentID) == null) {
 			server.delete(this);
 		}
 	}

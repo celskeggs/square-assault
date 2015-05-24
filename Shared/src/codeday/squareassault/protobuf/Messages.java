@@ -2210,6 +2210,15 @@ public final class Messages {
      * <code>optional .tutorial.ObjectType type = 5;</code>
      */
     codeday.squareassault.protobuf.Messages.ObjectType getType();
+
+    /**
+     * <code>optional uint32 parent = 6;</code>
+     */
+    boolean hasParent();
+    /**
+     * <code>optional uint32 parent = 6;</code>
+     */
+    int getParent();
   }
   /**
    * Protobuf type {@code tutorial.SetPosition}
@@ -2293,6 +2302,11 @@ public final class Messages {
                 bitField0_ |= 0x00000010;
                 type_ = value;
               }
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              parent_ = input.readUInt32();
               break;
             }
           }
@@ -2437,12 +2451,28 @@ public final class Messages {
       return type_;
     }
 
+    public static final int PARENT_FIELD_NUMBER = 6;
+    private int parent_;
+    /**
+     * <code>optional uint32 parent = 6;</code>
+     */
+    public boolean hasParent() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    /**
+     * <code>optional uint32 parent = 6;</code>
+     */
+    public int getParent() {
+      return parent_;
+    }
+
     private void initFields() {
       object_ = 0;
       x_ = 0;
       y_ = 0;
       icon_ = "";
       type_ = codeday.squareassault.protobuf.Messages.ObjectType.PLAYER;
+      parent_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2480,6 +2510,9 @@ public final class Messages {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeEnum(5, type_.getNumber());
       }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeUInt32(6, parent_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2508,6 +2541,10 @@ public final class Messages {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(5, type_.getNumber());
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(6, parent_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2636,6 +2673,8 @@ public final class Messages {
         bitField0_ = (bitField0_ & ~0x00000008);
         type_ = codeday.squareassault.protobuf.Messages.ObjectType.PLAYER;
         bitField0_ = (bitField0_ & ~0x00000010);
+        parent_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
@@ -2684,6 +2723,10 @@ public final class Messages {
           to_bitField0_ |= 0x00000010;
         }
         result.type_ = type_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.parent_ = parent_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2716,6 +2759,9 @@ public final class Messages {
         }
         if (other.hasType()) {
           setType(other.getType());
+        }
+        if (other.hasParent()) {
+          setParent(other.getParent());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2955,6 +3001,38 @@ public final class Messages {
       public Builder clearType() {
         bitField0_ = (bitField0_ & ~0x00000010);
         type_ = codeday.squareassault.protobuf.Messages.ObjectType.PLAYER;
+        onChanged();
+        return this;
+      }
+
+      private int parent_ ;
+      /**
+       * <code>optional uint32 parent = 6;</code>
+       */
+      public boolean hasParent() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      /**
+       * <code>optional uint32 parent = 6;</code>
+       */
+      public int getParent() {
+        return parent_;
+      }
+      /**
+       * <code>optional uint32 parent = 6;</code>
+       */
+      public Builder setParent(int value) {
+        bitField0_ |= 0x00000020;
+        parent_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 parent = 6;</code>
+       */
+      public Builder clearParent() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        parent_ = 0;
         onChanged();
         return this;
       }
@@ -5535,18 +5613,19 @@ public final class Messages {
       "\n\010objectID\030\002 \002(\r\"p\n\003Map\022\r\n\005width\030\001 \002(\r\022\016" +
       "\n\006height\030\002 \002(\r\022\021\n\ttilenames\030\003 \003(\t\022\r\n\005cel" +
       "ls\030\004 \003(\r\022\023\n\006spawnX\030\005 \001(\r:\003100\022\023\n\006spawnY\030" +
-      "\006 \001(\r:\003100\"e\n\013SetPosition\022\016\n\006object\030\001 \001(" +
+      "\006 \001(\r:\003100\"u\n\013SetPosition\022\016\n\006object\030\001 \001(" +
       "\r\022\t\n\001x\030\002 \002(\r\022\t\n\001y\030\003 \002(\r\022\014\n\004icon\030\004 \001(\t\022\"\n" +
-      "\004type\030\005 \001(\0162\024.tutorial.ObjectType\"\034\n\nDis" +
-      "connect\022\016\n\006object\030\001 \002(\r\"#\n\013PlaceTurret\022\t",
-      "\n\001x\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\"l\n\010ToClient\022)\n\010posi" +
-      "tion\030\002 \001(\0132\025.tutorial.SetPositionH\000\022*\n\nd" +
-      "isconnect\030\003 \001(\0132\024.tutorial.DisconnectH\000B" +
-      "\t\n\007message\"i\n\010ToServer\022)\n\010position\030\002 \001(\013" +
-      "2\025.tutorial.SetPositionH\000\022\'\n\006turret\030\003 \001(" +
-      "\0132\025.tutorial.PlaceTurretH\000B\t\n\007message*$\n" +
-      "\nObjectType\022\n\n\006PLAYER\020\000\022\n\n\006TURRET\020\001B*\n\036c" +
-      "odeday.squareassault.protobufB\010Messages"
+      "\004type\030\005 \001(\0162\024.tutorial.ObjectType\022\016\n\006par" +
+      "ent\030\006 \001(\r\"\034\n\nDisconnect\022\016\n\006object\030\001 \002(\r\"",
+      "#\n\013PlaceTurret\022\t\n\001x\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\"l\n\010" +
+      "ToClient\022)\n\010position\030\002 \001(\0132\025.tutorial.Se" +
+      "tPositionH\000\022*\n\ndisconnect\030\003 \001(\0132\024.tutori" +
+      "al.DisconnectH\000B\t\n\007message\"i\n\010ToServer\022)" +
+      "\n\010position\030\002 \001(\0132\025.tutorial.SetPositionH" +
+      "\000\022\'\n\006turret\030\003 \001(\0132\025.tutorial.PlaceTurret" +
+      "H\000B\t\n\007message*$\n\nObjectType\022\n\n\006PLAYER\020\000\022" +
+      "\n\n\006TURRET\020\001B*\n\036codeday.squareassault.pro" +
+      "tobufB\010Messages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5583,7 +5662,7 @@ public final class Messages {
     internal_static_tutorial_SetPosition_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_SetPosition_descriptor,
-        new java.lang.String[] { "Object", "X", "Y", "Icon", "Type", });
+        new java.lang.String[] { "Object", "X", "Y", "Icon", "Type", "Parent", });
     internal_static_tutorial_Disconnect_descriptor =
       getDescriptor().getMessageTypes().get(4);
     internal_static_tutorial_Disconnect_fieldAccessorTable = new
