@@ -140,8 +140,12 @@ public class ServerContext {
 		};
 	}
 
-	private int distanceSq(ObjectContext from, ObjectContext to) {
+	public int distanceSq(ObjectContext from, ObjectContext to) {
 		int xd = from.x + from.getCenterCoord() - to.x - to.getCenterCoord(), yd = from.y + from.getCenterCoord() - to.y - to.getCenterCoord();
 		return xd * xd + yd * yd;
+	}
+
+	public Iterable<ObjectContext> getObjects() {
+		return objects.values();
 	}
 }

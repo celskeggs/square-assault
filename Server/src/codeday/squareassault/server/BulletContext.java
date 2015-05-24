@@ -5,6 +5,7 @@ import codeday.squareassault.protobuf.Messages.ObjectType;
 public class BulletContext extends ObjectContext {
 
 	private static final int SIZE = 23;
+	private static final float SPEED = 8;
 	private final int vx, vy;
 
 	public BulletContext(ServerContext server, int x, int y, int turretID, int vx, int vy) {
@@ -57,5 +58,17 @@ public class BulletContext extends ObjectContext {
 	@Override
 	public int getCenterCoord() {
 		return getRadius();
+	}
+
+	public static BulletContext withAim(TurretContext turretContext, ObjectContext target) {
+		float aimX, aimY;
+		aimX = target.x + target.getCenterCoord() - turretContext.x - turretContext.getCenterCoord();
+		aimY = target.y + target.getCenterCoord() - turretContext.y - turretContext.getCenterCoord();
+		double magnitude = Math.sqrt(aimX * aimX + aimY * aimY);
+		aimX /= magnitude;
+		aimY /= magnitude;
+		aimX *= SPEED;
+		aimY *= SPEED;
+		return new BulletContext(target.server, turretContext.x + turretContext.getCenterCoord(), turretContext.y + turretContext.getCenterCoord(), turretContext.objectID, Math.round(aimX), Math.round(aimY));
 	}
 }
