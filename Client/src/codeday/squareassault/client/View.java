@@ -10,6 +10,7 @@ public class View {
 	private static final int BORDER_SIZE_MIN = 128;
 	private static final int BORDER_SIZE_MAX = 196;
 	private static final int SHIFT_SCALE_FACTOR = 16;
+	private static final int METER_SHIFT = 70, METER_RADIUS = 48;
 	private final Context context;
 	private int shiftX, shiftY;
 
@@ -17,7 +18,7 @@ public class View {
 		this.context = context;
 	}
 
-	public void paint(Graphics go) {
+	public void paint(Graphics go, int width, int height) {
 		for (int i = 0; i < context.backgroundImages.length; i++) {
 			int[] column = context.backgroundImages[i];
 			for (int j = 0; j < column.length; j++) {
@@ -29,6 +30,25 @@ public class View {
 		for (Entity ent : context.entities) {
 			go.drawImage(Loader.load(ent.getIconForRender()), ent.x + shiftX, ent.y + shiftY, null);
 		}
+
+		int health = context.getHealth();
+		go.setColor(Color.LIGHT_GRAY);
+		go.fillArc(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 290, 320);
+		go.setColor(blendColors(Color.RED, Color.GREEN, health / 100.0));
+		go.fillArc(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 250 - health * 320 / 100, health * 320 / 100);
+		go.setColor(Color.GRAY);
+		go.fillArc(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2, 250, 40);
+		go.drawOval(width - METER_SHIFT - METER_RADIUS, METER_SHIFT - METER_RADIUS, METER_RADIUS * 2, METER_RADIUS * 2);
+	}
+
+	private Color blendColors(Color zero, Color one, double d) {
+		if (d < 0) {
+			d = 0;
+		} else if (d > 1) {
+			d = 1;
+		}
+		double remain = 1 - d;
+		return new Color((int) (one.getRed() * d + zero.getRed() * remain), (int) (one.getGreen() * d + zero.getGreen() * remain), (int) (one.getBlue() * d + zero.getBlue() * remain));
 	}
 
 	public void tick(int width, int height) {

@@ -34,8 +34,11 @@ public class BulletContext extends ObjectContext {
 		}
 		boolean any = false;
 		for (ObjectContext colliding : server.findColliding(this, ObjectType.PLAYER)) {
+			if (colliding.getHealth() <= 0) {
+				continue;
+			}
 			if (colliding.objectID != server.getObject(parentID).parentID) {
-				System.out.println("HURT: " + ((ClientContext) colliding));
+				((ClientContext) colliding).damage(10);
 			}
 			any = true;
 		}

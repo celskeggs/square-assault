@@ -8,6 +8,7 @@ public class Entity {
 	public ObjectType type;
 	public int x, y;
 	public int parentID;
+	public int health = 100;
 	private final Context context;
 
 	public Entity(Context context, int object, String icon, ObjectType type, int x, int y, int parentID) {
@@ -29,13 +30,23 @@ public class Entity {
 		this.icon = icon;
 	}
 
+	public boolean isDead() {
+		return health <= 0;
+	}
+
 	public String getIconForRender() {
 		if (objectID == context.getPlayerID()) {
-			return "user";
+			if (isDead()) {
+				return "userdead";
+			} else {
+				return "user";
+			}
 		} else if (isAncestor(context.getPlayerID())) {
 			return "user" + icon;
 		} else if (icon == null) {
 			return "none";
+		} else if (isDead()) {
+			return icon + "dead";
 		} else {
 			return icon;
 		}
@@ -55,5 +66,9 @@ public class Entity {
 
 	public void updateParent(int parentID) {
 		this.parentID = parentID;
+	}
+
+	public void updateHealth(int health) {
+		this.health = health;
 	}
 }

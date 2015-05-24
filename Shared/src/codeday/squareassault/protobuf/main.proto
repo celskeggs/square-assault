@@ -34,6 +34,7 @@ message SetPosition {
   optional string icon = 4;
   optional ObjectType type = 5;
   optional int32 parent = 6 [default = -1];
+  optional uint32 health = 7;
 }
 
 message Disconnect {

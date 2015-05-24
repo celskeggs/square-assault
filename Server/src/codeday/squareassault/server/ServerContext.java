@@ -60,6 +60,14 @@ public class ServerContext {
 		broadcast(Messages.ToClient.newBuilder().setDisconnect(Messages.Disconnect.newBuilder().setObject(objectID)).build());
 	}
 
+	// with health
+	public void updateObjectPosition(int objectID, String icon, ObjectType type, int x, int y, int parentID, int health) {
+		Messages.SetPosition.Builder builder = Messages.SetPosition.newBuilder();
+		builder.setIcon(icon).setObject(objectID).setType(type).setX(x).setY(y).setParent(parentID).setHealth(health);
+		broadcast(Messages.ToClient.newBuilder().setPosition(builder).build());
+	}
+
+	// without health
 	public void updateObjectPosition(int objectID, String icon, ObjectType type, int x, int y, int parentID) {
 		Messages.SetPosition.Builder builder = Messages.SetPosition.newBuilder();
 		builder.setIcon(icon).setObject(objectID).setType(type).setX(x).setY(y).setParent(parentID);

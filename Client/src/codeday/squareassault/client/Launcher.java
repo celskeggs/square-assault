@@ -73,7 +73,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 				synchronized (image) {
 					imgG.setColor(View.BACKGROUND_COLOR);
 					imgG.fillRect(0, 0, getWidth(), getHeight());
-					view.paint(imgG);
+					view.paint(imgG, image.getWidth(), image.getHeight());
 				}
 
 				repaint();

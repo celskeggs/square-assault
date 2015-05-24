@@ -15,7 +15,7 @@ public final class ClientContext extends ObjectContext {
 	public final String name;
 	private boolean canMove = false;
 	private int turretCount = 1;
-	private long tickDensity = 0, tickTotal = 0;
+	private int health = 100;
 
 	public ClientContext(ServerContext serverContext, String name) {
 		super(serverContext, serverContext.getMap().getSpawnX(), serverContext.getMap().getSpawnY());
@@ -24,10 +24,6 @@ public final class ClientContext extends ObjectContext {
 
 	public synchronized void tick() {
 		canMove = true;
-		if (tickTotal >= 100) {
-			tickTotal = 0;
-			tickDensity = 0;
-		}
 	}
 
 	public synchronized void receiveMessage(ToServer taken) {
@@ -40,7 +36,24 @@ public final class ClientContext extends ObjectContext {
 		}
 	}
 
+	@Override
+	protected boolean hasHealth() {
+		return true;
+	}
+
+	@Override
+	public int getHealth() {
+		return health <= 0 ? 0 : health;
+	}
+
+	public boolean isDead() {
+		return getHealth() <= 0;
+	}
+
 	private synchronized void performTurretPlace(PlaceTurret turret) {
+		if (isDead()) {
+			return;
+		}
 		TurretContext newTurret = new TurretContext(server, turret.getX(), turret.getY(), objectID);
 		if (turretCount > 0 && server.canMoveTo(turret.getX(), turret.getY(), newTurret)) {
 			turretCount--;
@@ -49,11 +62,9 @@ public final class ClientContext extends ObjectContext {
 	}
 
 	private void performMove(SetPosition position) {
-		tickTotal++;
-		if (!canMove) {
+		if (!canMove || isDead()) {
 			return;
 		}
-		tickDensity++;
 		int wantX = position.getX(), wantY = position.getY();
 		if (server.canMoveTo(wantX, wantY, this)) {
 			x = wantX;
@@ -125,5 +136,13 @@ public final class ClientContext extends ObjectContext {
 	@Override
 	public int getCenterCoord() {
 		return 32;
+	}
+
+	public void damage(int damage) {
+		this.health -= damage;
+		if (health < 0) {
+			health = 0;
+		}
+		resendStatus();
 	}
 }

@@ -23,7 +23,19 @@ public abstract class ObjectContext {
 	}
 
 	public void resendStatus() {
-		server.updateObjectPosition(objectID, getIcon(), getType(), x, y, parentID);
+		if (hasHealth()) {
+			server.updateObjectPosition(objectID, getIcon(), getType(), x, y, parentID, getHealth());
+		} else {
+			server.updateObjectPosition(objectID, getIcon(), getType(), x, y, parentID);
+		}
+	}
+
+	protected int getHealth() {
+		return 100;
+	}
+
+	protected boolean hasHealth() {
+		return false;
 	}
 
 	protected abstract String getIcon();

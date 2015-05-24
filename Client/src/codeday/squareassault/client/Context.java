@@ -114,11 +114,18 @@ public class Context {
 				if (position.hasType()) {
 					e.updateType(position.getType());
 				}
+				if (position.hasHealth()) {
+					e.updateHealth(position.getHealth());
+				}
 				e.update(position.getX(), position.getY());
 				return;
 			}
 		}
-		entities.add(new Entity(this, position.getObject(), position.getIcon(), position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY(), position.getParent()));
+		Entity entity = new Entity(this, position.getObject(), position.getIcon(), position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY(), position.getParent());
+		if (position.hasHealth()) {
+			entity.updateHealth(position.getHealth());
+		}
+		entities.add(entity);
 	}
 
 	public int getX() {
@@ -144,5 +151,9 @@ public class Context {
 			}
 		}
 		return null;
+	}
+
+	public int getHealth() {
+		return getObjectByID(getPlayerID()).health;
 	}
 }
