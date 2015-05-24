@@ -1,5 +1,6 @@
 package codeday.squareassault.client;
 
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
@@ -13,11 +14,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Launcher extends JPanel implements KeyListener, MouseListener {
 	private static final String SERVER_ADDR = "tethys.colbyskeggs.com";//"10.105.176.242";//"127.0.0.1";
 	private static final long serialVersionUID = -4540493147431023697L;
+	protected static final Font font = new Font("Monospace", Font.BOLD, 14);
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		Launcher panel = new Launcher();
@@ -47,7 +50,11 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 	}
 
 	private Launcher() throws UnknownHostException, IOException {
-		this.net = new Network(SERVER_ADDR, "unknown user");
+		String username = JOptionPane.showInputDialog("Username?");
+		if (username == null) {
+			throw new RuntimeException("No username.");
+		}
+		this.net = new Network(SERVER_ADDR, username);
 		context = new Context(net);
 		view = new View(context);
 		context.view = view;
@@ -73,6 +80,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 				}
 
 				synchronized (image) {
+					imgG.setFont(font);
 					imgG.setColor(View.BACKGROUND_COLOR);
 					imgG.fillRect(0, 0, getWidth(), getHeight());
 					view.paint(imgG, image.getWidth(), image.getHeight());

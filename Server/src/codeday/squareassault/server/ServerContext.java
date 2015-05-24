@@ -25,9 +25,13 @@ public class ServerContext {
 	private final Random rand = new Random();
 
 	public ClientContext newClient(String name) {
+		if (name.toLowerCase().contains("server")) {
+			throw new RuntimeException("Bad name.");
+		}
 		int spawnID = rand.nextInt(map.getSpawnXCount());
 		ClientContext context = new ClientContext(this, name, map.getSpawnX(spawnID), map.getSpawnY(spawnID));
 		register(context);
+		broadcastChat("[SERVER MONKEY] Welcome, " + name + "!", -1);
 		return context;
 	}
 
@@ -48,6 +52,9 @@ public class ServerContext {
 	public void delete(ObjectContext context) {
 		this.objects.remove(context.objectID);
 		broadcastDestroyObject(context.objectID);
+		if (context instanceof ClientContext) {
+			broadcastChat("[SERVER MONKEY] Goodbye, " + ((ClientContext) context).name + "!", -1);
+		}
 	}
 
 	public void tick() {

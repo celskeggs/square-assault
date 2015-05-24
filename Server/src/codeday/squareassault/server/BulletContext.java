@@ -5,7 +5,7 @@ import codeday.squareassault.protobuf.Messages.ObjectType;
 public class BulletContext extends ObjectContext {
 
 	private static final int SIZE = 23;
-	private static final float SPEED = 8;
+	private static final float SPEED = 16;
 	private final int vx, vy;
 
 	public BulletContext(ServerContext server, int x, int y, int turretID, int vx, int vy) {

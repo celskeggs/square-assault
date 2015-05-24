@@ -47,7 +47,7 @@ public class View {
 			drawMeter(go, true, width, height, Color.BLACK, Color.YELLOW, context.turretCount, context.turretMaximum);
 		}
 
-		go.setColor(Color.BLACK);
+		go.setColor(Color.WHITE);
 		int h = go.getFontMetrics().getHeight();
 		int y = 0;
 		synchronized (context.chatMessages) {
@@ -56,7 +56,7 @@ public class View {
 				go.drawString(line, METER_SHIFT + METER_RADIUS * 2, y);
 			}
 		}
-		go.drawString("> " + context.newMessage.toString(), METER_SHIFT + METER_RADIUS * 2, h * (Context.MAX_CHAT_LINES + 1));
+		go.drawString(">>> " + context.newMessage.toString(), METER_SHIFT + METER_RADIUS * 2, h * (Context.MAX_CHAT_LINES + 1));
 	}
 
 	private void drawMeter(Graphics go, boolean atLeft, int width, int height, Color low, Color high, int health, int max) {
