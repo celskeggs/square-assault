@@ -24,10 +24,13 @@ public class Network {
 	public Network(String server, String username) throws UnknownHostException, IOException {
 		socket = new Socket(InetAddress.getByName(server), SharedConfig.PORT);
 		InputStream input = socket.getInputStream();
-		this.info = Messages.Connect.parseDelimitedFrom(input);
-		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder()), "Receiver").start();
 		OutputStream output = socket.getOutputStream();
+		System.out.println("Ready");
 		Messages.Identify.newBuilder().setName(username).build().writeDelimitedTo(output);
+		System.out.println("Sent");
+		this.info = Messages.Connect.parseDelimitedFrom(input);
+		System.out.println("Got");
+		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder()), "Receiver").start();
 		new Thread(new QueueSender<>(this.sendQueue, output), "Sender").start();
 	}
 	

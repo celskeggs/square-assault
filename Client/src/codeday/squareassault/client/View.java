@@ -9,8 +9,6 @@ public class View {
 	public static final long UPDATE_DELAY_MILLIS = 100;
 	public static final Color BACKGROUND_COLOR = Color.BLACK;
 	private final Context context;
-	private final BufferedImage image = Loader.load("tiletest");
-	private final BufferedImage image2 = Loader.load("tiletest2");
 
 	public View(Context context) {
 		this.context = context;
@@ -20,10 +18,10 @@ public class View {
 		go.setColor(Color.WHITE);
 		go.drawString(context.activeString, 100, 100);
 		for (int i = 0; i < context.backgroundImages.length; i++) {
-			BufferedImage[] column = context.backgroundImages[i];
+			int[] column = context.backgroundImages[i];
 			for (int j = 0; j < column.length; j++) {
-				BufferedImage cell = column[j];
-				go.drawImage(cell, i, j, null);
+				int cell = column[j];
+				go.drawImage(Loader.load(context.cells[cell]), i*64, j*64, null);
 			}
 		}
 	}

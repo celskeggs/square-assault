@@ -11,7 +11,8 @@ public class Context {
 
 	public String activeString = "Hello, World!";
 	private final Network net;
-	public BufferedImage[][] backgroundImages = new BufferedImage[10][10];
+	public String[] cells;
+	public int[][] backgroundImages;
 
 	public Context(Network net) {
 		this.net = net;
@@ -31,7 +32,13 @@ public class Context {
 	public void handleMap(Map map) {
 		int width = map.getWidth();
 		int height = map.getHeight();
-		
+		backgroundImages = new int[width][height];
+		cells = map.getTilenamesList().toArray(new String[map.getTilenamesCount()]);
+		for (int x=0; x<width; x++){
+			for (int y=0; y<height; y++){
+				backgroundImages[x][y] = map.getCells(x + y * width);
+			}
+		}
 	}
 
 	public void handleConnectInfo(Connect info) {

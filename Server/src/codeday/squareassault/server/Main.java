@@ -66,11 +66,11 @@ public class Main implements Runnable {
 			if (!ident.hasName()) {
 				throw new RuntimeException("Failed: client did not provide name.");
 			}
+			Messages.Connect.newBuilder().setMap(server.getMap()).build().writeDelimitedTo(output);
 			new Thread(new QueueSender<>(sendQueue, output), "Sender-" + tid).start();
 			ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
 			new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder()), "Receiver-" + tid).start();
 			ClientContext context = server.newClient(this.sendQueue, ident.getName());
-			Messages.Connect.newBuilder().setMap(server.getMap());
 			try {
 				while (true) {
 					Messages.ToServer taken;
