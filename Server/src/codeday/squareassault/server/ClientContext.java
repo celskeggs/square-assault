@@ -10,7 +10,7 @@ public final class ClientContext {
 	public final ServerContext server;
 	private final LinkedBlockingQueue<ToClient> sendQueue;
 	public final String name;
-	private int x = 100, y = 100;
+	private int x, y;
 	public final int objectID;
 	private boolean canMove = false;
 
@@ -19,6 +19,8 @@ public final class ClientContext {
 		this.sendQueue = sendQueue;
 		this.name = name;
 		objectID = serverContext.register(this);
+		this.x = serverContext.getMap().getSpawnX();
+		this.y = serverContext.getMap().getSpawnY();
 		resendStatus();
 	}
 	
@@ -29,9 +31,12 @@ public final class ClientContext {
 	public synchronized void receiveMessage(ToServer taken) {
 		if (taken.hasPosition()) {
 			if (canMove) {
-				x = taken.getPosition().getX();
-				y = taken.getPosition().getY();
-				resendStatus();
+				int wantX = taken.getPosition().getX(), wantY = taken.getPosition().getY();
+				if (server.canMoveTo(wantX, wantY)) {
+					x = wantX;
+					y = wantY;
+					resendStatus();
+				}
 			}
 		} else {
 			Logger.warning("Bad message: " + taken);

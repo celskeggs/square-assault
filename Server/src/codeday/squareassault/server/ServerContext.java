@@ -63,4 +63,21 @@ public class ServerContext {
 			client.sendMessage(built);
 		}
 	}
+
+	public boolean canMoveTo(int wantX, int wantY) {
+		return isEmptyAt(wantX, wantY) && isEmptyAt(wantX + 63, wantY) && isEmptyAt(wantX, wantY + 63) && isEmptyAt(wantX + 63, wantY + 63);
+	}
+
+	private boolean isEmptyAt(int wantX, int wantY) {
+		int cX = wantX >> 6; // / 64;
+		int cY = wantY >> 6; // / 64;
+		System.out.println("Checking at: " + cX + ", " + cY);
+		if (cX < 0 || cX >= map.getWidth()) {
+			return false;
+		}
+		if (cY < 0 || cY >= map.getHeight()) {
+			return false;
+		}
+		return map.getCells(cX + cY * map.getWidth()) == 0;
+	}
 }

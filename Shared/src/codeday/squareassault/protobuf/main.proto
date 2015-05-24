@@ -17,6 +17,8 @@ message Map {
   required uint32 height = 2;
   repeated string tilenames = 3;
   repeated uint32 cells = 4;
+  optional uint32 spawnX = 5 [default = 100];
+  optional uint32 spawnY = 6 [default = 100];
 }
 
 message SetPosition {

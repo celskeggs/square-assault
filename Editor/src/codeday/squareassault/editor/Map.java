@@ -15,6 +15,7 @@ public class Map {
 
 	public final ArrayList<String> names = new ArrayList<>();
 	public int[][] cells;
+	public int spawnX = 100, spawnY = 100;
 
 	{
 		names.add("tiletest");
@@ -94,7 +95,7 @@ public class Map {
 	}
 
 	private Messages.Map save() {
-		Messages.Map.Builder builder = Messages.Map.newBuilder().setWidth(cells.length).setHeight(cells[0].length).addAllTilenames(names);
+		Messages.Map.Builder builder = Messages.Map.newBuilder().setWidth(cells.length).setHeight(cells[0].length).addAllTilenames(names).setSpawnX(spawnX).setSpawnY(spawnY);
 		for (int y = 0; y < cells[0].length; y++) {
 			for (int x = 0; x < cells.length; x++) {
 				builder.addCells(cells[x][y]);
@@ -108,6 +109,8 @@ public class Map {
 		names.addAll(map.getTilenamesList());
 		int width = map.getWidth(), height = map.getHeight();
 		cells = new int[width][height];
+		spawnX = map.getSpawnX();
+		spawnY = map.getSpawnY();
 		for (int x = 0; x < width; x++) {
 			for (int y = 0; y < height; y++) {
 				cells[x][y] = map.getCells(x + y * width);

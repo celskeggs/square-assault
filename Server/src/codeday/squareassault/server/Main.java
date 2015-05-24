@@ -42,7 +42,7 @@ public class Main implements Runnable {
 		if (args.length >= 1) {
 			target = new File(args[0]);
 		} else {
-			JFileChooser jfc = new JFileChooser(new File("."));
+			JFileChooser jfc = new JFileChooser(new File("../Editor"));
 			if (jfc.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
 				target = jfc.getSelectedFile();
 			} else {

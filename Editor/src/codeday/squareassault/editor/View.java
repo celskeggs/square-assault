@@ -11,6 +11,7 @@ public class View {
 
 	public static final Color BACKGROUND_COLOR = Color.BLACK;
 	private int shiftX, shiftY, dX, dY;
+	private boolean shiftKeyHeld;
 	private final Map map;
 	private int[] offsets = new int[0];
 	private int fontHeight = 0;
@@ -69,6 +70,7 @@ public class View {
 				go.drawImage(Loader.load(map.names.get(column[y])), x * 64 + shiftX, y * 64 + shiftY, null);
 			}
 		}
+		go.drawImage(Loader.load("user"), map.spawnX + shiftX, map.spawnY + shiftY, null);
 	}
 
 	public void pressed(int x, int y, int width, int height) {
@@ -81,11 +83,16 @@ public class View {
 			}
 		}
 		if (x >= 64 && x < width - 64 && y >= 64 && y < height - 64) {
-			int ix = (x - shiftX) / 64 - 1;
-			int iy = (y - shiftY) / 64 - 1;
-			if (ix >= 0 && ix < map.cells.length) {
-				if (iy >= 0 && iy < map.cells[ix].length) {
-					map.cells[ix][iy] = (map.cells[ix][iy] + 1) % map.names.size();
+			if (shiftKeyHeld) {
+				map.spawnX = x - shiftX - 96;
+				map.spawnY = y - shiftY - 96;
+			} else {
+				int ix = (x - shiftX) / 64 - 1;
+				int iy = (y - shiftY) / 64 - 1;
+				if (ix >= 0 && ix < map.cells.length) {
+					if (iy >= 0 && iy < map.cells[ix].length) {
+						map.cells[ix][iy] = (map.cells[ix][iy] + 1) % map.names.size();
+					}
 				}
 			}
 		}
@@ -105,6 +112,9 @@ public class View {
 			break;
 		case KeyEvent.VK_DOWN:
 			dY += 8 * mul;
+			break;
+		case KeyEvent.VK_SHIFT:
+			shiftKeyHeld = press;
 			break;
 		}
 		if (dX > 8) {
