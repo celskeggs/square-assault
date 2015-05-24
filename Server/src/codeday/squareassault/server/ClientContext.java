@@ -17,7 +17,7 @@ public final class ClientContext extends ObjectContext {
 	private static final int COOLDOWN = 1000, UPDATE_TICKS = 5, UPDATE_SELF_MUL = 2;
 	private static final int TURRETS_MAX = 8;
 	private static final int MAX_TURRET_DISTANCE = 5 * 64;
-	private static final int MAX_MOVE = 15;
+	private static final int MAX_MOVE = 20;
 	public final LinkedBlockingQueue<ToClient> sendQueue = new LinkedBlockingQueue<>();
 	public final String name;
 	private boolean canMove = false;

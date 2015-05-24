@@ -16,9 +16,8 @@ import codeday.squareassault.protobuf.Messages.SetPosition;
 import codeday.squareassault.protobuf.Messages.TurretCount;
 
 public class Context {
-
-	private static final int SNAP_DISTANCE = 10;
 	public static final int MAX_CHAT_LINES = 10;
+	private static final int SNAP_DISTANCE = 15;
 	private int objectID;
 	private final Network net;
 	public String[] cells;
