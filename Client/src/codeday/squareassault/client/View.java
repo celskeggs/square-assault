@@ -43,10 +43,13 @@ public class View {
 		int realY = context.getY() + shiftY;
 		if (realY < BORDER_SIZE_MIN) {
 			shiftY += (BORDER_SIZE_MIN - realY) / SHIFT_SCALE_FACTOR;
-			;
 		}
 		if (realY > height - BORDER_SIZE_MAX) {
 			shiftY -= (realY - height + BORDER_SIZE_MAX) / SHIFT_SCALE_FACTOR;
 		}
+	}
+
+	public void mousePress(int x, int y, int button) throws InterruptedException {
+		context.mousePress(x - shiftX, y - shiftY, button);
 	}
 }

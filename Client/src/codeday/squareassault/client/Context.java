@@ -8,6 +8,7 @@ import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.Messages.Connect;
 import codeday.squareassault.protobuf.Messages.Disconnect;
 import codeday.squareassault.protobuf.Messages.Map;
+import codeday.squareassault.protobuf.Messages.ObjectType;
 import codeday.squareassault.protobuf.Messages.SetPosition;
 
 public class Context {
@@ -84,29 +85,45 @@ public class Context {
 	}
 
 	public void handleDisconnect(Disconnect disconnect) {
-		for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) {
-			Entity e = iterator.next();
+		Entity target = null;
+		for (Entity e : entities) {
 			if (e.objectID == disconnect.getObject()) {
-				iterator.remove();
+				target = e;
 			}
+		}
+		if (target != null) {
+			if (!entities.remove(target)) {
+				System.out.println("Failed to disconnect object: " + target);
+			}
+			System.out.println("Disconnected object...");
+		} else {
+			System.out.println("Couldn't find object: " + disconnect.getObject() + "; " + entities);
 		}
 	}
 
 	public synchronized void handleSetPosition(SetPosition position) {
+		System.out.println("Set position: " + position.getIcon() + "::" + position.getType());
+		String icon = "user";
 		if (position.getObject() == objectID) {
 			this.x = position.getX();
 			this.y = position.getY();
+		} else if (position.hasIcon()) {
+			icon = position.getIcon();
 		}
 		for (Iterator<Entity> iterator = entities.iterator(); iterator.hasNext();) {
 			Entity e = iterator.next();
 			if (e.objectID == position.getObject()) {
 				if (position.hasIcon()) {
-					e.updateIcon(position.getIcon());
+					e.updateIcon(icon);
+				}
+				if (position.hasType()) {
+					e.updateType(position.getType());
 				}
 				e.update(position.getX(), position.getY());
+				return;
 			}
 		}
-		entities.add(new Entity(position.getObject(), position.hasIcon() ? position.getIcon() : "user", position.getX(), position.getY()));
+		entities.add(new Entity(position.getObject(), icon, position.hasType() ? position.getType() : ObjectType.PLAYER, position.getX(), position.getY()));
 	}
 
 	public int getX() {
@@ -115,5 +132,9 @@ public class Context {
 
 	public int getY() {
 		return y;
+	}
+
+	public void mousePress(int x, int y, int button) throws InterruptedException {
+		net.send(Messages.ToServer.newBuilder().setTurret(Messages.PlaceTurret.newBuilder().setX(x - 32).setY(y - 32)).build());
 	}
 }

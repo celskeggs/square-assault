@@ -1,15 +1,14 @@
 package codeday.squareassault.server;
 
-import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ConcurrentHashMap;
 
 import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.Messages.Map;
-import codeday.squareassault.protobuf.Messages.ToClient;
+import codeday.squareassault.protobuf.Messages.ObjectType;
 
 public class ServerContext {
 
-	private final CopyOnWriteArrayList<ClientContext> clients = new CopyOnWriteArrayList<>();
+	private final ConcurrentHashMap<Integer, ObjectContext> objects = new ConcurrentHashMap<>();
 	private int nextID = 0;
 	private Map map;
 
@@ -17,32 +16,34 @@ public class ServerContext {
 		this.map = map;
 	}
 
-	private synchronized int getObjectID() {
+	public synchronized int getObjectID() {
 		return nextID++;
 	}
 
-	public ClientContext newClient(LinkedBlockingQueue<ToClient> sendQueue, String name) {
-		return new ClientContext(this, sendQueue, name);
+	public ClientContext newClient(String name) {
+		ClientContext context = new ClientContext(this, name);
+		register(context);
+		return context;
 	}
 
-	public int register(ClientContext context) {
-		this.clients.add(context);
-		for (ClientContext client : clients) {
-			if (client != context) {
-				client.resendStatus();
-			}
+	public void register(ObjectContext context) {
+		if (objects.containsKey(context.objectID)) {
+			throw new RuntimeException("Attempt to recreate object!");
 		}
-		return getObjectID();
+		this.objects.put(context.objectID, context);
+		for (ObjectContext object : objects.values()) {
+			object.resendStatus();
+		}
 	}
 
-	public void removeClient(ClientContext context) {
-		this.clients.remove(context);
-		context.onRemove();
+	public void delete(ObjectContext context) {
+		this.objects.remove(context.objectID);
+		broadcastDestroyObject(context.objectID);
 	}
 
 	public void tick() {
-		for (ClientContext client : clients) {
-			client.setCanMove();
+		for (ObjectContext object : objects.values()) {
+			object.tick();
 		}
 	}
 
@@ -50,17 +51,19 @@ public class ServerContext {
 		return map;
 	}
 
-	public void destroyObject(int objectID) {
+	public void broadcastDestroyObject(int objectID) {
 		broadcast(Messages.ToClient.newBuilder().setDisconnect(Messages.Disconnect.newBuilder().setObject(objectID)).build());
 	}
 
-	public void updateObjectPosition(int objectID, int x, int y) {
-		broadcast(Messages.ToClient.newBuilder().setPosition(Messages.SetPosition.newBuilder().setObject(objectID).setX(x).setY(y)).build());
+	public void updateObjectPosition(int objectID, String icon, ObjectType type, int x, int y) {
+		broadcast(Messages.ToClient.newBuilder().setPosition(Messages.SetPosition.newBuilder().setIcon(icon).setObject(objectID).setType(type).setX(x).setY(y)).build());
 	}
 
 	private void broadcast(Messages.ToClient built) {
-		for (ClientContext client : clients) {
-			client.sendMessage(built);
+		for (ObjectContext object : objects.values()) {
+			if (object instanceof ClientContext) {
+				((ClientContext) object).sendMessage(built);
+			}
 		}
 	}
 
@@ -78,5 +81,9 @@ public class ServerContext {
 			return false;
 		}
 		return map.getCells(cX + cY * map.getWidth()) == 0;
+	}
+
+	public ObjectContext getObject(int objectID) {
+		return objects.get(objectID);
 	}
 }

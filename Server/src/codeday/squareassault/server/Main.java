@@ -25,7 +25,6 @@ public class Main implements Runnable {
 	private final Socket conn;
 	private final InputStream input;
 	private final OutputStream output;
-	private final LinkedBlockingQueue<Messages.ToClient> sendQueue = new LinkedBlockingQueue<>();
 	private final int tid;
 	private final ServerContext server;
 
@@ -85,9 +84,9 @@ public class Main implements Runnable {
 			if (!ident.hasName()) {
 				throw new RuntimeException("Failed: client did not provide name.");
 			}
-			ClientContext context = server.newClient(this.sendQueue, ident.getName());
+			ClientContext context = server.newClient(ident.getName());
 			Messages.Connect.newBuilder().setMap(server.getMap()).setObjectID(context.objectID).build().writeDelimitedTo(output);
-			new Thread(new QueueSender<>(sendQueue, output), "Sender-" + tid).start();
+			new Thread(new QueueSender<>(context.sendQueue, output), "Sender-" + tid).start();
 			ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
 			Messages.ToServer sentinel = Messages.ToServer.newBuilder().build();
 			new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder(), sentinel), "Receiver-" + tid).start();
@@ -106,7 +105,7 @@ public class Main implements Runnable {
 					context.receiveMessage(taken);
 				}
 			} finally {
-				server.removeClient(context);
+				server.delete(context);
 			}
 		} catch (IOException e) {
 			Logger.warning("Run error'd", e);

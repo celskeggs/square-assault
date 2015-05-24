@@ -4,6 +4,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -13,7 +15,7 @@ import java.util.TimerTask;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class Launcher extends JPanel implements KeyListener {
+public class Launcher extends JPanel implements KeyListener, MouseListener {
 	private static final long serialVersionUID = -4540493147431023697L;
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
@@ -24,6 +26,7 @@ public class Launcher extends JPanel implements KeyListener {
 		main.setSize(768, 768);
 		main.setResizable(false);
 		main.addKeyListener(panel);
+		panel.addMouseListener(panel);
 		java.awt.EventQueue.invokeLater(new Runnable() {
 			@Override
 			public void run() {
@@ -83,7 +86,9 @@ public class Launcher extends JPanel implements KeyListener {
 	@Override
 	public void paint(Graphics go) {
 		if (image != null) {
-			go.drawImage(image, 0, 0, null);
+			synchronized (image) {
+				go.drawImage(image, 0, 0, null);
+			}
 		}
 	}
 
@@ -107,6 +112,35 @@ public class Launcher extends JPanel implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		try {
+			view.mousePress(arg0.getX(), arg0.getY(), arg0.getButton());
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
 
 	}
 }

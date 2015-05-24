@@ -31,6 +31,9 @@ public class Network {
 		Messages.Identify.newBuilder().setName(username).build().writeDelimitedTo(output);
 		System.out.println("Sent");
 		this.info = Messages.Connect.parseDelimitedFrom(input);
+		if (info == null) {
+			throw new IOException("No connection message!");
+		}
 		System.out.println("Got");
 		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder(), sentinel), "Receiver").start();
 		new Thread(new QueueSender<>(this.sendQueue, output), "Sender").start();

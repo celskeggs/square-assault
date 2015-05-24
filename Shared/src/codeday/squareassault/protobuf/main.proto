@@ -21,15 +21,26 @@ message Map {
   optional uint32 spawnY = 6 [default = 100];
 }
 
+enum ObjectType {
+  PLAYER = 0;
+  TURRET = 1;
+}
+
 message SetPosition {
   optional uint32 object = 1;
   required uint32 x = 2;
   required uint32 y = 3;
   optional string icon = 4;
+  optional ObjectType type = 5;
 }
 
 message Disconnect {
   required uint32 object = 1;
+}
+
+message PlaceTurret {
+  required uint32 x = 1;
+  required uint32 y = 2;
 }
 
 message ToClient {
@@ -42,5 +53,6 @@ message ToClient {
 message ToServer {
   oneof message {
     SetPosition position = 2;
+    PlaceTurret turret = 3;
   }
 }
