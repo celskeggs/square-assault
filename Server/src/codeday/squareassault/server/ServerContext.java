@@ -1,7 +1,6 @@
 package codeday.squareassault.server;
 
 import java.util.Iterator;
-import java.util.Random;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
