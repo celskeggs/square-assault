@@ -14,7 +14,7 @@ import codeday.squareassault.protobuf.SharedConfig;
 
 public final class ClientContext extends ObjectContext {
 
-	private static final int COOLDOWN = 1000, UPDATE_TICKS = 5, UPDATE_SELF_MUL = 20;
+	private static final int COOLDOWN = 1000, UPDATE_TICKS = 5, UPDATE_SELF_MUL = 5;
 	private static final int TURRETS_MAX = 8;
 	private static final int MAX_TURRET_DISTANCE = 5 * 64;
 	private static final int MAX_MOVE = 20;
