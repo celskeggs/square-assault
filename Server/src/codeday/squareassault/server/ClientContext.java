@@ -78,7 +78,7 @@ public final class ClientContext extends ObjectContext {
 			return;
 		}
 		TurretContext newTurret = new TurretContext(server, turret.getX(), turret.getY(), objectID);
-		if (turretCount > 0 && server.canMoveTo(turret.getX(), turret.getY(), newTurret) && server.distanceSq(this, newTurret) <= MAX_TURRET_DISTANCE * MAX_TURRET_DISTANCE) {
+		if (turretCount > 0 && server.freeLineOfSight(this, newTurret) && server.canMoveTo(turret.getX(), turret.getY(), newTurret) && server.distanceSq(this, newTurret) <= MAX_TURRET_DISTANCE * MAX_TURRET_DISTANCE) {
 			turretCount--;
 			server.register(newTurret);
 			resendTurretCount();

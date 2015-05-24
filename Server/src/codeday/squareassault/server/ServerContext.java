@@ -94,6 +94,7 @@ public class ServerContext {
 	}
 
 	private boolean isEmptyAt(int wantX, int wantY) {
+		System.out.println("check " + wantX + "," + wantY);
 		int cX = wantX >> 6; // / 64;
 		int cY = wantY >> 6; // / 64;
 		if (cX < 0 || cX >= map.getWidth()) {
@@ -151,5 +152,47 @@ public class ServerContext {
 
 	public Iterable<ObjectContext> getObjects() {
 		return objects.values();
+	}
+
+	public boolean freeLineOfSight(ObjectContext from, ObjectContext to) {
+		int x1 = from.x + from.getCenterCoord(), x2 = to.x + to.getCenterCoord();
+		int y1 = from.y + from.getCenterCoord(), y2 = to.y + to.getCenterCoord();
+		System.out.println("check " + x1 + "," + y1 + " -> " + x2 + "," + y2);
+		if (x1 > x2) {
+			int t = x1;
+			x1 = x2;
+			x2 = t;
+			t = y1;
+			y1 = y2;
+			y2 = t;
+		}
+		// now x1 <= x2
+		if (Math.abs(y2 - y1) > x2 - x1) {
+			float islope = (x2 - x1) / (float) (y2 - y1);
+			if (y1 < y2) {
+				for (int y = y1; y <= y2; y++) {
+					int x = Math.round(islope * (y - y1) + x1);
+					if (!isEmptyAt(x, y)) {
+						return false;
+					}
+				}
+			} else {
+				for (int y = y2; y <= y1; y++) {
+					int x = Math.round(islope * (y - y1) + x1);
+					if (!isEmptyAt(x, y)) {
+						return false;
+					}
+				}
+			}
+		} else {
+			float slope = (y2 - y1) / (float) (x2 - x1);
+			for (int x = x1; x <= x2; x++) {
+				int y = Math.round(slope * (x - x1) + y1);
+				if (!isEmptyAt(x, y)) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }

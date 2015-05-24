@@ -54,6 +54,9 @@ public class TurretContext extends ObjectContext {
 				if (context.isDead()) {
 					continue; // don't shoot at dead enemies!
 				}
+				if (!server.freeLineOfSight(this, context)) {
+					continue; // don't try to shoot through walls!
+				}
 				int distanceSq = server.distanceSq(this, context);
 				if (distanceSq < minimumSq) {
 					minimumSq = distanceSq;
