@@ -13,15 +13,15 @@ public final class Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>required string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     boolean hasName();
     /**
-     * <code>required string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     java.lang.String getName();
     /**
-     * <code>required string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     com.google.protobuf.ByteString
         getNameBytes();
@@ -127,13 +127,13 @@ public final class Messages {
     public static final int NAME_FIELD_NUMBER = 1;
     private java.lang.Object name_;
     /**
-     * <code>required string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public boolean hasName() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>required string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public java.lang.String getName() {
       java.lang.Object ref = name_;
@@ -150,7 +150,7 @@ public final class Messages {
       }
     }
     /**
-     * <code>required string name = 1;</code>
+     * <code>optional string name = 1;</code>
      */
     public com.google.protobuf.ByteString
         getNameBytes() {
@@ -175,10 +175,6 @@ public final class Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (!hasName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -379,10 +375,6 @@ public final class Messages {
       }
 
       public final boolean isInitialized() {
-        if (!hasName()) {
-          
-          return false;
-        }
         return true;
       }
 
@@ -407,13 +399,13 @@ public final class Messages {
 
       private java.lang.Object name_ = "";
       /**
-       * <code>required string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public boolean hasName() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>required string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public java.lang.String getName() {
         java.lang.Object ref = name_;
@@ -430,7 +422,7 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public com.google.protobuf.ByteString
           getNameBytes() {
@@ -446,7 +438,7 @@ public final class Messages {
         }
       }
       /**
-       * <code>required string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder setName(
           java.lang.String value) {
@@ -459,7 +451,7 @@ public final class Messages {
         return this;
       }
       /**
-       * <code>required string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder clearName() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -468,7 +460,7 @@ public final class Messages {
         return this;
       }
       /**
-       * <code>required string name = 1;</code>
+       * <code>optional string name = 1;</code>
        */
       public Builder setNameBytes(
           com.google.protobuf.ByteString value) {
@@ -490,6 +482,1327 @@ public final class Messages {
     }
 
     // @@protoc_insertion_point(class_scope:tutorial.Identify)
+  }
+
+  public interface ConnectOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.Connect)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional .tutorial.Map map = 1;</code>
+     */
+    boolean hasMap();
+    /**
+     * <code>optional .tutorial.Map map = 1;</code>
+     */
+    codeday.squareassault.protobuf.Messages.Map getMap();
+    /**
+     * <code>optional .tutorial.Map map = 1;</code>
+     */
+    codeday.squareassault.protobuf.Messages.MapOrBuilder getMapOrBuilder();
+  }
+  /**
+   * Protobuf type {@code tutorial.Connect}
+   */
+  public static final class Connect extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.Connect)
+      ConnectOrBuilder {
+    // Use Connect.newBuilder() to construct.
+    private Connect(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Connect(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Connect defaultInstance;
+    public static Connect getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Connect getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Connect(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              codeday.squareassault.protobuf.Messages.Map.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                subBuilder = map_.toBuilder();
+              }
+              map_ = input.readMessage(codeday.squareassault.protobuf.Messages.Map.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(map_);
+                map_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000001;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Connect_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Connect_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.Connect.class, codeday.squareassault.protobuf.Messages.Connect.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Connect> PARSER =
+        new com.google.protobuf.AbstractParser<Connect>() {
+      public Connect parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Connect(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Connect> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int MAP_FIELD_NUMBER = 1;
+    private codeday.squareassault.protobuf.Messages.Map map_;
+    /**
+     * <code>optional .tutorial.Map map = 1;</code>
+     */
+    public boolean hasMap() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional .tutorial.Map map = 1;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.Map getMap() {
+      return map_;
+    }
+    /**
+     * <code>optional .tutorial.Map map = 1;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.MapOrBuilder getMapOrBuilder() {
+      return map_;
+    }
+
+    private void initFields() {
+      map_ = codeday.squareassault.protobuf.Messages.Map.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeMessage(1, map_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, map_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.Connect parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.Connect prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.Connect}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.Connect)
+        codeday.squareassault.protobuf.Messages.ConnectOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Connect_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Connect_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.Connect.class, codeday.squareassault.protobuf.Messages.Connect.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.Connect.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMapFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (mapBuilder_ == null) {
+          map_ = codeday.squareassault.protobuf.Messages.Map.getDefaultInstance();
+        } else {
+          mapBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Connect_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.Connect getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.Connect.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.Connect build() {
+        codeday.squareassault.protobuf.Messages.Connect result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.Connect buildPartial() {
+        codeday.squareassault.protobuf.Messages.Connect result = new codeday.squareassault.protobuf.Messages.Connect(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        if (mapBuilder_ == null) {
+          result.map_ = map_;
+        } else {
+          result.map_ = mapBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.Connect) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.Connect)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.Connect other) {
+        if (other == codeday.squareassault.protobuf.Messages.Connect.getDefaultInstance()) return this;
+        if (other.hasMap()) {
+          mergeMap(other.getMap());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.Connect parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.Connect) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private codeday.squareassault.protobuf.Messages.Map map_ = codeday.squareassault.protobuf.Messages.Map.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.Map, codeday.squareassault.protobuf.Messages.Map.Builder, codeday.squareassault.protobuf.Messages.MapOrBuilder> mapBuilder_;
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public boolean hasMap() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.Map getMap() {
+        if (mapBuilder_ == null) {
+          return map_;
+        } else {
+          return mapBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public Builder setMap(codeday.squareassault.protobuf.Messages.Map value) {
+        if (mapBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          map_ = value;
+          onChanged();
+        } else {
+          mapBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public Builder setMap(
+          codeday.squareassault.protobuf.Messages.Map.Builder builderForValue) {
+        if (mapBuilder_ == null) {
+          map_ = builderForValue.build();
+          onChanged();
+        } else {
+          mapBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public Builder mergeMap(codeday.squareassault.protobuf.Messages.Map value) {
+        if (mapBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+              map_ != codeday.squareassault.protobuf.Messages.Map.getDefaultInstance()) {
+            map_ =
+              codeday.squareassault.protobuf.Messages.Map.newBuilder(map_).mergeFrom(value).buildPartial();
+          } else {
+            map_ = value;
+          }
+          onChanged();
+        } else {
+          mapBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000001;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public Builder clearMap() {
+        if (mapBuilder_ == null) {
+          map_ = codeday.squareassault.protobuf.Messages.Map.getDefaultInstance();
+          onChanged();
+        } else {
+          mapBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.Map.Builder getMapBuilder() {
+        bitField0_ |= 0x00000001;
+        onChanged();
+        return getMapFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.MapOrBuilder getMapOrBuilder() {
+        if (mapBuilder_ != null) {
+          return mapBuilder_.getMessageOrBuilder();
+        } else {
+          return map_;
+        }
+      }
+      /**
+       * <code>optional .tutorial.Map map = 1;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.Map, codeday.squareassault.protobuf.Messages.Map.Builder, codeday.squareassault.protobuf.Messages.MapOrBuilder> 
+          getMapFieldBuilder() {
+        if (mapBuilder_ == null) {
+          mapBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.Map, codeday.squareassault.protobuf.Messages.Map.Builder, codeday.squareassault.protobuf.Messages.MapOrBuilder>(
+                  getMap(),
+                  getParentForChildren(),
+                  isClean());
+          map_ = null;
+        }
+        return mapBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.Connect)
+    }
+
+    static {
+      defaultInstance = new Connect(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.Connect)
+  }
+
+  public interface MapOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.Map)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional uint32 width = 1;</code>
+     */
+    boolean hasWidth();
+    /**
+     * <code>optional uint32 width = 1;</code>
+     */
+    int getWidth();
+
+    /**
+     * <code>optional uint32 height = 2;</code>
+     */
+    boolean hasHeight();
+    /**
+     * <code>optional uint32 height = 2;</code>
+     */
+    int getHeight();
+
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    com.google.protobuf.ProtocolStringList
+        getTilenamesList();
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    int getTilenamesCount();
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    java.lang.String getTilenames(int index);
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    com.google.protobuf.ByteString
+        getTilenamesBytes(int index);
+
+    /**
+     * <code>repeated uint32 cells = 4;</code>
+     */
+    java.util.List<java.lang.Integer> getCellsList();
+    /**
+     * <code>repeated uint32 cells = 4;</code>
+     */
+    int getCellsCount();
+    /**
+     * <code>repeated uint32 cells = 4;</code>
+     */
+    int getCells(int index);
+  }
+  /**
+   * Protobuf type {@code tutorial.Map}
+   */
+  public static final class Map extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.Map)
+      MapOrBuilder {
+    // Use Map.newBuilder() to construct.
+    private Map(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Map(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Map defaultInstance;
+    public static Map getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Map getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Map(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              width_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              height_ = input.readUInt32();
+              break;
+            }
+            case 26: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+                tilenames_ = new com.google.protobuf.LazyStringArrayList();
+                mutable_bitField0_ |= 0x00000004;
+              }
+              tilenames_.add(bs);
+              break;
+            }
+            case 32: {
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+                cells_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              cells_.add(input.readUInt32());
+              break;
+            }
+            case 34: {
+              int length = input.readRawVarint32();
+              int limit = input.pushLimit(length);
+              if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
+                cells_ = new java.util.ArrayList<java.lang.Integer>();
+                mutable_bitField0_ |= 0x00000008;
+              }
+              while (input.getBytesUntilLimit() > 0) {
+                cells_.add(input.readUInt32());
+              }
+              input.popLimit(limit);
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
+          tilenames_ = tilenames_.getUnmodifiableView();
+        }
+        if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
+          cells_ = java.util.Collections.unmodifiableList(cells_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Map_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Map_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.Map.class, codeday.squareassault.protobuf.Messages.Map.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Map> PARSER =
+        new com.google.protobuf.AbstractParser<Map>() {
+      public Map parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Map(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Map> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int WIDTH_FIELD_NUMBER = 1;
+    private int width_;
+    /**
+     * <code>optional uint32 width = 1;</code>
+     */
+    public boolean hasWidth() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional uint32 width = 1;</code>
+     */
+    public int getWidth() {
+      return width_;
+    }
+
+    public static final int HEIGHT_FIELD_NUMBER = 2;
+    private int height_;
+    /**
+     * <code>optional uint32 height = 2;</code>
+     */
+    public boolean hasHeight() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 height = 2;</code>
+     */
+    public int getHeight() {
+      return height_;
+    }
+
+    public static final int TILENAMES_FIELD_NUMBER = 3;
+    private com.google.protobuf.LazyStringList tilenames_;
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    public com.google.protobuf.ProtocolStringList
+        getTilenamesList() {
+      return tilenames_;
+    }
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    public int getTilenamesCount() {
+      return tilenames_.size();
+    }
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    public java.lang.String getTilenames(int index) {
+      return tilenames_.get(index);
+    }
+    /**
+     * <code>repeated string tilenames = 3;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTilenamesBytes(int index) {
+      return tilenames_.getByteString(index);
+    }
+
+    public static final int CELLS_FIELD_NUMBER = 4;
+    private java.util.List<java.lang.Integer> cells_;
+    /**
+     * <code>repeated uint32 cells = 4;</code>
+     */
+    public java.util.List<java.lang.Integer>
+        getCellsList() {
+      return cells_;
+    }
+    /**
+     * <code>repeated uint32 cells = 4;</code>
+     */
+    public int getCellsCount() {
+      return cells_.size();
+    }
+    /**
+     * <code>repeated uint32 cells = 4;</code>
+     */
+    public int getCells(int index) {
+      return cells_.get(index);
+    }
+
+    private void initFields() {
+      width_ = 0;
+      height_ = 0;
+      tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      cells_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, width_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, height_);
+      }
+      for (int i = 0; i < tilenames_.size(); i++) {
+        output.writeBytes(3, tilenames_.getByteString(i));
+      }
+      for (int i = 0; i < cells_.size(); i++) {
+        output.writeUInt32(4, cells_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, width_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, height_);
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < tilenames_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeBytesSizeNoTag(tilenames_.getByteString(i));
+        }
+        size += dataSize;
+        size += 1 * getTilenamesList().size();
+      }
+      {
+        int dataSize = 0;
+        for (int i = 0; i < cells_.size(); i++) {
+          dataSize += com.google.protobuf.CodedOutputStream
+            .computeUInt32SizeNoTag(cells_.get(i));
+        }
+        size += dataSize;
+        size += 1 * getCellsList().size();
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.Map parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.Map prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.Map}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.Map)
+        codeday.squareassault.protobuf.Messages.MapOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Map_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Map_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.Map.class, codeday.squareassault.protobuf.Messages.Map.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.Map.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        width_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        height_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        cells_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_Map_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.Map getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.Map.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.Map build() {
+        codeday.squareassault.protobuf.Messages.Map result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.Map buildPartial() {
+        codeday.squareassault.protobuf.Messages.Map result = new codeday.squareassault.protobuf.Messages.Map(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.width_ = width_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.height_ = height_;
+        if (((bitField0_ & 0x00000004) == 0x00000004)) {
+          tilenames_ = tilenames_.getUnmodifiableView();
+          bitField0_ = (bitField0_ & ~0x00000004);
+        }
+        result.tilenames_ = tilenames_;
+        if (((bitField0_ & 0x00000008) == 0x00000008)) {
+          cells_ = java.util.Collections.unmodifiableList(cells_);
+          bitField0_ = (bitField0_ & ~0x00000008);
+        }
+        result.cells_ = cells_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.Map) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.Map)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.Map other) {
+        if (other == codeday.squareassault.protobuf.Messages.Map.getDefaultInstance()) return this;
+        if (other.hasWidth()) {
+          setWidth(other.getWidth());
+        }
+        if (other.hasHeight()) {
+          setHeight(other.getHeight());
+        }
+        if (!other.tilenames_.isEmpty()) {
+          if (tilenames_.isEmpty()) {
+            tilenames_ = other.tilenames_;
+            bitField0_ = (bitField0_ & ~0x00000004);
+          } else {
+            ensureTilenamesIsMutable();
+            tilenames_.addAll(other.tilenames_);
+          }
+          onChanged();
+        }
+        if (!other.cells_.isEmpty()) {
+          if (cells_.isEmpty()) {
+            cells_ = other.cells_;
+            bitField0_ = (bitField0_ & ~0x00000008);
+          } else {
+            ensureCellsIsMutable();
+            cells_.addAll(other.cells_);
+          }
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.Map parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.Map) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int width_ ;
+      /**
+       * <code>optional uint32 width = 1;</code>
+       */
+      public boolean hasWidth() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional uint32 width = 1;</code>
+       */
+      public int getWidth() {
+        return width_;
+      }
+      /**
+       * <code>optional uint32 width = 1;</code>
+       */
+      public Builder setWidth(int value) {
+        bitField0_ |= 0x00000001;
+        width_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 width = 1;</code>
+       */
+      public Builder clearWidth() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        width_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int height_ ;
+      /**
+       * <code>optional uint32 height = 2;</code>
+       */
+      public boolean hasHeight() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 height = 2;</code>
+       */
+      public int getHeight() {
+        return height_;
+      }
+      /**
+       * <code>optional uint32 height = 2;</code>
+       */
+      public Builder setHeight(int value) {
+        bitField0_ |= 0x00000002;
+        height_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 height = 2;</code>
+       */
+      public Builder clearHeight() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        height_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private com.google.protobuf.LazyStringList tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+      private void ensureTilenamesIsMutable() {
+        if (!((bitField0_ & 0x00000004) == 0x00000004)) {
+          tilenames_ = new com.google.protobuf.LazyStringArrayList(tilenames_);
+          bitField0_ |= 0x00000004;
+         }
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public com.google.protobuf.ProtocolStringList
+          getTilenamesList() {
+        return tilenames_.getUnmodifiableView();
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public int getTilenamesCount() {
+        return tilenames_.size();
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public java.lang.String getTilenames(int index) {
+        return tilenames_.get(index);
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTilenamesBytes(int index) {
+        return tilenames_.getByteString(index);
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public Builder setTilenames(
+          int index, java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureTilenamesIsMutable();
+        tilenames_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public Builder addTilenames(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureTilenamesIsMutable();
+        tilenames_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public Builder addAllTilenames(
+          java.lang.Iterable<java.lang.String> values) {
+        ensureTilenamesIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, tilenames_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public Builder clearTilenames() {
+        tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated string tilenames = 3;</code>
+       */
+      public Builder addTilenamesBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  ensureTilenamesIsMutable();
+        tilenames_.add(value);
+        onChanged();
+        return this;
+      }
+
+      private java.util.List<java.lang.Integer> cells_ = java.util.Collections.emptyList();
+      private void ensureCellsIsMutable() {
+        if (!((bitField0_ & 0x00000008) == 0x00000008)) {
+          cells_ = new java.util.ArrayList<java.lang.Integer>(cells_);
+          bitField0_ |= 0x00000008;
+         }
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public java.util.List<java.lang.Integer>
+          getCellsList() {
+        return java.util.Collections.unmodifiableList(cells_);
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public int getCellsCount() {
+        return cells_.size();
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public int getCells(int index) {
+        return cells_.get(index);
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public Builder setCells(
+          int index, int value) {
+        ensureCellsIsMutable();
+        cells_.set(index, value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public Builder addCells(int value) {
+        ensureCellsIsMutable();
+        cells_.add(value);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public Builder addAllCells(
+          java.lang.Iterable<? extends java.lang.Integer> values) {
+        ensureCellsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, cells_);
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>repeated uint32 cells = 4;</code>
+       */
+      public Builder clearCells() {
+        cells_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000008);
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.Map)
+    }
+
+    static {
+      defaultInstance = new Map(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.Map)
   }
 
   public interface LineMessageOrBuilder extends
@@ -2642,6 +3955,16 @@ public final class Messages {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_Identify_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_Connect_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_Connect_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_Map_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_Map_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_LineMessage_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -2671,13 +3994,16 @@ public final class Messages {
   static {
     java.lang.String[] descriptorData = {
       "\n)codeday/squareassault/protobuf/main.pr" +
-      "oto\022\010tutorial\"\030\n\010Identify\022\014\n\004name\030\001 \002(\t\"" +
-      "\033\n\013LineMessage\022\014\n\004text\030\001 \002(\t\"\033\n\013EchoMess" +
-      "age\022\014\n\004text\030\001 \002(\t\"<\n\010ToClient\022%\n\004line\030\001 " +
-      "\001(\0132\025.tutorial.LineMessageH\000B\t\n\007message\"" +
-      "<\n\010ToServer\022%\n\004echo\030\001 \001(\0132\025.tutorial.Ech" +
-      "oMessageH\000B\t\n\007messageB*\n\036codeday.squarea" +
-      "ssault.protobufB\010Messages"
+      "oto\022\010tutorial\"\030\n\010Identify\022\014\n\004name\030\001 \001(\t\"" +
+      "%\n\007Connect\022\032\n\003map\030\001 \001(\0132\r.tutorial.Map\"F" +
+      "\n\003Map\022\r\n\005width\030\001 \001(\r\022\016\n\006height\030\002 \001(\r\022\021\n\t" +
+      "tilenames\030\003 \003(\t\022\r\n\005cells\030\004 \003(\r\"\033\n\013LineMe" +
+      "ssage\022\014\n\004text\030\001 \002(\t\"\033\n\013EchoMessage\022\014\n\004te" +
+      "xt\030\001 \002(\t\"<\n\010ToClient\022%\n\004line\030\001 \001(\0132\025.tut" +
+      "orial.LineMessageH\000B\t\n\007message\"<\n\010ToServ" +
+      "er\022%\n\004echo\030\001 \001(\0132\025.tutorial.EchoMessageH" +
+      "\000B\t\n\007messageB*\n\036codeday.squareassault.pr",
+      "otobufB\010Messages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -2697,26 +4023,38 @@ public final class Messages {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Identify_descriptor,
         new java.lang.String[] { "Name", });
-    internal_static_tutorial_LineMessage_descriptor =
+    internal_static_tutorial_Connect_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_tutorial_Connect_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_Connect_descriptor,
+        new java.lang.String[] { "Map", });
+    internal_static_tutorial_Map_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_tutorial_Map_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_Map_descriptor,
+        new java.lang.String[] { "Width", "Height", "Tilenames", "Cells", });
+    internal_static_tutorial_LineMessage_descriptor =
+      getDescriptor().getMessageTypes().get(3);
     internal_static_tutorial_LineMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_LineMessage_descriptor,
         new java.lang.String[] { "Text", });
     internal_static_tutorial_EchoMessage_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(4);
     internal_static_tutorial_EchoMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_EchoMessage_descriptor,
         new java.lang.String[] { "Text", });
     internal_static_tutorial_ToClient_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(5);
     internal_static_tutorial_ToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToClient_descriptor,
         new java.lang.String[] { "Line", "Message", });
     internal_static_tutorial_ToServer_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_tutorial_ToServer_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToServer_descriptor,

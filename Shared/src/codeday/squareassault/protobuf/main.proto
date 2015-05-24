@@ -4,7 +4,18 @@ option java_package = "codeday.squareassault.protobuf";
 option java_outer_classname = "Messages";
 
 message Identify {
-  required string name = 1;
+  optional string name = 1;
+}
+
+message Connect {
+  optional Map map = 1;
+}
+
+message Map {
+  optional uint32 width = 1;
+  optional uint32 height = 2;
+  repeated string tilenames = 3;
+  repeated uint32 cells = 4;
 }
 
 message LineMessage {

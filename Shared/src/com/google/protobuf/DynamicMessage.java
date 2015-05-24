@@ -47,6 +47,7 @@ import java.util.Map;
  *
  * @author kenton@google.com Kenton Varda
  */
+@SuppressWarnings("rawtypes")
 public final class DynamicMessage extends AbstractMessage {
   private final Descriptor type;
   private final FieldSet<FieldDescriptor> fields;

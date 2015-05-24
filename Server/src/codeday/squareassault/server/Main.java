@@ -50,7 +50,7 @@ public class Main implements Runnable {
 				try {
 					new Thread(new Main(server, conn, n), "ClientHandler-" + (n)).start();
 				} catch (IOException ex) {
-					ex.printStackTrace(); // TODO: Better logging system.
+					Logger.warning("Failed to start thread", ex);
 				}
 				n++;
 			}
@@ -61,38 +61,51 @@ public class Main implements Runnable {
 
 	@Override
 	public void run() {
-		new Thread(new QueueSender<>(sendQueue, output), "Sender-" + tid).start();
-		ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
-		new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder()), "Receiver-" + tid).start();
-		ClientContext context = server.newClient(this.sendQueue);
-		while (true) {
-			Messages.ToServer taken;
+		try {
+			Messages.Identify ident = Messages.Identify.parseDelimitedFrom(input);
+			if (!ident.hasName()) {
+				throw new RuntimeException("Failed: client did not provide name.");
+			}
+			new Thread(new QueueSender<>(sendQueue, output), "Sender-" + tid).start();
+			ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
+			new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder()), "Receiver-" + tid).start();
+			ClientContext context = server.newClient(this.sendQueue, ident.getName());
+			Messages.Connect.newBuilder().setMap(server.getMap());
 			try {
-				taken = recvQueue.take();
-			} catch (InterruptedException e) {
-				e.printStackTrace(); // TODO: logging
-				continue;
+				while (true) {
+					Messages.ToServer taken;
+					try {
+						taken = recvQueue.take();
+					} catch (InterruptedException e) {
+						Logger.warning("Queue read interrupted", e);
+						continue;
+					}
+					if (taken == null) {
+						break;
+					}
+					context.receiveMessage(taken);
+				}
+			} finally {
+				server.removeClient(context);
 			}
-			if (taken == null) {
-				break;
+		} catch (IOException e) {
+			Logger.warning("Run error'd", e);
+		} finally {
+			try {
+				input.close();
+			} catch (IOException e) {
+				Logger.warning("Close error'd", e);
 			}
-			context.receiveMessage(taken);
-		}
-		server.removeClient(context);
-		try {
-			input.close();
-		} catch (IOException e) {
-			e.printStackTrace(); // TODO: logging
-		}
-		try {
-			output.close();
-		} catch (IOException e) {
-			e.printStackTrace(); // TODO: logging
-		}
-		try {
-			conn.close();
-		} catch (IOException e) {
-			e.printStackTrace(); // TODO: logging
+			try {
+				output.close();
+			} catch (IOException e) {
+				Logger.warning("Close error'd", e);
+			}
+			try {
+				conn.close();
+			} catch (IOException e) {
+				Logger.warning("Close error'd", e);
+			}
 		}
 	}
 }

@@ -9,12 +9,14 @@ import codeday.squareassault.protobuf.Messages.ToServer;
 
 public class ClientContext {
 
-	private final ServerContext server;
+	public final ServerContext server;
 	private final LinkedBlockingQueue<ToClient> sendQueue;
+	public final String name;
 
-	public ClientContext(ServerContext serverContext, LinkedBlockingQueue<ToClient> sendQueue) {
+	public ClientContext(ServerContext serverContext, LinkedBlockingQueue<ToClient> sendQueue, String name) {
 		this.server = serverContext;
 		this.sendQueue = sendQueue;
+		this.name = name;
 		serverContext.register(this);
 	}
 

@@ -56,6 +56,7 @@ package com.google.protobuf;
  *
  * @author jonp@google.com (Jon Perlow)
  */
+@SuppressWarnings("rawtypes")
 public class SingleFieldBuilder
     <MType extends GeneratedMessage,
      BType extends GeneratedMessage.Builder,
