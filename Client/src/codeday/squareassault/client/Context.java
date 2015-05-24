@@ -108,4 +108,12 @@ public class Context {
 		}
 		entities.add(new Entity(position.getObject(), position.hasIcon() ? position.getIcon() : "user", position.getX(), position.getY()));
 	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
 }

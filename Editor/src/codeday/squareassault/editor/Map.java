@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 import codeday.squareassault.protobuf.Messages;
 
@@ -34,10 +35,11 @@ public class Map {
 		}
 	}
 
-	public static final String[] commands = new String[] { "LOAD", "SAVE" };
+	public static final String[] commands = new String[] { "LOAD", "SAVE", "ADD", "REMOVE" };
 
 	public void command(int i) {
 		JFileChooser chooser;
+		String icon;
 		switch (i) {
 		case 0: // LOAD
 			chooser = new JFileChooser(new File("."));
@@ -64,6 +66,30 @@ public class Map {
 				}
 			}
 			break;
+		case 2: // ADD ICON
+			icon = JOptionPane.showInputDialog("Enter Icon to Add");
+			if (icon != null && !names.contains(icon)) {
+				names.add(icon);
+			}
+			break;
+		case 3: // REMOVE ICON
+			icon = JOptionPane.showInputDialog("Enter Icon to Remove", names);
+			if (icon != null && names.contains(icon)) {
+				int ind = names.indexOf(icon);
+				names.set(ind, names.remove(names.size() - 1));
+				remap(names.size(), ind);
+			}
+			break;
+		}
+	}
+
+	private void remap(int old, int updated) {
+		for (int x=0; x<cells.length; x++) {
+			for (int y=0; y<cells[x].length; y++) {
+				if (cells[x][y] == old) {
+					cells[x][y] = updated;
+				}
+			}
 		}
 	}
 

@@ -42,7 +42,7 @@ public class Launcher extends JPanel implements KeyListener {
 	private Launcher() throws UnknownHostException, IOException {
 		this.net = new Network("127.0.0.1", "unknown user");
 		context = new Context(net);
-		gui = new View(context);
+		view = new View(context);
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
@@ -51,6 +51,7 @@ public class Launcher extends JPanel implements KeyListener {
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+				view.tick(getWidth(), getHeight());
 				repaint();
 			}
 		}, View.UPDATE_DELAY_MILLIS, View.UPDATE_DELAY_MILLIS);
@@ -58,13 +59,13 @@ public class Launcher extends JPanel implements KeyListener {
 
 	private final Network net;
 	private final Context context;
-	private final View gui;
+	private final View view;
 
 	@Override
 	public void paint(Graphics go) {
 		go.setColor(View.BACKGROUND_COLOR);
 		go.fillRect(0, 0, this.getWidth(), this.getHeight());
-		gui.paint(go);
+		view.paint(go);
 	}
 
 	@Override
