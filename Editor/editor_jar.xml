@@ -3,14 +3,14 @@
     <!--this file was created by Eclipse Runnable JAR Export Wizard-->
     <!--ANT 1.7 is required                                        -->
     <target name="create_run_jar">
-        <jar destfile="/home/skeggsc/code-day-spring-2015/Editor.jar" filesetmanifest="mergewithoutmain">
+        <jar destfile="../Editor.jar" filesetmanifest="mergewithoutmain">
             <manifest>
                 <attribute name="Main-Class" value="codeday.squareassault.editor.Launcher"/>
                 <attribute name="Class-Path" value="."/>
             </manifest>
-            <fileset dir="/home/skeggsc/code-day-spring-2015/Editor/bin"/>
-            <fileset dir="/home/skeggsc/code-day-spring-2015/Graphics/bin"/>
-            <fileset dir="/home/skeggsc/code-day-spring-2015/Shared/bin"/>
+            <fileset dir="../Editor/bin"/>
+            <fileset dir="../Graphics/bin"/>
+            <fileset dir="../Shared/bin"/>
         </jar>
     </target>
 </project>

@@ -132,7 +132,9 @@ public final class ClientContext extends ObjectContext {
 		{
 			int rx = wantX - x, ry = wantY - y;
 			if (rx * rx + ry * ry > MAX_MOVE * MAX_MOVE) {
+				System.out.println("Overmotion!");
 				resendStatus();
+				return;
 			}
 		}
 		if (server.canMoveTo(wantX, wantY, this)) {
@@ -140,8 +142,8 @@ public final class ClientContext extends ObjectContext {
 			y = wantY;
 			dirty = true;
 		} else {
-			resendStatus(); // because we need to tell the client that they
-							// couldn't move
+			System.out.println("Intersection!");
+			resendStatus(); // because we need to tell the client that they couldn't move
 		}
 	}
 
