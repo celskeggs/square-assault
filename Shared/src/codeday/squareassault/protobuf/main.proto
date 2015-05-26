@@ -3,13 +3,41 @@ package tutorial;
 option java_package = "codeday.squareassault.protobuf";
 option java_outer_classname = "Messages";
 
+// To Server
+
 message Identify {
   optional string name = 1;
+  optional uint32 protocol = 2 [default=0];
 }
+
+message PlaceTurret {
+  required uint32 x = 1;
+  required uint32 y = 2;
+}
+
+message SendPosition {
+  required uint32 x = 2;
+  required uint32 y = 3;
+}
+
+message SendChat {
+  required string text = 1;
+}
+
+message ToServer {
+  oneof message {
+    SendPosition position = 2;
+    PlaceTurret turret = 3;
+    SendChat chat = 4;
+  }
+}
+
+// To Client
 
 message Connect {
   optional Map map = 1;
   required uint32 objectID = 2;
+  optional uint32 protocol = 3 [default=0];
 }
 
 message Map {
@@ -28,7 +56,7 @@ enum ObjectType {
 }
 
 message SetPosition {
-  optional uint32 object = 1;
+  required uint32 object = 1;
   required uint32 x = 2;
   required uint32 y = 3;
   optional string icon = 4;
@@ -41,18 +69,9 @@ message Disconnect {
   required uint32 object = 1;
 }
 
-message PlaceTurret {
-  required uint32 x = 1;
-  required uint32 y = 2;
-}
-
 message TurretCount {
   required uint32 count = 1;
   required uint32 maximum = 2;
-}
-
-message SendChat {
-  required string text = 1;
 }
 
 message ChatMessage {
@@ -66,13 +85,5 @@ message ToClient {
     Disconnect disconnect = 3;
     TurretCount count = 4;
     ChatMessage chat = 5;
-  }
-}
-
-message ToServer {
-  oneof message {
-    SetPosition position = 2;
-    PlaceTurret turret = 3;
-    SendChat chat = 4;
   }
 }

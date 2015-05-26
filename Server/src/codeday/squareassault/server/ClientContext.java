@@ -7,6 +7,7 @@ import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.Messages.ObjectType;
 import codeday.squareassault.protobuf.Messages.PlaceTurret;
 import codeday.squareassault.protobuf.Messages.SendChat;
+import codeday.squareassault.protobuf.Messages.SendPosition;
 import codeday.squareassault.protobuf.Messages.SetPosition;
 import codeday.squareassault.protobuf.Messages.ToClient;
 import codeday.squareassault.protobuf.Messages.ToServer;
@@ -124,8 +125,9 @@ public final class ClientContext extends ObjectContext {
 		}
 	}
 
-	private void performMove(SetPosition position) {
+	private void performMove(SendPosition position) {
 		if (!canMove || isDead() || !server.isRoundInProgress()) {
+			System.out.println("Ignore move!");
 			return;
 		}
 		int wantX = position.getX(), wantY = position.getY();

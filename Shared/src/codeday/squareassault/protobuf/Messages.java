@@ -116,6 +116,15 @@ public final class Messages {
      */
     com.google.protobuf.ByteString
         getNameBytes();
+
+    /**
+     * <code>optional uint32 protocol = 2 [default = 0];</code>
+     */
+    boolean hasProtocol();
+    /**
+     * <code>optional uint32 protocol = 2 [default = 0];</code>
+     */
+    int getProtocol();
   }
   /**
    * Protobuf type {@code tutorial.Identify}
@@ -173,6 +182,11 @@ public final class Messages {
               com.google.protobuf.ByteString bs = input.readBytes();
               bitField0_ |= 0x00000001;
               name_ = bs;
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              protocol_ = input.readUInt32();
               break;
             }
           }
@@ -257,8 +271,24 @@ public final class Messages {
       }
     }
 
+    public static final int PROTOCOL_FIELD_NUMBER = 2;
+    private int protocol_;
+    /**
+     * <code>optional uint32 protocol = 2 [default = 0];</code>
+     */
+    public boolean hasProtocol() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 protocol = 2 [default = 0];</code>
+     */
+    public int getProtocol() {
+      return protocol_;
+    }
+
     private void initFields() {
       name_ = "";
+      protocol_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -276,6 +306,9 @@ public final class Messages {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeBytes(1, getNameBytes());
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, protocol_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -288,6 +321,10 @@ public final class Messages {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, protocol_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -408,6 +445,8 @@ public final class Messages {
         super.clear();
         name_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
+        protocol_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -440,6 +479,10 @@ public final class Messages {
           to_bitField0_ |= 0x00000001;
         }
         result.name_ = name_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.protocol_ = protocol_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -460,6 +503,9 @@ public final class Messages {
           bitField0_ |= 0x00000001;
           name_ = other.name_;
           onChanged();
+        }
+        if (other.hasProtocol()) {
+          setProtocol(other.getProtocol());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -564,6 +610,38 @@ public final class Messages {
         return this;
       }
 
+      private int protocol_ ;
+      /**
+       * <code>optional uint32 protocol = 2 [default = 0];</code>
+       */
+      public boolean hasProtocol() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 protocol = 2 [default = 0];</code>
+       */
+      public int getProtocol() {
+        return protocol_;
+      }
+      /**
+       * <code>optional uint32 protocol = 2 [default = 0];</code>
+       */
+      public Builder setProtocol(int value) {
+        bitField0_ |= 0x00000002;
+        protocol_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 protocol = 2 [default = 0];</code>
+       */
+      public Builder clearProtocol() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        protocol_ = 0;
+        onChanged();
+        return this;
+      }
+
       // @@protoc_insertion_point(builder_scope:tutorial.Identify)
     }
 
@@ -573,6 +651,2498 @@ public final class Messages {
     }
 
     // @@protoc_insertion_point(class_scope:tutorial.Identify)
+  }
+
+  public interface PlaceTurretOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.PlaceTurret)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required uint32 x = 1;</code>
+     */
+    boolean hasX();
+    /**
+     * <code>required uint32 x = 1;</code>
+     */
+    int getX();
+
+    /**
+     * <code>required uint32 y = 2;</code>
+     */
+    boolean hasY();
+    /**
+     * <code>required uint32 y = 2;</code>
+     */
+    int getY();
+  }
+  /**
+   * Protobuf type {@code tutorial.PlaceTurret}
+   */
+  public static final class PlaceTurret extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.PlaceTurret)
+      PlaceTurretOrBuilder {
+    // Use PlaceTurret.newBuilder() to construct.
+    private PlaceTurret(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private PlaceTurret(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final PlaceTurret defaultInstance;
+    public static PlaceTurret getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public PlaceTurret getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private PlaceTurret(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              x_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              y_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.PlaceTurret.class, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<PlaceTurret> PARSER =
+        new com.google.protobuf.AbstractParser<PlaceTurret>() {
+      public PlaceTurret parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new PlaceTurret(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<PlaceTurret> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int X_FIELD_NUMBER = 1;
+    private int x_;
+    /**
+     * <code>required uint32 x = 1;</code>
+     */
+    public boolean hasX() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required uint32 x = 1;</code>
+     */
+    public int getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 2;
+    private int y_;
+    /**
+     * <code>required uint32 y = 2;</code>
+     */
+    public boolean hasY() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required uint32 y = 2;</code>
+     */
+    public int getY() {
+      return y_;
+    }
+
+    private void initFields() {
+      x_ = 0;
+      y_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasX()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasY()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, x_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, y_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, x_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, y_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.PlaceTurret prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.PlaceTurret}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.PlaceTurret)
+        codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.PlaceTurret.class, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.PlaceTurret.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        x_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        y_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.PlaceTurret getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.PlaceTurret build() {
+        codeday.squareassault.protobuf.Messages.PlaceTurret result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.PlaceTurret buildPartial() {
+        codeday.squareassault.protobuf.Messages.PlaceTurret result = new codeday.squareassault.protobuf.Messages.PlaceTurret(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.x_ = x_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.y_ = y_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.PlaceTurret) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.PlaceTurret)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.PlaceTurret other) {
+        if (other == codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance()) return this;
+        if (other.hasX()) {
+          setX(other.getX());
+        }
+        if (other.hasY()) {
+          setY(other.getY());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasX()) {
+          
+          return false;
+        }
+        if (!hasY()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.PlaceTurret parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.PlaceTurret) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int x_ ;
+      /**
+       * <code>required uint32 x = 1;</code>
+       */
+      public boolean hasX() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required uint32 x = 1;</code>
+       */
+      public int getX() {
+        return x_;
+      }
+      /**
+       * <code>required uint32 x = 1;</code>
+       */
+      public Builder setX(int value) {
+        bitField0_ |= 0x00000001;
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 x = 1;</code>
+       */
+      public Builder clearX() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y_ ;
+      /**
+       * <code>required uint32 y = 2;</code>
+       */
+      public boolean hasY() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required uint32 y = 2;</code>
+       */
+      public int getY() {
+        return y_;
+      }
+      /**
+       * <code>required uint32 y = 2;</code>
+       */
+      public Builder setY(int value) {
+        bitField0_ |= 0x00000002;
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 y = 2;</code>
+       */
+      public Builder clearY() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.PlaceTurret)
+    }
+
+    static {
+      defaultInstance = new PlaceTurret(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.PlaceTurret)
+  }
+
+  public interface SendPositionOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.SendPosition)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required uint32 x = 2;</code>
+     */
+    boolean hasX();
+    /**
+     * <code>required uint32 x = 2;</code>
+     */
+    int getX();
+
+    /**
+     * <code>required uint32 y = 3;</code>
+     */
+    boolean hasY();
+    /**
+     * <code>required uint32 y = 3;</code>
+     */
+    int getY();
+  }
+  /**
+   * Protobuf type {@code tutorial.SendPosition}
+   */
+  public static final class SendPosition extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.SendPosition)
+      SendPositionOrBuilder {
+    // Use SendPosition.newBuilder() to construct.
+    private SendPosition(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SendPosition(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SendPosition defaultInstance;
+    public static SendPosition getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SendPosition getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SendPosition(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000001;
+              x_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000002;
+              y_ = input.readUInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendPosition_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendPosition_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.SendPosition.class, codeday.squareassault.protobuf.Messages.SendPosition.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SendPosition> PARSER =
+        new com.google.protobuf.AbstractParser<SendPosition>() {
+      public SendPosition parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SendPosition(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendPosition> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int X_FIELD_NUMBER = 2;
+    private int x_;
+    /**
+     * <code>required uint32 x = 2;</code>
+     */
+    public boolean hasX() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required uint32 x = 2;</code>
+     */
+    public int getX() {
+      return x_;
+    }
+
+    public static final int Y_FIELD_NUMBER = 3;
+    private int y_;
+    /**
+     * <code>required uint32 y = 3;</code>
+     */
+    public boolean hasY() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required uint32 y = 3;</code>
+     */
+    public int getY() {
+      return y_;
+    }
+
+    private void initFields() {
+      x_ = 0;
+      y_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasX()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasY()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(2, x_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(3, y_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, x_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, y_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendPosition parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.SendPosition prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.SendPosition}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.SendPosition)
+        codeday.squareassault.protobuf.Messages.SendPositionOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendPosition_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendPosition_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.SendPosition.class, codeday.squareassault.protobuf.Messages.SendPosition.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.SendPosition.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        x_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        y_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendPosition_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendPosition getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendPosition build() {
+        codeday.squareassault.protobuf.Messages.SendPosition result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendPosition buildPartial() {
+        codeday.squareassault.protobuf.Messages.SendPosition result = new codeday.squareassault.protobuf.Messages.SendPosition(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.x_ = x_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.y_ = y_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.SendPosition) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.SendPosition)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.SendPosition other) {
+        if (other == codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance()) return this;
+        if (other.hasX()) {
+          setX(other.getX());
+        }
+        if (other.hasY()) {
+          setY(other.getY());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasX()) {
+          
+          return false;
+        }
+        if (!hasY()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.SendPosition parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.SendPosition) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private int x_ ;
+      /**
+       * <code>required uint32 x = 2;</code>
+       */
+      public boolean hasX() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required uint32 x = 2;</code>
+       */
+      public int getX() {
+        return x_;
+      }
+      /**
+       * <code>required uint32 x = 2;</code>
+       */
+      public Builder setX(int value) {
+        bitField0_ |= 0x00000001;
+        x_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 x = 2;</code>
+       */
+      public Builder clearX() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        x_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int y_ ;
+      /**
+       * <code>required uint32 y = 3;</code>
+       */
+      public boolean hasY() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required uint32 y = 3;</code>
+       */
+      public int getY() {
+        return y_;
+      }
+      /**
+       * <code>required uint32 y = 3;</code>
+       */
+      public Builder setY(int value) {
+        bitField0_ |= 0x00000002;
+        y_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required uint32 y = 3;</code>
+       */
+      public Builder clearY() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        y_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.SendPosition)
+    }
+
+    static {
+      defaultInstance = new SendPosition(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.SendPosition)
+  }
+
+  public interface SendChatOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.SendChat)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>required string text = 1;</code>
+     */
+    boolean hasText();
+    /**
+     * <code>required string text = 1;</code>
+     */
+    java.lang.String getText();
+    /**
+     * <code>required string text = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getTextBytes();
+  }
+  /**
+   * Protobuf type {@code tutorial.SendChat}
+   */
+  public static final class SendChat extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.SendChat)
+      SendChatOrBuilder {
+    // Use SendChat.newBuilder() to construct.
+    private SendChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private SendChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final SendChat defaultInstance;
+    public static SendChat getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public SendChat getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private SendChat(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              com.google.protobuf.ByteString bs = input.readBytes();
+              bitField0_ |= 0x00000001;
+              text_ = bs;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.SendChat.class, codeday.squareassault.protobuf.Messages.SendChat.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<SendChat> PARSER =
+        new com.google.protobuf.AbstractParser<SendChat>() {
+      public SendChat parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new SendChat(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<SendChat> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    public static final int TEXT_FIELD_NUMBER = 1;
+    private java.lang.Object text_;
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public boolean hasText() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public java.lang.String getText() {
+      java.lang.Object ref = text_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          text_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string text = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getTextBytes() {
+      java.lang.Object ref = text_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        text_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      text_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (!hasText()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getTextBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getTextBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.SendChat prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.SendChat}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.SendChat)
+        codeday.squareassault.protobuf.Messages.SendChatOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.SendChat.class, codeday.squareassault.protobuf.Messages.SendChat.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.SendChat.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendChat getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendChat build() {
+        codeday.squareassault.protobuf.Messages.SendChat result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.SendChat buildPartial() {
+        codeday.squareassault.protobuf.Messages.SendChat result = new codeday.squareassault.protobuf.Messages.SendChat(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.text_ = text_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.SendChat) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.SendChat)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.SendChat other) {
+        if (other == codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance()) return this;
+        if (other.hasText()) {
+          bitField0_ |= 0x00000001;
+          text_ = other.text_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasText()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.SendChat parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.SendChat) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      private java.lang.Object text_ = "";
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public boolean hasText() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public java.lang.String getText() {
+        java.lang.Object ref = text_;
+        if (!(ref instanceof java.lang.String)) {
+          com.google.protobuf.ByteString bs =
+              (com.google.protobuf.ByteString) ref;
+          java.lang.String s = bs.toStringUtf8();
+          if (bs.isValidUtf8()) {
+            text_ = s;
+          }
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getTextBytes() {
+        java.lang.Object ref = text_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          text_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder setText(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder clearText() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        text_ = getDefaultInstance().getText();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string text = 1;</code>
+       */
+      public Builder setTextBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        text_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.SendChat)
+    }
+
+    static {
+      defaultInstance = new SendChat(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.SendChat)
+  }
+
+  public interface ToServerOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:tutorial.ToServer)
+      com.google.protobuf.MessageOrBuilder {
+
+    /**
+     * <code>optional .tutorial.SendPosition position = 2;</code>
+     */
+    boolean hasPosition();
+    /**
+     * <code>optional .tutorial.SendPosition position = 2;</code>
+     */
+    codeday.squareassault.protobuf.Messages.SendPosition getPosition();
+    /**
+     * <code>optional .tutorial.SendPosition position = 2;</code>
+     */
+    codeday.squareassault.protobuf.Messages.SendPositionOrBuilder getPositionOrBuilder();
+
+    /**
+     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+     */
+    boolean hasTurret();
+    /**
+     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+     */
+    codeday.squareassault.protobuf.Messages.PlaceTurret getTurret();
+    /**
+     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+     */
+    codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder();
+
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    boolean hasChat();
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    codeday.squareassault.protobuf.Messages.SendChat getChat();
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder();
+  }
+  /**
+   * Protobuf type {@code tutorial.ToServer}
+   */
+  public static final class ToServer extends
+      com.google.protobuf.GeneratedMessage implements
+      // @@protoc_insertion_point(message_implements:tutorial.ToServer)
+      ToServerOrBuilder {
+    // Use ToServer.newBuilder() to construct.
+    private ToServer(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ToServer(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ToServer defaultInstance;
+    public static ToServer getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ToServer getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ToServer(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 18: {
+              codeday.squareassault.protobuf.Messages.SendPosition.Builder subBuilder = null;
+              if (messageCase_ == 2) {
+                subBuilder = ((codeday.squareassault.protobuf.Messages.SendPosition) message_).toBuilder();
+              }
+              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.SendPosition.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.SendPosition) message_);
+                message_ = subBuilder.buildPartial();
+              }
+              messageCase_ = 2;
+              break;
+            }
+            case 26: {
+              codeday.squareassault.protobuf.Messages.PlaceTurret.Builder subBuilder = null;
+              if (messageCase_ == 3) {
+                subBuilder = ((codeday.squareassault.protobuf.Messages.PlaceTurret) message_).toBuilder();
+              }
+              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.PlaceTurret.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
+                message_ = subBuilder.buildPartial();
+              }
+              messageCase_ = 3;
+              break;
+            }
+            case 34: {
+              codeday.squareassault.protobuf.Messages.SendChat.Builder subBuilder = null;
+              if (messageCase_ == 4) {
+                subBuilder = ((codeday.squareassault.protobuf.Messages.SendChat) message_).toBuilder();
+              }
+              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.SendChat.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.SendChat) message_);
+                message_ = subBuilder.buildPartial();
+              }
+              messageCase_ = 4;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              codeday.squareassault.protobuf.Messages.ToServer.class, codeday.squareassault.protobuf.Messages.ToServer.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ToServer> PARSER =
+        new com.google.protobuf.AbstractParser<ToServer>() {
+      public ToServer parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ToServer(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ToServer> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    private int messageCase_ = 0;
+    private java.lang.Object message_;
+    public enum MessageCase
+        implements com.google.protobuf.Internal.EnumLite {
+      POSITION(2),
+      TURRET(3),
+      CHAT(4),
+      MESSAGE_NOT_SET(0);
+      private int value = 0;
+      private MessageCase(int value) {
+        this.value = value;
+      }
+      public static MessageCase valueOf(int value) {
+        switch (value) {
+          case 2: return POSITION;
+          case 3: return TURRET;
+          case 4: return CHAT;
+          case 0: return MESSAGE_NOT_SET;
+          default: throw new java.lang.IllegalArgumentException(
+            "Value is undefined for this oneof enum.");
+        }
+      }
+      public int getNumber() {
+        return this.value;
+      }
+    };
+
+    public MessageCase
+    getMessageCase() {
+      return MessageCase.valueOf(
+          messageCase_);
+    }
+
+    public static final int POSITION_FIELD_NUMBER = 2;
+    /**
+     * <code>optional .tutorial.SendPosition position = 2;</code>
+     */
+    public boolean hasPosition() {
+      return messageCase_ == 2;
+    }
+    /**
+     * <code>optional .tutorial.SendPosition position = 2;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.SendPosition getPosition() {
+      if (messageCase_ == 2) {
+         return (codeday.squareassault.protobuf.Messages.SendPosition) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+    }
+    /**
+     * <code>optional .tutorial.SendPosition position = 2;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.SendPositionOrBuilder getPositionOrBuilder() {
+      if (messageCase_ == 2) {
+         return (codeday.squareassault.protobuf.Messages.SendPosition) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+    }
+
+    public static final int TURRET_FIELD_NUMBER = 3;
+    /**
+     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+     */
+    public boolean hasTurret() {
+      return messageCase_ == 3;
+    }
+    /**
+     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.PlaceTurret getTurret() {
+      if (messageCase_ == 3) {
+         return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+    }
+    /**
+     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder() {
+      if (messageCase_ == 3) {
+         return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+    }
+
+    public static final int CHAT_FIELD_NUMBER = 4;
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    public boolean hasChat() {
+      return messageCase_ == 4;
+    }
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.SendChat getChat() {
+      if (messageCase_ == 4) {
+         return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+    }
+    /**
+     * <code>optional .tutorial.SendChat chat = 4;</code>
+     */
+    public codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder() {
+      if (messageCase_ == 4) {
+         return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+      }
+      return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+    }
+
+    private void initFields() {
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized == 1) return true;
+      if (isInitialized == 0) return false;
+
+      if (hasPosition()) {
+        if (!getPosition().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasTurret()) {
+        if (!getTurret().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasChat()) {
+        if (!getChat().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (messageCase_ == 2) {
+        output.writeMessage(2, (codeday.squareassault.protobuf.Messages.SendPosition) message_);
+      }
+      if (messageCase_ == 3) {
+        output.writeMessage(3, (codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
+      }
+      if (messageCase_ == 4) {
+        output.writeMessage(4, (codeday.squareassault.protobuf.Messages.SendChat) message_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (messageCase_ == 2) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, (codeday.squareassault.protobuf.Messages.SendPosition) message_);
+      }
+      if (messageCase_ == 3) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(3, (codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
+      }
+      if (messageCase_ == 4) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(4, (codeday.squareassault.protobuf.Messages.SendChat) message_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.ToServer prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code tutorial.ToServer}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
+        // @@protoc_insertion_point(builder_implements:tutorial.ToServer)
+        codeday.squareassault.protobuf.Messages.ToServerOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                codeday.squareassault.protobuf.Messages.ToServer.class, codeday.squareassault.protobuf.Messages.ToServer.Builder.class);
+      }
+
+      // Construct using codeday.squareassault.protobuf.Messages.ToServer.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        messageCase_ = 0;
+        message_ = null;
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_descriptor;
+      }
+
+      public codeday.squareassault.protobuf.Messages.ToServer getDefaultInstanceForType() {
+        return codeday.squareassault.protobuf.Messages.ToServer.getDefaultInstance();
+      }
+
+      public codeday.squareassault.protobuf.Messages.ToServer build() {
+        codeday.squareassault.protobuf.Messages.ToServer result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public codeday.squareassault.protobuf.Messages.ToServer buildPartial() {
+        codeday.squareassault.protobuf.Messages.ToServer result = new codeday.squareassault.protobuf.Messages.ToServer(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (messageCase_ == 2) {
+          if (positionBuilder_ == null) {
+            result.message_ = message_;
+          } else {
+            result.message_ = positionBuilder_.build();
+          }
+        }
+        if (messageCase_ == 3) {
+          if (turretBuilder_ == null) {
+            result.message_ = message_;
+          } else {
+            result.message_ = turretBuilder_.build();
+          }
+        }
+        if (messageCase_ == 4) {
+          if (chatBuilder_ == null) {
+            result.message_ = message_;
+          } else {
+            result.message_ = chatBuilder_.build();
+          }
+        }
+        result.bitField0_ = to_bitField0_;
+        result.messageCase_ = messageCase_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof codeday.squareassault.protobuf.Messages.ToServer) {
+          return mergeFrom((codeday.squareassault.protobuf.Messages.ToServer)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.ToServer other) {
+        if (other == codeday.squareassault.protobuf.Messages.ToServer.getDefaultInstance()) return this;
+        switch (other.getMessageCase()) {
+          case POSITION: {
+            mergePosition(other.getPosition());
+            break;
+          }
+          case TURRET: {
+            mergeTurret(other.getTurret());
+            break;
+          }
+          case CHAT: {
+            mergeChat(other.getChat());
+            break;
+          }
+          case MESSAGE_NOT_SET: {
+            break;
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (hasPosition()) {
+          if (!getPosition().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasTurret()) {
+          if (!getTurret().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasChat()) {
+          if (!getChat().isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        codeday.squareassault.protobuf.Messages.ToServer parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (codeday.squareassault.protobuf.Messages.ToServer) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int messageCase_ = 0;
+      private java.lang.Object message_;
+      public MessageCase
+          getMessageCase() {
+        return MessageCase.valueOf(
+            messageCase_);
+      }
+
+      public Builder clearMessage() {
+        messageCase_ = 0;
+        message_ = null;
+        onChanged();
+        return this;
+      }
+
+      private int bitField0_;
+
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.SendPosition, codeday.squareassault.protobuf.Messages.SendPosition.Builder, codeday.squareassault.protobuf.Messages.SendPositionOrBuilder> positionBuilder_;
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public boolean hasPosition() {
+        return messageCase_ == 2;
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendPosition getPosition() {
+        if (positionBuilder_ == null) {
+          if (messageCase_ == 2) {
+            return (codeday.squareassault.protobuf.Messages.SendPosition) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+        } else {
+          if (messageCase_ == 2) {
+            return positionBuilder_.getMessage();
+          }
+          return codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public Builder setPosition(codeday.squareassault.protobuf.Messages.SendPosition value) {
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          message_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
+        }
+        messageCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public Builder setPosition(
+          codeday.squareassault.protobuf.Messages.SendPosition.Builder builderForValue) {
+        if (positionBuilder_ == null) {
+          message_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
+        messageCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public Builder mergePosition(codeday.squareassault.protobuf.Messages.SendPosition value) {
+        if (positionBuilder_ == null) {
+          if (messageCase_ == 2 &&
+              message_ != codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance()) {
+            message_ = codeday.squareassault.protobuf.Messages.SendPosition.newBuilder((codeday.squareassault.protobuf.Messages.SendPosition) message_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            message_ = value;
+          }
+          onChanged();
+        } else {
+          if (messageCase_ == 2) {
+            positionBuilder_.mergeFrom(value);
+          }
+          positionBuilder_.setMessage(value);
+        }
+        messageCase_ = 2;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public Builder clearPosition() {
+        if (positionBuilder_ == null) {
+          if (messageCase_ == 2) {
+            messageCase_ = 0;
+            message_ = null;
+            onChanged();
+          }
+        } else {
+          if (messageCase_ == 2) {
+            messageCase_ = 0;
+            message_ = null;
+          }
+          positionBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendPosition.Builder getPositionBuilder() {
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendPositionOrBuilder getPositionOrBuilder() {
+        if ((messageCase_ == 2) && (positionBuilder_ != null)) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          if (messageCase_ == 2) {
+            return (codeday.squareassault.protobuf.Messages.SendPosition) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.SendPosition position = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.SendPosition, codeday.squareassault.protobuf.Messages.SendPosition.Builder, codeday.squareassault.protobuf.Messages.SendPositionOrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          if (!(messageCase_ == 2)) {
+            message_ = codeday.squareassault.protobuf.Messages.SendPosition.getDefaultInstance();
+          }
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.SendPosition, codeday.squareassault.protobuf.Messages.SendPosition.Builder, codeday.squareassault.protobuf.Messages.SendPositionOrBuilder>(
+                  (codeday.squareassault.protobuf.Messages.SendPosition) message_,
+                  getParentForChildren(),
+                  isClean());
+          message_ = null;
+        }
+        messageCase_ = 2;
+        return positionBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.PlaceTurret, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder, codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder> turretBuilder_;
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public boolean hasTurret() {
+        return messageCase_ == 3;
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.PlaceTurret getTurret() {
+        if (turretBuilder_ == null) {
+          if (messageCase_ == 3) {
+            return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+        } else {
+          if (messageCase_ == 3) {
+            return turretBuilder_.getMessage();
+          }
+          return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public Builder setTurret(codeday.squareassault.protobuf.Messages.PlaceTurret value) {
+        if (turretBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          message_ = value;
+          onChanged();
+        } else {
+          turretBuilder_.setMessage(value);
+        }
+        messageCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public Builder setTurret(
+          codeday.squareassault.protobuf.Messages.PlaceTurret.Builder builderForValue) {
+        if (turretBuilder_ == null) {
+          message_ = builderForValue.build();
+          onChanged();
+        } else {
+          turretBuilder_.setMessage(builderForValue.build());
+        }
+        messageCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public Builder mergeTurret(codeday.squareassault.protobuf.Messages.PlaceTurret value) {
+        if (turretBuilder_ == null) {
+          if (messageCase_ == 3 &&
+              message_ != codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance()) {
+            message_ = codeday.squareassault.protobuf.Messages.PlaceTurret.newBuilder((codeday.squareassault.protobuf.Messages.PlaceTurret) message_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            message_ = value;
+          }
+          onChanged();
+        } else {
+          if (messageCase_ == 3) {
+            turretBuilder_.mergeFrom(value);
+          }
+          turretBuilder_.setMessage(value);
+        }
+        messageCase_ = 3;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public Builder clearTurret() {
+        if (turretBuilder_ == null) {
+          if (messageCase_ == 3) {
+            messageCase_ = 0;
+            message_ = null;
+            onChanged();
+          }
+        } else {
+          if (messageCase_ == 3) {
+            messageCase_ = 0;
+            message_ = null;
+          }
+          turretBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.PlaceTurret.Builder getTurretBuilder() {
+        return getTurretFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder() {
+        if ((messageCase_ == 3) && (turretBuilder_ != null)) {
+          return turretBuilder_.getMessageOrBuilder();
+        } else {
+          if (messageCase_ == 3) {
+            return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.PlaceTurret, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder, codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder> 
+          getTurretFieldBuilder() {
+        if (turretBuilder_ == null) {
+          if (!(messageCase_ == 3)) {
+            message_ = codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
+          }
+          turretBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.PlaceTurret, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder, codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder>(
+                  (codeday.squareassault.protobuf.Messages.PlaceTurret) message_,
+                  getParentForChildren(),
+                  isClean());
+          message_ = null;
+        }
+        messageCase_ = 3;
+        return turretBuilder_;
+      }
+
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder> chatBuilder_;
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public boolean hasChat() {
+        return messageCase_ == 4;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendChat getChat() {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 4) {
+            return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+        } else {
+          if (messageCase_ == 4) {
+            return chatBuilder_.getMessage();
+          }
+          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder setChat(codeday.squareassault.protobuf.Messages.SendChat value) {
+        if (chatBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          message_ = value;
+          onChanged();
+        } else {
+          chatBuilder_.setMessage(value);
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder setChat(
+          codeday.squareassault.protobuf.Messages.SendChat.Builder builderForValue) {
+        if (chatBuilder_ == null) {
+          message_ = builderForValue.build();
+          onChanged();
+        } else {
+          chatBuilder_.setMessage(builderForValue.build());
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder mergeChat(codeday.squareassault.protobuf.Messages.SendChat value) {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 4 &&
+              message_ != codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance()) {
+            message_ = codeday.squareassault.protobuf.Messages.SendChat.newBuilder((codeday.squareassault.protobuf.Messages.SendChat) message_)
+                .mergeFrom(value).buildPartial();
+          } else {
+            message_ = value;
+          }
+          onChanged();
+        } else {
+          if (messageCase_ == 4) {
+            chatBuilder_.mergeFrom(value);
+          }
+          chatBuilder_.setMessage(value);
+        }
+        messageCase_ = 4;
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public Builder clearChat() {
+        if (chatBuilder_ == null) {
+          if (messageCase_ == 4) {
+            messageCase_ = 0;
+            message_ = null;
+            onChanged();
+          }
+        } else {
+          if (messageCase_ == 4) {
+            messageCase_ = 0;
+            message_ = null;
+          }
+          chatBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendChat.Builder getChatBuilder() {
+        return getChatFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      public codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder() {
+        if ((messageCase_ == 4) && (chatBuilder_ != null)) {
+          return chatBuilder_.getMessageOrBuilder();
+        } else {
+          if (messageCase_ == 4) {
+            return (codeday.squareassault.protobuf.Messages.SendChat) message_;
+          }
+          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+        }
+      }
+      /**
+       * <code>optional .tutorial.SendChat chat = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder> 
+          getChatFieldBuilder() {
+        if (chatBuilder_ == null) {
+          if (!(messageCase_ == 4)) {
+            message_ = codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
+          }
+          chatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder>(
+                  (codeday.squareassault.protobuf.Messages.SendChat) message_,
+                  getParentForChildren(),
+                  isClean());
+          message_ = null;
+        }
+        messageCase_ = 4;
+        return chatBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:tutorial.ToServer)
+    }
+
+    static {
+      defaultInstance = new ToServer(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:tutorial.ToServer)
   }
 
   public interface ConnectOrBuilder extends
@@ -600,6 +3170,15 @@ public final class Messages {
      * <code>required uint32 objectID = 2;</code>
      */
     int getObjectID();
+
+    /**
+     * <code>optional uint32 protocol = 3 [default = 0];</code>
+     */
+    boolean hasProtocol();
+    /**
+     * <code>optional uint32 protocol = 3 [default = 0];</code>
+     */
+    int getProtocol();
   }
   /**
    * Protobuf type {@code tutorial.Connect}
@@ -669,6 +3248,11 @@ public final class Messages {
             case 16: {
               bitField0_ |= 0x00000002;
               objectID_ = input.readUInt32();
+              break;
+            }
+            case 24: {
+              bitField0_ |= 0x00000004;
+              protocol_ = input.readUInt32();
               break;
             }
           }
@@ -747,9 +3331,25 @@ public final class Messages {
       return objectID_;
     }
 
+    public static final int PROTOCOL_FIELD_NUMBER = 3;
+    private int protocol_;
+    /**
+     * <code>optional uint32 protocol = 3 [default = 0];</code>
+     */
+    public boolean hasProtocol() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional uint32 protocol = 3 [default = 0];</code>
+     */
+    public int getProtocol() {
+      return protocol_;
+    }
+
     private void initFields() {
       map_ = codeday.squareassault.protobuf.Messages.Map.getDefaultInstance();
       objectID_ = 0;
+      protocol_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -780,6 +3380,9 @@ public final class Messages {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeUInt32(2, objectID_);
       }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeUInt32(3, protocol_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -796,6 +3399,10 @@ public final class Messages {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, objectID_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(3, protocol_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -923,6 +3530,8 @@ public final class Messages {
         bitField0_ = (bitField0_ & ~0x00000001);
         objectID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        protocol_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -963,6 +3572,10 @@ public final class Messages {
           to_bitField0_ |= 0x00000002;
         }
         result.objectID_ = objectID_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.protocol_ = protocol_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -984,6 +3597,9 @@ public final class Messages {
         }
         if (other.hasObjectID()) {
           setObjectID(other.getObjectID());
+        }
+        if (other.hasProtocol()) {
+          setProtocol(other.getProtocol());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -1166,6 +3782,38 @@ public final class Messages {
       public Builder clearObjectID() {
         bitField0_ = (bitField0_ & ~0x00000002);
         objectID_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int protocol_ ;
+      /**
+       * <code>optional uint32 protocol = 3 [default = 0];</code>
+       */
+      public boolean hasProtocol() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional uint32 protocol = 3 [default = 0];</code>
+       */
+      public int getProtocol() {
+        return protocol_;
+      }
+      /**
+       * <code>optional uint32 protocol = 3 [default = 0];</code>
+       */
+      public Builder setProtocol(int value) {
+        bitField0_ |= 0x00000004;
+        protocol_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 protocol = 3 [default = 0];</code>
+       */
+      public Builder clearProtocol() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        protocol_ = 0;
         onChanged();
         return this;
       }
@@ -2325,11 +4973,11 @@ public final class Messages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional uint32 object = 1;</code>
+     * <code>required uint32 object = 1;</code>
      */
     boolean hasObject();
     /**
-     * <code>optional uint32 object = 1;</code>
+     * <code>required uint32 object = 1;</code>
      */
     int getObject();
 
@@ -2529,13 +5177,13 @@ public final class Messages {
     public static final int OBJECT_FIELD_NUMBER = 1;
     private int object_;
     /**
-     * <code>optional uint32 object = 1;</code>
+     * <code>required uint32 object = 1;</code>
      */
     public boolean hasObject() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional uint32 object = 1;</code>
+     * <code>required uint32 object = 1;</code>
      */
     public int getObject() {
       return object_;
@@ -2673,6 +5321,10 @@ public final class Messages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
+      if (!hasObject()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasX()) {
         memoizedIsInitialized = 0;
         return false;
@@ -2977,6 +5629,10 @@ public final class Messages {
       }
 
       public final boolean isInitialized() {
+        if (!hasObject()) {
+          
+          return false;
+        }
         if (!hasX()) {
           
           return false;
@@ -3009,19 +5665,19 @@ public final class Messages {
 
       private int object_ ;
       /**
-       * <code>optional uint32 object = 1;</code>
+       * <code>required uint32 object = 1;</code>
        */
       public boolean hasObject() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional uint32 object = 1;</code>
+       * <code>required uint32 object = 1;</code>
        */
       public int getObject() {
         return object_;
       }
       /**
-       * <code>optional uint32 object = 1;</code>
+       * <code>required uint32 object = 1;</code>
        */
       public Builder setObject(int value) {
         bitField0_ |= 0x00000001;
@@ -3030,7 +5686,7 @@ public final class Messages {
         return this;
       }
       /**
-       * <code>optional uint32 object = 1;</code>
+       * <code>required uint32 object = 1;</code>
        */
       public Builder clearObject() {
         bitField0_ = (bitField0_ & ~0x00000001);
@@ -3694,497 +6350,6 @@ public final class Messages {
     // @@protoc_insertion_point(class_scope:tutorial.Disconnect)
   }
 
-  public interface PlaceTurretOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:tutorial.PlaceTurret)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>required uint32 x = 1;</code>
-     */
-    boolean hasX();
-    /**
-     * <code>required uint32 x = 1;</code>
-     */
-    int getX();
-
-    /**
-     * <code>required uint32 y = 2;</code>
-     */
-    boolean hasY();
-    /**
-     * <code>required uint32 y = 2;</code>
-     */
-    int getY();
-  }
-  /**
-   * Protobuf type {@code tutorial.PlaceTurret}
-   */
-  public static final class PlaceTurret extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:tutorial.PlaceTurret)
-      PlaceTurretOrBuilder {
-    // Use PlaceTurret.newBuilder() to construct.
-    private PlaceTurret(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private PlaceTurret(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final PlaceTurret defaultInstance;
-    public static PlaceTurret getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public PlaceTurret getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private PlaceTurret(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              x_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              y_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              codeday.squareassault.protobuf.Messages.PlaceTurret.class, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<PlaceTurret> PARSER =
-        new com.google.protobuf.AbstractParser<PlaceTurret>() {
-      public PlaceTurret parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PlaceTurret(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PlaceTurret> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int X_FIELD_NUMBER = 1;
-    private int x_;
-    /**
-     * <code>required uint32 x = 1;</code>
-     */
-    public boolean hasX() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required uint32 x = 1;</code>
-     */
-    public int getX() {
-      return x_;
-    }
-
-    public static final int Y_FIELD_NUMBER = 2;
-    private int y_;
-    /**
-     * <code>required uint32 y = 2;</code>
-     */
-    public boolean hasY() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required uint32 y = 2;</code>
-     */
-    public int getY() {
-      return y_;
-    }
-
-    private void initFields() {
-      x_ = 0;
-      y_ = 0;
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasX()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasY()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(1, x_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, y_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, x_);
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, y_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.PlaceTurret parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.PlaceTurret prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code tutorial.PlaceTurret}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:tutorial.PlaceTurret)
-        codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                codeday.squareassault.protobuf.Messages.PlaceTurret.class, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder.class);
-      }
-
-      // Construct using codeday.squareassault.protobuf.Messages.PlaceTurret.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        x_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        y_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_PlaceTurret_descriptor;
-      }
-
-      public codeday.squareassault.protobuf.Messages.PlaceTurret getDefaultInstanceForType() {
-        return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-      }
-
-      public codeday.squareassault.protobuf.Messages.PlaceTurret build() {
-        codeday.squareassault.protobuf.Messages.PlaceTurret result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public codeday.squareassault.protobuf.Messages.PlaceTurret buildPartial() {
-        codeday.squareassault.protobuf.Messages.PlaceTurret result = new codeday.squareassault.protobuf.Messages.PlaceTurret(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.x_ = x_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.y_ = y_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof codeday.squareassault.protobuf.Messages.PlaceTurret) {
-          return mergeFrom((codeday.squareassault.protobuf.Messages.PlaceTurret)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.PlaceTurret other) {
-        if (other == codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance()) return this;
-        if (other.hasX()) {
-          setX(other.getX());
-        }
-        if (other.hasY()) {
-          setY(other.getY());
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasX()) {
-          
-          return false;
-        }
-        if (!hasY()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        codeday.squareassault.protobuf.Messages.PlaceTurret parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (codeday.squareassault.protobuf.Messages.PlaceTurret) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int x_ ;
-      /**
-       * <code>required uint32 x = 1;</code>
-       */
-      public boolean hasX() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required uint32 x = 1;</code>
-       */
-      public int getX() {
-        return x_;
-      }
-      /**
-       * <code>required uint32 x = 1;</code>
-       */
-      public Builder setX(int value) {
-        bitField0_ |= 0x00000001;
-        x_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 x = 1;</code>
-       */
-      public Builder clearX() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        x_ = 0;
-        onChanged();
-        return this;
-      }
-
-      private int y_ ;
-      /**
-       * <code>required uint32 y = 2;</code>
-       */
-      public boolean hasY() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required uint32 y = 2;</code>
-       */
-      public int getY() {
-        return y_;
-      }
-      /**
-       * <code>required uint32 y = 2;</code>
-       */
-      public Builder setY(int value) {
-        bitField0_ |= 0x00000002;
-        y_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required uint32 y = 2;</code>
-       */
-      public Builder clearY() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        y_ = 0;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:tutorial.PlaceTurret)
-    }
-
-    static {
-      defaultInstance = new PlaceTurret(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:tutorial.PlaceTurret)
-  }
-
   public interface TurretCountOrBuilder extends
       // @@protoc_insertion_point(interface_extends:tutorial.TurretCount)
       com.google.protobuf.MessageOrBuilder {
@@ -4674,490 +6839,6 @@ public final class Messages {
     }
 
     // @@protoc_insertion_point(class_scope:tutorial.TurretCount)
-  }
-
-  public interface SendChatOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:tutorial.SendChat)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>required string text = 1;</code>
-     */
-    boolean hasText();
-    /**
-     * <code>required string text = 1;</code>
-     */
-    java.lang.String getText();
-    /**
-     * <code>required string text = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getTextBytes();
-  }
-  /**
-   * Protobuf type {@code tutorial.SendChat}
-   */
-  public static final class SendChat extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:tutorial.SendChat)
-      SendChatOrBuilder {
-    // Use SendChat.newBuilder() to construct.
-    private SendChat(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private SendChat(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final SendChat defaultInstance;
-    public static SendChat getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public SendChat getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private SendChat(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              text_ = bs;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              codeday.squareassault.protobuf.Messages.SendChat.class, codeday.squareassault.protobuf.Messages.SendChat.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<SendChat> PARSER =
-        new com.google.protobuf.AbstractParser<SendChat>() {
-      public SendChat parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new SendChat(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<SendChat> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int TEXT_FIELD_NUMBER = 1;
-    private java.lang.Object text_;
-    /**
-     * <code>required string text = 1;</code>
-     */
-    public boolean hasText() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required string text = 1;</code>
-     */
-    public java.lang.String getText() {
-      java.lang.Object ref = text_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          text_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string text = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getTextBytes() {
-      java.lang.Object ref = text_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        text_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private void initFields() {
-      text_ = "";
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasText()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getTextBytes());
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getTextBytes());
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.SendChat parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.SendChat prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code tutorial.SendChat}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:tutorial.SendChat)
-        codeday.squareassault.protobuf.Messages.SendChatOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                codeday.squareassault.protobuf.Messages.SendChat.class, codeday.squareassault.protobuf.Messages.SendChat.Builder.class);
-      }
-
-      // Construct using codeday.squareassault.protobuf.Messages.SendChat.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        text_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_SendChat_descriptor;
-      }
-
-      public codeday.squareassault.protobuf.Messages.SendChat getDefaultInstanceForType() {
-        return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-      }
-
-      public codeday.squareassault.protobuf.Messages.SendChat build() {
-        codeday.squareassault.protobuf.Messages.SendChat result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public codeday.squareassault.protobuf.Messages.SendChat buildPartial() {
-        codeday.squareassault.protobuf.Messages.SendChat result = new codeday.squareassault.protobuf.Messages.SendChat(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.text_ = text_;
-        result.bitField0_ = to_bitField0_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof codeday.squareassault.protobuf.Messages.SendChat) {
-          return mergeFrom((codeday.squareassault.protobuf.Messages.SendChat)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.SendChat other) {
-        if (other == codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance()) return this;
-        if (other.hasText()) {
-          bitField0_ |= 0x00000001;
-          text_ = other.text_;
-          onChanged();
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasText()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        codeday.squareassault.protobuf.Messages.SendChat parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (codeday.squareassault.protobuf.Messages.SendChat) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object text_ = "";
-      /**
-       * <code>required string text = 1;</code>
-       */
-      public boolean hasText() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required string text = 1;</code>
-       */
-      public java.lang.String getText() {
-        java.lang.Object ref = text_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            text_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string text = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getTextBytes() {
-        java.lang.Object ref = text_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          text_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string text = 1;</code>
-       */
-      public Builder setText(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        text_ = value;
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string text = 1;</code>
-       */
-      public Builder clearText() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        text_ = getDefaultInstance().getText();
-        onChanged();
-        return this;
-      }
-      /**
-       * <code>required string text = 1;</code>
-       */
-      public Builder setTextBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        text_ = value;
-        onChanged();
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:tutorial.SendChat)
-    }
-
-    static {
-      defaultInstance = new SendChat(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:tutorial.SendChat)
   }
 
   public interface ChatMessageOrBuilder extends
@@ -6975,1037 +8656,31 @@ public final class Messages {
     // @@protoc_insertion_point(class_scope:tutorial.ToClient)
   }
 
-  public interface ToServerOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:tutorial.ToServer)
-      com.google.protobuf.MessageOrBuilder {
-
-    /**
-     * <code>optional .tutorial.SetPosition position = 2;</code>
-     */
-    boolean hasPosition();
-    /**
-     * <code>optional .tutorial.SetPosition position = 2;</code>
-     */
-    codeday.squareassault.protobuf.Messages.SetPosition getPosition();
-    /**
-     * <code>optional .tutorial.SetPosition position = 2;</code>
-     */
-    codeday.squareassault.protobuf.Messages.SetPositionOrBuilder getPositionOrBuilder();
-
-    /**
-     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-     */
-    boolean hasTurret();
-    /**
-     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-     */
-    codeday.squareassault.protobuf.Messages.PlaceTurret getTurret();
-    /**
-     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-     */
-    codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder();
-
-    /**
-     * <code>optional .tutorial.SendChat chat = 4;</code>
-     */
-    boolean hasChat();
-    /**
-     * <code>optional .tutorial.SendChat chat = 4;</code>
-     */
-    codeday.squareassault.protobuf.Messages.SendChat getChat();
-    /**
-     * <code>optional .tutorial.SendChat chat = 4;</code>
-     */
-    codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder();
-  }
-  /**
-   * Protobuf type {@code tutorial.ToServer}
-   */
-  public static final class ToServer extends
-      com.google.protobuf.GeneratedMessage implements
-      // @@protoc_insertion_point(message_implements:tutorial.ToServer)
-      ToServerOrBuilder {
-    // Use ToServer.newBuilder() to construct.
-    private ToServer(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private ToServer(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
-
-    private static final ToServer defaultInstance;
-    public static ToServer getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public ToServer getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.UnknownFieldSet unknownFields;
-    @java.lang.Override
-    public final com.google.protobuf.UnknownFieldSet
-        getUnknownFields() {
-      return this.unknownFields;
-    }
-    private ToServer(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
-          com.google.protobuf.UnknownFieldSet.newBuilder();
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFields,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 18: {
-              codeday.squareassault.protobuf.Messages.SetPosition.Builder subBuilder = null;
-              if (messageCase_ == 2) {
-                subBuilder = ((codeday.squareassault.protobuf.Messages.SetPosition) message_).toBuilder();
-              }
-              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.SetPosition.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.SetPosition) message_);
-                message_ = subBuilder.buildPartial();
-              }
-              messageCase_ = 2;
-              break;
-            }
-            case 26: {
-              codeday.squareassault.protobuf.Messages.PlaceTurret.Builder subBuilder = null;
-              if (messageCase_ == 3) {
-                subBuilder = ((codeday.squareassault.protobuf.Messages.PlaceTurret) message_).toBuilder();
-              }
-              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.PlaceTurret.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
-                message_ = subBuilder.buildPartial();
-              }
-              messageCase_ = 3;
-              break;
-            }
-            case 34: {
-              codeday.squareassault.protobuf.Messages.SendChat.Builder subBuilder = null;
-              if (messageCase_ == 4) {
-                subBuilder = ((codeday.squareassault.protobuf.Messages.SendChat) message_).toBuilder();
-              }
-              message_ = input.readMessage(codeday.squareassault.protobuf.Messages.SendChat.PARSER, extensionRegistry);
-              if (subBuilder != null) {
-                subBuilder.mergeFrom((codeday.squareassault.protobuf.Messages.SendChat) message_);
-                message_ = subBuilder.buildPartial();
-              }
-              messageCase_ = 4;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        this.unknownFields = unknownFields.build();
-        makeExtensionsImmutable();
-      }
-    }
-    public static final com.google.protobuf.Descriptors.Descriptor
-        getDescriptor() {
-      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_descriptor;
-    }
-
-    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-        internalGetFieldAccessorTable() {
-      return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_fieldAccessorTable
-          .ensureFieldAccessorsInitialized(
-              codeday.squareassault.protobuf.Messages.ToServer.class, codeday.squareassault.protobuf.Messages.ToServer.Builder.class);
-    }
-
-    public static com.google.protobuf.Parser<ToServer> PARSER =
-        new com.google.protobuf.AbstractParser<ToServer>() {
-      public ToServer parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ToServer(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ToServer> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    private int messageCase_ = 0;
-    private java.lang.Object message_;
-    public enum MessageCase
-        implements com.google.protobuf.Internal.EnumLite {
-      POSITION(2),
-      TURRET(3),
-      CHAT(4),
-      MESSAGE_NOT_SET(0);
-      private int value = 0;
-      private MessageCase(int value) {
-        this.value = value;
-      }
-      public static MessageCase valueOf(int value) {
-        switch (value) {
-          case 2: return POSITION;
-          case 3: return TURRET;
-          case 4: return CHAT;
-          case 0: return MESSAGE_NOT_SET;
-          default: throw new java.lang.IllegalArgumentException(
-            "Value is undefined for this oneof enum.");
-        }
-      }
-      public int getNumber() {
-        return this.value;
-      }
-    };
-
-    public MessageCase
-    getMessageCase() {
-      return MessageCase.valueOf(
-          messageCase_);
-    }
-
-    public static final int POSITION_FIELD_NUMBER = 2;
-    /**
-     * <code>optional .tutorial.SetPosition position = 2;</code>
-     */
-    public boolean hasPosition() {
-      return messageCase_ == 2;
-    }
-    /**
-     * <code>optional .tutorial.SetPosition position = 2;</code>
-     */
-    public codeday.squareassault.protobuf.Messages.SetPosition getPosition() {
-      if (messageCase_ == 2) {
-         return (codeday.squareassault.protobuf.Messages.SetPosition) message_;
-      }
-      return codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance();
-    }
-    /**
-     * <code>optional .tutorial.SetPosition position = 2;</code>
-     */
-    public codeday.squareassault.protobuf.Messages.SetPositionOrBuilder getPositionOrBuilder() {
-      if (messageCase_ == 2) {
-         return (codeday.squareassault.protobuf.Messages.SetPosition) message_;
-      }
-      return codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance();
-    }
-
-    public static final int TURRET_FIELD_NUMBER = 3;
-    /**
-     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-     */
-    public boolean hasTurret() {
-      return messageCase_ == 3;
-    }
-    /**
-     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-     */
-    public codeday.squareassault.protobuf.Messages.PlaceTurret getTurret() {
-      if (messageCase_ == 3) {
-         return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
-      }
-      return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-    }
-    /**
-     * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-     */
-    public codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder() {
-      if (messageCase_ == 3) {
-         return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
-      }
-      return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-    }
-
-    public static final int CHAT_FIELD_NUMBER = 4;
-    /**
-     * <code>optional .tutorial.SendChat chat = 4;</code>
-     */
-    public boolean hasChat() {
-      return messageCase_ == 4;
-    }
-    /**
-     * <code>optional .tutorial.SendChat chat = 4;</code>
-     */
-    public codeday.squareassault.protobuf.Messages.SendChat getChat() {
-      if (messageCase_ == 4) {
-         return (codeday.squareassault.protobuf.Messages.SendChat) message_;
-      }
-      return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-    }
-    /**
-     * <code>optional .tutorial.SendChat chat = 4;</code>
-     */
-    public codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder() {
-      if (messageCase_ == 4) {
-         return (codeday.squareassault.protobuf.Messages.SendChat) message_;
-      }
-      return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-    }
-
-    private void initFields() {
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (hasPosition()) {
-        if (!getPosition().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasTurret()) {
-        if (!getTurret().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      if (hasChat()) {
-        if (!getChat().isInitialized()) {
-          memoizedIsInitialized = 0;
-          return false;
-        }
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (messageCase_ == 2) {
-        output.writeMessage(2, (codeday.squareassault.protobuf.Messages.SetPosition) message_);
-      }
-      if (messageCase_ == 3) {
-        output.writeMessage(3, (codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
-      }
-      if (messageCase_ == 4) {
-        output.writeMessage(4, (codeday.squareassault.protobuf.Messages.SendChat) message_);
-      }
-      getUnknownFields().writeTo(output);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (messageCase_ == 2) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, (codeday.squareassault.protobuf.Messages.SetPosition) message_);
-      }
-      if (messageCase_ == 3) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, (codeday.squareassault.protobuf.Messages.PlaceTurret) message_);
-      }
-      if (messageCase_ == 4) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, (codeday.squareassault.protobuf.Messages.SendChat) message_);
-      }
-      size += getUnknownFields().getSerializedSize();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static codeday.squareassault.protobuf.Messages.ToServer parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(codeday.squareassault.protobuf.Messages.ToServer prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    @java.lang.Override
-    protected Builder newBuilderForType(
-        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-      Builder builder = new Builder(parent);
-      return builder;
-    }
-    /**
-     * Protobuf type {@code tutorial.ToServer}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-        // @@protoc_insertion_point(builder_implements:tutorial.ToServer)
-        codeday.squareassault.protobuf.Messages.ToServerOrBuilder {
-      public static final com.google.protobuf.Descriptors.Descriptor
-          getDescriptor() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_descriptor;
-      }
-
-      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
-          internalGetFieldAccessorTable() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_fieldAccessorTable
-            .ensureFieldAccessorsInitialized(
-                codeday.squareassault.protobuf.Messages.ToServer.class, codeday.squareassault.protobuf.Messages.ToServer.Builder.class);
-      }
-
-      // Construct using codeday.squareassault.protobuf.Messages.ToServer.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private Builder(
-          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
-        super(parent);
-        maybeForceBuilderInitialization();
-      }
-      private void maybeForceBuilderInitialization() {
-        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-        }
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        messageCase_ = 0;
-        message_ = null;
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.google.protobuf.Descriptors.Descriptor
-          getDescriptorForType() {
-        return codeday.squareassault.protobuf.Messages.internal_static_tutorial_ToServer_descriptor;
-      }
-
-      public codeday.squareassault.protobuf.Messages.ToServer getDefaultInstanceForType() {
-        return codeday.squareassault.protobuf.Messages.ToServer.getDefaultInstance();
-      }
-
-      public codeday.squareassault.protobuf.Messages.ToServer build() {
-        codeday.squareassault.protobuf.Messages.ToServer result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public codeday.squareassault.protobuf.Messages.ToServer buildPartial() {
-        codeday.squareassault.protobuf.Messages.ToServer result = new codeday.squareassault.protobuf.Messages.ToServer(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (messageCase_ == 2) {
-          if (positionBuilder_ == null) {
-            result.message_ = message_;
-          } else {
-            result.message_ = positionBuilder_.build();
-          }
-        }
-        if (messageCase_ == 3) {
-          if (turretBuilder_ == null) {
-            result.message_ = message_;
-          } else {
-            result.message_ = turretBuilder_.build();
-          }
-        }
-        if (messageCase_ == 4) {
-          if (chatBuilder_ == null) {
-            result.message_ = message_;
-          } else {
-            result.message_ = chatBuilder_.build();
-          }
-        }
-        result.bitField0_ = to_bitField0_;
-        result.messageCase_ = messageCase_;
-        onBuilt();
-        return result;
-      }
-
-      public Builder mergeFrom(com.google.protobuf.Message other) {
-        if (other instanceof codeday.squareassault.protobuf.Messages.ToServer) {
-          return mergeFrom((codeday.squareassault.protobuf.Messages.ToServer)other);
-        } else {
-          super.mergeFrom(other);
-          return this;
-        }
-      }
-
-      public Builder mergeFrom(codeday.squareassault.protobuf.Messages.ToServer other) {
-        if (other == codeday.squareassault.protobuf.Messages.ToServer.getDefaultInstance()) return this;
-        switch (other.getMessageCase()) {
-          case POSITION: {
-            mergePosition(other.getPosition());
-            break;
-          }
-          case TURRET: {
-            mergeTurret(other.getTurret());
-            break;
-          }
-          case CHAT: {
-            mergeChat(other.getChat());
-            break;
-          }
-          case MESSAGE_NOT_SET: {
-            break;
-          }
-        }
-        this.mergeUnknownFields(other.getUnknownFields());
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (hasPosition()) {
-          if (!getPosition().isInitialized()) {
-            
-            return false;
-          }
-        }
-        if (hasTurret()) {
-          if (!getTurret().isInitialized()) {
-            
-            return false;
-          }
-        }
-        if (hasChat()) {
-          if (!getChat().isInitialized()) {
-            
-            return false;
-          }
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        codeday.squareassault.protobuf.Messages.ToServer parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (codeday.squareassault.protobuf.Messages.ToServer) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int messageCase_ = 0;
-      private java.lang.Object message_;
-      public MessageCase
-          getMessageCase() {
-        return MessageCase.valueOf(
-            messageCase_);
-      }
-
-      public Builder clearMessage() {
-        messageCase_ = 0;
-        message_ = null;
-        onChanged();
-        return this;
-      }
-
-      private int bitField0_;
-
-      private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.Messages.SetPosition, codeday.squareassault.protobuf.Messages.SetPosition.Builder, codeday.squareassault.protobuf.Messages.SetPositionOrBuilder> positionBuilder_;
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public boolean hasPosition() {
-        return messageCase_ == 2;
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.SetPosition getPosition() {
-        if (positionBuilder_ == null) {
-          if (messageCase_ == 2) {
-            return (codeday.squareassault.protobuf.Messages.SetPosition) message_;
-          }
-          return codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance();
-        } else {
-          if (messageCase_ == 2) {
-            return positionBuilder_.getMessage();
-          }
-          return codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public Builder setPosition(codeday.squareassault.protobuf.Messages.SetPosition value) {
-        if (positionBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          message_ = value;
-          onChanged();
-        } else {
-          positionBuilder_.setMessage(value);
-        }
-        messageCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public Builder setPosition(
-          codeday.squareassault.protobuf.Messages.SetPosition.Builder builderForValue) {
-        if (positionBuilder_ == null) {
-          message_ = builderForValue.build();
-          onChanged();
-        } else {
-          positionBuilder_.setMessage(builderForValue.build());
-        }
-        messageCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public Builder mergePosition(codeday.squareassault.protobuf.Messages.SetPosition value) {
-        if (positionBuilder_ == null) {
-          if (messageCase_ == 2 &&
-              message_ != codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance()) {
-            message_ = codeday.squareassault.protobuf.Messages.SetPosition.newBuilder((codeday.squareassault.protobuf.Messages.SetPosition) message_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            message_ = value;
-          }
-          onChanged();
-        } else {
-          if (messageCase_ == 2) {
-            positionBuilder_.mergeFrom(value);
-          }
-          positionBuilder_.setMessage(value);
-        }
-        messageCase_ = 2;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public Builder clearPosition() {
-        if (positionBuilder_ == null) {
-          if (messageCase_ == 2) {
-            messageCase_ = 0;
-            message_ = null;
-            onChanged();
-          }
-        } else {
-          if (messageCase_ == 2) {
-            messageCase_ = 0;
-            message_ = null;
-          }
-          positionBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.SetPosition.Builder getPositionBuilder() {
-        return getPositionFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.SetPositionOrBuilder getPositionOrBuilder() {
-        if ((messageCase_ == 2) && (positionBuilder_ != null)) {
-          return positionBuilder_.getMessageOrBuilder();
-        } else {
-          if (messageCase_ == 2) {
-            return (codeday.squareassault.protobuf.Messages.SetPosition) message_;
-          }
-          return codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>optional .tutorial.SetPosition position = 2;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.Messages.SetPosition, codeday.squareassault.protobuf.Messages.SetPosition.Builder, codeday.squareassault.protobuf.Messages.SetPositionOrBuilder> 
-          getPositionFieldBuilder() {
-        if (positionBuilder_ == null) {
-          if (!(messageCase_ == 2)) {
-            message_ = codeday.squareassault.protobuf.Messages.SetPosition.getDefaultInstance();
-          }
-          positionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              codeday.squareassault.protobuf.Messages.SetPosition, codeday.squareassault.protobuf.Messages.SetPosition.Builder, codeday.squareassault.protobuf.Messages.SetPositionOrBuilder>(
-                  (codeday.squareassault.protobuf.Messages.SetPosition) message_,
-                  getParentForChildren(),
-                  isClean());
-          message_ = null;
-        }
-        messageCase_ = 2;
-        return positionBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.Messages.PlaceTurret, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder, codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder> turretBuilder_;
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public boolean hasTurret() {
-        return messageCase_ == 3;
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.PlaceTurret getTurret() {
-        if (turretBuilder_ == null) {
-          if (messageCase_ == 3) {
-            return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
-          }
-          return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-        } else {
-          if (messageCase_ == 3) {
-            return turretBuilder_.getMessage();
-          }
-          return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public Builder setTurret(codeday.squareassault.protobuf.Messages.PlaceTurret value) {
-        if (turretBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          message_ = value;
-          onChanged();
-        } else {
-          turretBuilder_.setMessage(value);
-        }
-        messageCase_ = 3;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public Builder setTurret(
-          codeday.squareassault.protobuf.Messages.PlaceTurret.Builder builderForValue) {
-        if (turretBuilder_ == null) {
-          message_ = builderForValue.build();
-          onChanged();
-        } else {
-          turretBuilder_.setMessage(builderForValue.build());
-        }
-        messageCase_ = 3;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public Builder mergeTurret(codeday.squareassault.protobuf.Messages.PlaceTurret value) {
-        if (turretBuilder_ == null) {
-          if (messageCase_ == 3 &&
-              message_ != codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance()) {
-            message_ = codeday.squareassault.protobuf.Messages.PlaceTurret.newBuilder((codeday.squareassault.protobuf.Messages.PlaceTurret) message_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            message_ = value;
-          }
-          onChanged();
-        } else {
-          if (messageCase_ == 3) {
-            turretBuilder_.mergeFrom(value);
-          }
-          turretBuilder_.setMessage(value);
-        }
-        messageCase_ = 3;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public Builder clearTurret() {
-        if (turretBuilder_ == null) {
-          if (messageCase_ == 3) {
-            messageCase_ = 0;
-            message_ = null;
-            onChanged();
-          }
-        } else {
-          if (messageCase_ == 3) {
-            messageCase_ = 0;
-            message_ = null;
-          }
-          turretBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.PlaceTurret.Builder getTurretBuilder() {
-        return getTurretFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder getTurretOrBuilder() {
-        if ((messageCase_ == 3) && (turretBuilder_ != null)) {
-          return turretBuilder_.getMessageOrBuilder();
-        } else {
-          if (messageCase_ == 3) {
-            return (codeday.squareassault.protobuf.Messages.PlaceTurret) message_;
-          }
-          return codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>optional .tutorial.PlaceTurret turret = 3;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.Messages.PlaceTurret, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder, codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder> 
-          getTurretFieldBuilder() {
-        if (turretBuilder_ == null) {
-          if (!(messageCase_ == 3)) {
-            message_ = codeday.squareassault.protobuf.Messages.PlaceTurret.getDefaultInstance();
-          }
-          turretBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              codeday.squareassault.protobuf.Messages.PlaceTurret, codeday.squareassault.protobuf.Messages.PlaceTurret.Builder, codeday.squareassault.protobuf.Messages.PlaceTurretOrBuilder>(
-                  (codeday.squareassault.protobuf.Messages.PlaceTurret) message_,
-                  getParentForChildren(),
-                  isClean());
-          message_ = null;
-        }
-        messageCase_ = 3;
-        return turretBuilder_;
-      }
-
-      private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder> chatBuilder_;
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public boolean hasChat() {
-        return messageCase_ == 4;
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.SendChat getChat() {
-        if (chatBuilder_ == null) {
-          if (messageCase_ == 4) {
-            return (codeday.squareassault.protobuf.Messages.SendChat) message_;
-          }
-          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-        } else {
-          if (messageCase_ == 4) {
-            return chatBuilder_.getMessage();
-          }
-          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public Builder setChat(codeday.squareassault.protobuf.Messages.SendChat value) {
-        if (chatBuilder_ == null) {
-          if (value == null) {
-            throw new NullPointerException();
-          }
-          message_ = value;
-          onChanged();
-        } else {
-          chatBuilder_.setMessage(value);
-        }
-        messageCase_ = 4;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public Builder setChat(
-          codeday.squareassault.protobuf.Messages.SendChat.Builder builderForValue) {
-        if (chatBuilder_ == null) {
-          message_ = builderForValue.build();
-          onChanged();
-        } else {
-          chatBuilder_.setMessage(builderForValue.build());
-        }
-        messageCase_ = 4;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public Builder mergeChat(codeday.squareassault.protobuf.Messages.SendChat value) {
-        if (chatBuilder_ == null) {
-          if (messageCase_ == 4 &&
-              message_ != codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance()) {
-            message_ = codeday.squareassault.protobuf.Messages.SendChat.newBuilder((codeday.squareassault.protobuf.Messages.SendChat) message_)
-                .mergeFrom(value).buildPartial();
-          } else {
-            message_ = value;
-          }
-          onChanged();
-        } else {
-          if (messageCase_ == 4) {
-            chatBuilder_.mergeFrom(value);
-          }
-          chatBuilder_.setMessage(value);
-        }
-        messageCase_ = 4;
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public Builder clearChat() {
-        if (chatBuilder_ == null) {
-          if (messageCase_ == 4) {
-            messageCase_ = 0;
-            message_ = null;
-            onChanged();
-          }
-        } else {
-          if (messageCase_ == 4) {
-            messageCase_ = 0;
-            message_ = null;
-          }
-          chatBuilder_.clear();
-        }
-        return this;
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.SendChat.Builder getChatBuilder() {
-        return getChatFieldBuilder().getBuilder();
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      public codeday.squareassault.protobuf.Messages.SendChatOrBuilder getChatOrBuilder() {
-        if ((messageCase_ == 4) && (chatBuilder_ != null)) {
-          return chatBuilder_.getMessageOrBuilder();
-        } else {
-          if (messageCase_ == 4) {
-            return (codeday.squareassault.protobuf.Messages.SendChat) message_;
-          }
-          return codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-        }
-      }
-      /**
-       * <code>optional .tutorial.SendChat chat = 4;</code>
-       */
-      private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder> 
-          getChatFieldBuilder() {
-        if (chatBuilder_ == null) {
-          if (!(messageCase_ == 4)) {
-            message_ = codeday.squareassault.protobuf.Messages.SendChat.getDefaultInstance();
-          }
-          chatBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-              codeday.squareassault.protobuf.Messages.SendChat, codeday.squareassault.protobuf.Messages.SendChat.Builder, codeday.squareassault.protobuf.Messages.SendChatOrBuilder>(
-                  (codeday.squareassault.protobuf.Messages.SendChat) message_,
-                  getParentForChildren(),
-                  isClean());
-          message_ = null;
-        }
-        messageCase_ = 4;
-        return chatBuilder_;
-      }
-
-      // @@protoc_insertion_point(builder_scope:tutorial.ToServer)
-    }
-
-    static {
-      defaultInstance = new ToServer(true);
-      defaultInstance.initFields();
-    }
-
-    // @@protoc_insertion_point(class_scope:tutorial.ToServer)
-  }
-
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_Identify_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_Identify_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_PlaceTurret_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_PlaceTurret_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_SendPosition_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_SendPosition_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_SendChat_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_SendChat_fieldAccessorTable;
+  private static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_tutorial_ToServer_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_tutorial_ToServer_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_Connect_descriptor;
   private static
@@ -8027,20 +8702,10 @@ public final class Messages {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_Disconnect_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_tutorial_PlaceTurret_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_tutorial_PlaceTurret_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_TurretCount_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_TurretCount_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_tutorial_SendChat_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_tutorial_SendChat_fieldAccessorTable;
   private static final com.google.protobuf.Descriptors.Descriptor
     internal_static_tutorial_ChatMessage_descriptor;
   private static
@@ -8051,11 +8716,6 @@ public final class Messages {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_tutorial_ToClient_fieldAccessorTable;
-  private static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_tutorial_ToServer_descriptor;
-  private static
-    com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_tutorial_ToServer_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -8066,30 +8726,32 @@ public final class Messages {
   static {
     java.lang.String[] descriptorData = {
       "\n)codeday/squareassault/protobuf/main.pr" +
-      "oto\022\010tutorial\"\030\n\010Identify\022\014\n\004name\030\001 \001(\t\"" +
-      "7\n\007Connect\022\032\n\003map\030\001 \001(\0132\r.tutorial.Map\022\020" +
-      "\n\010objectID\030\002 \002(\r\"f\n\003Map\022\r\n\005width\030\001 \002(\r\022\016" +
-      "\n\006height\030\002 \002(\r\022\021\n\ttilenames\030\003 \003(\t\022\r\n\005cel" +
-      "ls\030\004 \003(\r\022\016\n\006spawnX\030\005 \003(\r\022\016\n\006spawnY\030\006 \003(\r" +
-      "\"\211\001\n\013SetPosition\022\016\n\006object\030\001 \001(\r\022\t\n\001x\030\002 " +
-      "\002(\r\022\t\n\001y\030\003 \002(\r\022\014\n\004icon\030\004 \001(\t\022\"\n\004type\030\005 \001" +
-      "(\0162\024.tutorial.ObjectType\022\022\n\006parent\030\006 \001(\005" +
-      ":\002-1\022\016\n\006health\030\007 \001(\r\"\034\n\nDisconnect\022\016\n\006ob",
-      "ject\030\001 \002(\r\"#\n\013PlaceTurret\022\t\n\001x\030\001 \002(\r\022\t\n\001" +
-      "y\030\002 \002(\r\"-\n\013TurretCount\022\r\n\005count\030\001 \002(\r\022\017\n" +
-      "\007maximum\030\002 \002(\r\"\030\n\010SendChat\022\014\n\004text\030\001 \002(\t" +
-      "\"+\n\013ChatMessage\022\014\n\004text\030\001 \002(\t\022\016\n\006player\030" +
-      "\002 \002(\r\"\273\001\n\010ToClient\022)\n\010position\030\002 \001(\0132\025.t" +
-      "utorial.SetPositionH\000\022*\n\ndisconnect\030\003 \001(" +
-      "\0132\024.tutorial.DisconnectH\000\022&\n\005count\030\004 \001(\013" +
-      "2\025.tutorial.TurretCountH\000\022%\n\004chat\030\005 \001(\0132" +
-      "\025.tutorial.ChatMessageH\000B\t\n\007message\"\215\001\n\010" +
-      "ToServer\022)\n\010position\030\002 \001(\0132\025.tutorial.Se",
-      "tPositionH\000\022\'\n\006turret\030\003 \001(\0132\025.tutorial.P" +
-      "laceTurretH\000\022\"\n\004chat\030\004 \001(\0132\022.tutorial.Se" +
-      "ndChatH\000B\t\n\007message*0\n\nObjectType\022\n\n\006PLA" +
-      "YER\020\000\022\n\n\006TURRET\020\001\022\n\n\006BULLET\020\002B*\n\036codeday" +
-      ".squareassault.protobufB\010Messages"
+      "oto\022\010tutorial\"-\n\010Identify\022\014\n\004name\030\001 \001(\t\022" +
+      "\023\n\010protocol\030\002 \001(\r:\0010\"#\n\013PlaceTurret\022\t\n\001x" +
+      "\030\001 \002(\r\022\t\n\001y\030\002 \002(\r\"$\n\014SendPosition\022\t\n\001x\030\002" +
+      " \002(\r\022\t\n\001y\030\003 \002(\r\"\030\n\010SendChat\022\014\n\004text\030\001 \002(" +
+      "\t\"\216\001\n\010ToServer\022*\n\010position\030\002 \001(\0132\026.tutor" +
+      "ial.SendPositionH\000\022\'\n\006turret\030\003 \001(\0132\025.tut" +
+      "orial.PlaceTurretH\000\022\"\n\004chat\030\004 \001(\0132\022.tuto" +
+      "rial.SendChatH\000B\t\n\007message\"L\n\007Connect\022\032\n" +
+      "\003map\030\001 \001(\0132\r.tutorial.Map\022\020\n\010objectID\030\002 ",
+      "\002(\r\022\023\n\010protocol\030\003 \001(\r:\0010\"f\n\003Map\022\r\n\005width" +
+      "\030\001 \002(\r\022\016\n\006height\030\002 \002(\r\022\021\n\ttilenames\030\003 \003(" +
+      "\t\022\r\n\005cells\030\004 \003(\r\022\016\n\006spawnX\030\005 \003(\r\022\016\n\006spaw" +
+      "nY\030\006 \003(\r\"\211\001\n\013SetPosition\022\016\n\006object\030\001 \002(\r" +
+      "\022\t\n\001x\030\002 \002(\r\022\t\n\001y\030\003 \002(\r\022\014\n\004icon\030\004 \001(\t\022\"\n\004" +
+      "type\030\005 \001(\0162\024.tutorial.ObjectType\022\022\n\006pare" +
+      "nt\030\006 \001(\005:\002-1\022\016\n\006health\030\007 \001(\r\"\034\n\nDisconne" +
+      "ct\022\016\n\006object\030\001 \002(\r\"-\n\013TurretCount\022\r\n\005cou" +
+      "nt\030\001 \002(\r\022\017\n\007maximum\030\002 \002(\r\"+\n\013ChatMessage" +
+      "\022\014\n\004text\030\001 \002(\t\022\016\n\006player\030\002 \002(\r\"\273\001\n\010ToCli",
+      "ent\022)\n\010position\030\002 \001(\0132\025.tutorial.SetPosi" +
+      "tionH\000\022*\n\ndisconnect\030\003 \001(\0132\024.tutorial.Di" +
+      "sconnectH\000\022&\n\005count\030\004 \001(\0132\025.tutorial.Tur" +
+      "retCountH\000\022%\n\004chat\030\005 \001(\0132\025.tutorial.Chat" +
+      "MessageH\000B\t\n\007message*0\n\nObjectType\022\n\n\006PL" +
+      "AYER\020\000\022\n\n\006TURRET\020\001\022\n\n\006BULLET\020\002B*\n\036codeda" +
+      "y.squareassault.protobufB\010Messages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -8108,67 +8770,73 @@ public final class Messages {
     internal_static_tutorial_Identify_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Identify_descriptor,
-        new java.lang.String[] { "Name", });
-    internal_static_tutorial_Connect_descriptor =
+        new java.lang.String[] { "Name", "Protocol", });
+    internal_static_tutorial_PlaceTurret_descriptor =
       getDescriptor().getMessageTypes().get(1);
+    internal_static_tutorial_PlaceTurret_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_PlaceTurret_descriptor,
+        new java.lang.String[] { "X", "Y", });
+    internal_static_tutorial_SendPosition_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_tutorial_SendPosition_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_SendPosition_descriptor,
+        new java.lang.String[] { "X", "Y", });
+    internal_static_tutorial_SendChat_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_tutorial_SendChat_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_SendChat_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_tutorial_ToServer_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_tutorial_ToServer_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_tutorial_ToServer_descriptor,
+        new java.lang.String[] { "Position", "Turret", "Chat", "Message", });
+    internal_static_tutorial_Connect_descriptor =
+      getDescriptor().getMessageTypes().get(5);
     internal_static_tutorial_Connect_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Connect_descriptor,
-        new java.lang.String[] { "Map", "ObjectID", });
+        new java.lang.String[] { "Map", "ObjectID", "Protocol", });
     internal_static_tutorial_Map_descriptor =
-      getDescriptor().getMessageTypes().get(2);
+      getDescriptor().getMessageTypes().get(6);
     internal_static_tutorial_Map_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Map_descriptor,
         new java.lang.String[] { "Width", "Height", "Tilenames", "Cells", "SpawnX", "SpawnY", });
     internal_static_tutorial_SetPosition_descriptor =
-      getDescriptor().getMessageTypes().get(3);
+      getDescriptor().getMessageTypes().get(7);
     internal_static_tutorial_SetPosition_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_SetPosition_descriptor,
         new java.lang.String[] { "Object", "X", "Y", "Icon", "Type", "Parent", "Health", });
     internal_static_tutorial_Disconnect_descriptor =
-      getDescriptor().getMessageTypes().get(4);
+      getDescriptor().getMessageTypes().get(8);
     internal_static_tutorial_Disconnect_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Disconnect_descriptor,
         new java.lang.String[] { "Object", });
-    internal_static_tutorial_PlaceTurret_descriptor =
-      getDescriptor().getMessageTypes().get(5);
-    internal_static_tutorial_PlaceTurret_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_tutorial_PlaceTurret_descriptor,
-        new java.lang.String[] { "X", "Y", });
     internal_static_tutorial_TurretCount_descriptor =
-      getDescriptor().getMessageTypes().get(6);
+      getDescriptor().getMessageTypes().get(9);
     internal_static_tutorial_TurretCount_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_TurretCount_descriptor,
         new java.lang.String[] { "Count", "Maximum", });
-    internal_static_tutorial_SendChat_descriptor =
-      getDescriptor().getMessageTypes().get(7);
-    internal_static_tutorial_SendChat_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_tutorial_SendChat_descriptor,
-        new java.lang.String[] { "Text", });
     internal_static_tutorial_ChatMessage_descriptor =
-      getDescriptor().getMessageTypes().get(8);
+      getDescriptor().getMessageTypes().get(10);
     internal_static_tutorial_ChatMessage_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ChatMessage_descriptor,
         new java.lang.String[] { "Text", "Player", });
     internal_static_tutorial_ToClient_descriptor =
-      getDescriptor().getMessageTypes().get(9);
+      getDescriptor().getMessageTypes().get(11);
     internal_static_tutorial_ToClient_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ToClient_descriptor,
         new java.lang.String[] { "Position", "Disconnect", "Count", "Chat", "Message", });
-    internal_static_tutorial_ToServer_descriptor =
-      getDescriptor().getMessageTypes().get(10);
-    internal_static_tutorial_ToServer_fieldAccessorTable = new
-      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_tutorial_ToServer_descriptor,
-        new java.lang.String[] { "Position", "Turret", "Chat", "Message", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

@@ -132,7 +132,7 @@ public class Context {
 			if (!canMoveTo(curX, curY)) {
 				return false;
 			}
-			net.send(Messages.ToServer.newBuilder().setPosition(Messages.SetPosition.newBuilder().setX(curX).setY(curY)).build());
+			net.send(Messages.ToServer.newBuilder().setPosition(Messages.SendPosition.newBuilder().setX(curX).setY(curY)).build());
 			this.x = curX;
 			this.y = curY;
 			return true;
