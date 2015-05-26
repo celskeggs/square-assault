@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Launcher extends JPanel implements KeyListener, MouseListener {
-	private static final String SERVER_ADDR = "tethys.colbyskeggs.com";//"10.105.176.242";//"127.0.0.1";
+	public static final int MAX_CHAT_LINES = 10;
+	private static final String SERVER_ADDR = "tethys.colbyskeggs.com";// "10.105.176.242";//"127.0.0.1";
 	private static final long serialVersionUID = -4540493147431023697L;
 	protected static final Font font = new Font("Monospace", Font.BOLD, 14);
 
@@ -43,7 +44,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 
 	private void execute() {
 		try {
-			net.handleAll(context);
+			net.handleAll();
 		} catch (InterruptedException e) {
 			e.printStackTrace(); // TODO: logging
 		}
@@ -55,18 +56,19 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 			throw new RuntimeException("No username.");
 		}
 		this.net = new Network(SERVER_ADDR, username);
-		context = new Context(net);
+		context = net.getNetworkedModel();
+		controller = new Controller(context);
 		view = new View(context);
-		context.view = view;
 		new Timer().schedule(new TimerTask() {
 			@Override
 			public void run() {
 				try {
-					context.tick();
+					controller.tick();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 				view.tick(getWidth(), getHeight());
+				net.synch();
 			}
 		}, View.UPDATE_DELAY_MILLIS, View.UPDATE_DELAY_MILLIS);
 		new Timer().schedule(new TimerTask() {
@@ -92,7 +94,8 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 	}
 
 	private final Network net;
-	private final Context context;
+	private final Controller controller;
+	private final MainModel context;
 	private final View view;
 	private BufferedImage image;
 	private Graphics2D imgG;
@@ -109,7 +112,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 	@Override
 	public void keyPressed(KeyEvent arg0) {
 		try {
-			context.handleKey(arg0.getKeyCode(), arg0.getKeyChar(), true);
+			controller.handleKey(arg0.getKeyCode(), arg0.getKeyChar(), true);
 		} catch (InterruptedException e) {
 			e.printStackTrace(); // TODO: logging
 		}
@@ -118,7 +121,7 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 	@Override
 	public void keyReleased(KeyEvent arg0) {
 		try {
-			context.handleKey(arg0.getKeyCode(), arg0.getKeyChar(), false);
+			controller.handleKey(arg0.getKeyCode(), arg0.getKeyChar(), false);
 		} catch (InterruptedException e) {
 			e.printStackTrace(); // TODO: logging
 		}
@@ -126,28 +129,24 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 
 	@Override
 	public void keyTyped(KeyEvent arg0) {
-
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
-
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-
 	}
 
 	@Override
 	public void mouseExited(MouseEvent arg0) {
-
 	}
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
 		try {
-			view.mousePress(arg0.getX(), arg0.getY(), arg0.getButton());
+			controller.mousePress(arg0.getX(), arg0.getY(), arg0.getButton());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -155,6 +154,5 @@ public class Launcher extends JPanel implements KeyListener, MouseListener {
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-
 	}
 }

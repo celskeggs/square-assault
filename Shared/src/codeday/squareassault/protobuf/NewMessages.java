@@ -3,6 +3,7 @@
 
 package codeday.squareassault.protobuf;
 
+@SuppressWarnings("unused")
 public final class NewMessages {
   private NewMessages() {}
   public static void registerAllExtensions(
@@ -667,34 +668,34 @@ public final class NewMessages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional .tutorial.Map world_map = 1;</code>
+     * <code>optional .tutorial.Map map = 1;</code>
      */
-    boolean hasWorldMap();
+    boolean hasMap();
     /**
-     * <code>optional .tutorial.Map world_map = 1;</code>
+     * <code>optional .tutorial.Map map = 1;</code>
      */
-    codeday.squareassault.protobuf.NewMessages.Map getWorldMap();
+    codeday.squareassault.protobuf.NewMessages.Map getMap();
     /**
-     * <code>optional .tutorial.Map world_map = 1;</code>
+     * <code>optional .tutorial.Map map = 1;</code>
      */
-    codeday.squareassault.protobuf.NewMessages.MapOrBuilder getWorldMapOrBuilder();
+    codeday.squareassault.protobuf.NewMessages.MapOrBuilder getMapOrBuilder();
 
     /**
-     * <code>optional uint32 objectID = 2;</code>
+     * <code>optional uint32 playerID = 2;</code>
      *
      * <pre>
      * must be set to a value for old clients to work
      * </pre>
      */
-    boolean hasObjectID();
+    boolean hasPlayerID();
     /**
-     * <code>optional uint32 objectID = 2;</code>
+     * <code>optional uint32 playerID = 2;</code>
      *
      * <pre>
      * must be set to a value for old clients to work
      * </pre>
      */
-    int getObjectID();
+    int getPlayerID();
 
     /**
      * <code>optional uint32 protocol = 3 [default = 0];</code>
@@ -714,27 +715,27 @@ public final class NewMessages {
     int getProtocol();
 
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
     java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> 
-        getEntitiesList();
+        getEntityList();
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    codeday.squareassault.protobuf.NewMessages.Entity getEntities(int index);
+    codeday.squareassault.protobuf.NewMessages.Entity getEntity(int index);
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    int getEntitiesCount();
+    int getEntityCount();
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
     java.util.List<? extends codeday.squareassault.protobuf.NewMessages.EntityOrBuilder> 
-        getEntitiesOrBuilderList();
+        getEntityOrBuilderList();
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    codeday.squareassault.protobuf.NewMessages.EntityOrBuilder getEntitiesOrBuilder(
+    codeday.squareassault.protobuf.NewMessages.EntityOrBuilder getEntityOrBuilder(
         int index);
 
     /**
@@ -820,19 +821,19 @@ public final class NewMessages {
             case 10: {
               codeday.squareassault.protobuf.NewMessages.Map.Builder subBuilder = null;
               if (((bitField0_ & 0x00000001) == 0x00000001)) {
-                subBuilder = worldMap_.toBuilder();
+                subBuilder = map_.toBuilder();
               }
-              worldMap_ = input.readMessage(codeday.squareassault.protobuf.NewMessages.Map.PARSER, extensionRegistry);
+              map_ = input.readMessage(codeday.squareassault.protobuf.NewMessages.Map.PARSER, extensionRegistry);
               if (subBuilder != null) {
-                subBuilder.mergeFrom(worldMap_);
-                worldMap_ = subBuilder.buildPartial();
+                subBuilder.mergeFrom(map_);
+                map_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000001;
               break;
             }
             case 16: {
               bitField0_ |= 0x00000002;
-              objectID_ = input.readUInt32();
+              playerID_ = input.readUInt32();
               break;
             }
             case 24: {
@@ -842,10 +843,10 @@ public final class NewMessages {
             }
             case 34: {
               if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                entities_ = new java.util.ArrayList<codeday.squareassault.protobuf.NewMessages.Entity>();
+                entity_ = new java.util.ArrayList<codeday.squareassault.protobuf.NewMessages.Entity>();
                 mutable_bitField0_ |= 0x00000008;
               }
-              entities_.add(input.readMessage(codeday.squareassault.protobuf.NewMessages.Entity.PARSER, extensionRegistry));
+              entity_.add(input.readMessage(codeday.squareassault.protobuf.NewMessages.Entity.PARSER, extensionRegistry));
               break;
             }
             case 42: {
@@ -865,7 +866,7 @@ public final class NewMessages {
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-          entities_ = java.util.Collections.unmodifiableList(entities_);
+          entity_ = java.util.Collections.unmodifiableList(entity_);
         }
         if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
           chat_ = java.util.Collections.unmodifiableList(chat_);
@@ -902,48 +903,48 @@ public final class NewMessages {
     }
 
     private int bitField0_;
-    public static final int WORLD_MAP_FIELD_NUMBER = 1;
-    private codeday.squareassault.protobuf.NewMessages.Map worldMap_;
+    public static final int MAP_FIELD_NUMBER = 1;
+    private codeday.squareassault.protobuf.NewMessages.Map map_;
     /**
-     * <code>optional .tutorial.Map world_map = 1;</code>
+     * <code>optional .tutorial.Map map = 1;</code>
      */
-    public boolean hasWorldMap() {
+    public boolean hasMap() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional .tutorial.Map world_map = 1;</code>
+     * <code>optional .tutorial.Map map = 1;</code>
      */
-    public codeday.squareassault.protobuf.NewMessages.Map getWorldMap() {
-      return worldMap_;
+    public codeday.squareassault.protobuf.NewMessages.Map getMap() {
+      return map_;
     }
     /**
-     * <code>optional .tutorial.Map world_map = 1;</code>
+     * <code>optional .tutorial.Map map = 1;</code>
      */
-    public codeday.squareassault.protobuf.NewMessages.MapOrBuilder getWorldMapOrBuilder() {
-      return worldMap_;
+    public codeday.squareassault.protobuf.NewMessages.MapOrBuilder getMapOrBuilder() {
+      return map_;
     }
 
-    public static final int OBJECTID_FIELD_NUMBER = 2;
-    private int objectID_;
+    public static final int PLAYERID_FIELD_NUMBER = 2;
+    private int playerID_;
     /**
-     * <code>optional uint32 objectID = 2;</code>
+     * <code>optional uint32 playerID = 2;</code>
      *
      * <pre>
      * must be set to a value for old clients to work
      * </pre>
      */
-    public boolean hasObjectID() {
+    public boolean hasPlayerID() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>optional uint32 objectID = 2;</code>
+     * <code>optional uint32 playerID = 2;</code>
      *
      * <pre>
      * must be set to a value for old clients to work
      * </pre>
      */
-    public int getObjectID() {
-      return objectID_;
+    public int getPlayerID() {
+      return playerID_;
     }
 
     public static final int PROTOCOL_FIELD_NUMBER = 3;
@@ -969,39 +970,39 @@ public final class NewMessages {
       return protocol_;
     }
 
-    public static final int ENTITIES_FIELD_NUMBER = 4;
-    private java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> entities_;
+    public static final int ENTITY_FIELD_NUMBER = 4;
+    private java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> entity_;
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    public java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> getEntitiesList() {
-      return entities_;
+    public java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> getEntityList() {
+      return entity_;
     }
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
     public java.util.List<? extends codeday.squareassault.protobuf.NewMessages.EntityOrBuilder> 
-        getEntitiesOrBuilderList() {
-      return entities_;
+        getEntityOrBuilderList() {
+      return entity_;
     }
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    public int getEntitiesCount() {
-      return entities_.size();
+    public int getEntityCount() {
+      return entity_.size();
     }
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    public codeday.squareassault.protobuf.NewMessages.Entity getEntities(int index) {
-      return entities_.get(index);
+    public codeday.squareassault.protobuf.NewMessages.Entity getEntity(int index) {
+      return entity_.get(index);
     }
     /**
-     * <code>repeated .tutorial.Entity entities = 4;</code>
+     * <code>repeated .tutorial.Entity entity = 4;</code>
      */
-    public codeday.squareassault.protobuf.NewMessages.EntityOrBuilder getEntitiesOrBuilder(
+    public codeday.squareassault.protobuf.NewMessages.EntityOrBuilder getEntityOrBuilder(
         int index) {
-      return entities_.get(index);
+      return entity_.get(index);
     }
 
     public static final int CHAT_FIELD_NUMBER = 5;
@@ -1040,10 +1041,10 @@ public final class NewMessages {
     }
 
     private void initFields() {
-      worldMap_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
-      objectID_ = 0;
+      map_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
+      playerID_ = 0;
       protocol_ = 0;
-      entities_ = java.util.Collections.emptyList();
+      entity_ = java.util.Collections.emptyList();
       chat_ = java.util.Collections.emptyList();
     }
     private byte memoizedIsInitialized = -1;
@@ -1052,8 +1053,8 @@ public final class NewMessages {
       if (isInitialized == 1) return true;
       if (isInitialized == 0) return false;
 
-      if (hasWorldMap()) {
-        if (!getWorldMap().isInitialized()) {
+      if (hasMap()) {
+        if (!getMap().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -1066,16 +1067,16 @@ public final class NewMessages {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, worldMap_);
+        output.writeMessage(1, map_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, objectID_);
+        output.writeUInt32(2, playerID_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(3, protocol_);
       }
-      for (int i = 0; i < entities_.size(); i++) {
-        output.writeMessage(4, entities_.get(i));
+      for (int i = 0; i < entity_.size(); i++) {
+        output.writeMessage(4, entity_.get(i));
       }
       for (int i = 0; i < chat_.size(); i++) {
         output.writeMessage(5, chat_.get(i));
@@ -1091,19 +1092,19 @@ public final class NewMessages {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, worldMap_);
+          .computeMessageSize(1, map_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, objectID_);
+          .computeUInt32Size(2, playerID_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(3, protocol_);
       }
-      for (int i = 0; i < entities_.size(); i++) {
+      for (int i = 0; i < entity_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, entities_.get(i));
+          .computeMessageSize(4, entity_.get(i));
       }
       for (int i = 0; i < chat_.size(); i++) {
         size += com.google.protobuf.CodedOutputStream
@@ -1222,8 +1223,8 @@ public final class NewMessages {
       }
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
-          getWorldMapFieldBuilder();
-          getEntitiesFieldBuilder();
+          getMapFieldBuilder();
+          getEntityFieldBuilder();
           getChatFieldBuilder();
         }
       }
@@ -1233,21 +1234,21 @@ public final class NewMessages {
 
       public Builder clear() {
         super.clear();
-        if (worldMapBuilder_ == null) {
-          worldMap_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
+        if (mapBuilder_ == null) {
+          map_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
         } else {
-          worldMapBuilder_.clear();
+          mapBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
-        objectID_ = 0;
+        playerID_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
         protocol_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (entitiesBuilder_ == null) {
-          entities_ = java.util.Collections.emptyList();
+        if (entityBuilder_ == null) {
+          entity_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000008);
         } else {
-          entitiesBuilder_.clear();
+          entityBuilder_.clear();
         }
         if (chatBuilder_ == null) {
           chat_ = java.util.Collections.emptyList();
@@ -1286,27 +1287,27 @@ public final class NewMessages {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        if (worldMapBuilder_ == null) {
-          result.worldMap_ = worldMap_;
+        if (mapBuilder_ == null) {
+          result.map_ = map_;
         } else {
-          result.worldMap_ = worldMapBuilder_.build();
+          result.map_ = mapBuilder_.build();
         }
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.objectID_ = objectID_;
+        result.playerID_ = playerID_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
         result.protocol_ = protocol_;
-        if (entitiesBuilder_ == null) {
+        if (entityBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008)) {
-            entities_ = java.util.Collections.unmodifiableList(entities_);
+            entity_ = java.util.Collections.unmodifiableList(entity_);
             bitField0_ = (bitField0_ & ~0x00000008);
           }
-          result.entities_ = entities_;
+          result.entity_ = entity_;
         } else {
-          result.entities_ = entitiesBuilder_.build();
+          result.entity_ = entityBuilder_.build();
         }
         if (chatBuilder_ == null) {
           if (((bitField0_ & 0x00000010) == 0x00000010)) {
@@ -1333,38 +1334,38 @@ public final class NewMessages {
 
       public Builder mergeFrom(codeday.squareassault.protobuf.NewMessages.Model other) {
         if (other == codeday.squareassault.protobuf.NewMessages.Model.getDefaultInstance()) return this;
-        if (other.hasWorldMap()) {
-          mergeWorldMap(other.getWorldMap());
+        if (other.hasMap()) {
+          mergeMap(other.getMap());
         }
-        if (other.hasObjectID()) {
-          setObjectID(other.getObjectID());
+        if (other.hasPlayerID()) {
+          setPlayerID(other.getPlayerID());
         }
         if (other.hasProtocol()) {
           setProtocol(other.getProtocol());
         }
-        if (entitiesBuilder_ == null) {
-          if (!other.entities_.isEmpty()) {
-            if (entities_.isEmpty()) {
-              entities_ = other.entities_;
+        if (entityBuilder_ == null) {
+          if (!other.entity_.isEmpty()) {
+            if (entity_.isEmpty()) {
+              entity_ = other.entity_;
               bitField0_ = (bitField0_ & ~0x00000008);
             } else {
-              ensureEntitiesIsMutable();
-              entities_.addAll(other.entities_);
+              ensureEntityIsMutable();
+              entity_.addAll(other.entity_);
             }
             onChanged();
           }
         } else {
-          if (!other.entities_.isEmpty()) {
-            if (entitiesBuilder_.isEmpty()) {
-              entitiesBuilder_.dispose();
-              entitiesBuilder_ = null;
-              entities_ = other.entities_;
+          if (!other.entity_.isEmpty()) {
+            if (entityBuilder_.isEmpty()) {
+              entityBuilder_.dispose();
+              entityBuilder_ = null;
+              entity_ = other.entity_;
               bitField0_ = (bitField0_ & ~0x00000008);
-              entitiesBuilder_ = 
+              entityBuilder_ = 
                 com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
-                   getEntitiesFieldBuilder() : null;
+                   getEntityFieldBuilder() : null;
             } else {
-              entitiesBuilder_.addAllMessages(other.entities_);
+              entityBuilder_.addAllMessages(other.entity_);
             }
           }
         }
@@ -1399,8 +1400,8 @@ public final class NewMessages {
       }
 
       public final boolean isInitialized() {
-        if (hasWorldMap()) {
-          if (!getWorldMap().isInitialized()) {
+        if (hasMap()) {
+          if (!getMap().isInitialized()) {
             
             return false;
           }
@@ -1427,166 +1428,166 @@ public final class NewMessages {
       }
       private int bitField0_;
 
-      private codeday.squareassault.protobuf.NewMessages.Map worldMap_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
+      private codeday.squareassault.protobuf.NewMessages.Map map_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          codeday.squareassault.protobuf.NewMessages.Map, codeday.squareassault.protobuf.NewMessages.Map.Builder, codeday.squareassault.protobuf.NewMessages.MapOrBuilder> worldMapBuilder_;
+          codeday.squareassault.protobuf.NewMessages.Map, codeday.squareassault.protobuf.NewMessages.Map.Builder, codeday.squareassault.protobuf.NewMessages.MapOrBuilder> mapBuilder_;
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public boolean hasWorldMap() {
+      public boolean hasMap() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.Map getWorldMap() {
-        if (worldMapBuilder_ == null) {
-          return worldMap_;
+      public codeday.squareassault.protobuf.NewMessages.Map getMap() {
+        if (mapBuilder_ == null) {
+          return map_;
         } else {
-          return worldMapBuilder_.getMessage();
+          return mapBuilder_.getMessage();
         }
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public Builder setWorldMap(codeday.squareassault.protobuf.NewMessages.Map value) {
-        if (worldMapBuilder_ == null) {
+      public Builder setMap(codeday.squareassault.protobuf.NewMessages.Map value) {
+        if (mapBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          worldMap_ = value;
+          map_ = value;
           onChanged();
         } else {
-          worldMapBuilder_.setMessage(value);
+          mapBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public Builder setWorldMap(
+      public Builder setMap(
           codeday.squareassault.protobuf.NewMessages.Map.Builder builderForValue) {
-        if (worldMapBuilder_ == null) {
-          worldMap_ = builderForValue.build();
+        if (mapBuilder_ == null) {
+          map_ = builderForValue.build();
           onChanged();
         } else {
-          worldMapBuilder_.setMessage(builderForValue.build());
+          mapBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000001;
         return this;
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public Builder mergeWorldMap(codeday.squareassault.protobuf.NewMessages.Map value) {
-        if (worldMapBuilder_ == null) {
+      public Builder mergeMap(codeday.squareassault.protobuf.NewMessages.Map value) {
+        if (mapBuilder_ == null) {
           if (((bitField0_ & 0x00000001) == 0x00000001) &&
-              worldMap_ != codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance()) {
-            worldMap_ =
-              codeday.squareassault.protobuf.NewMessages.Map.newBuilder(worldMap_).mergeFrom(value).buildPartial();
+              map_ != codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance()) {
+            map_ =
+              codeday.squareassault.protobuf.NewMessages.Map.newBuilder(map_).mergeFrom(value).buildPartial();
           } else {
-            worldMap_ = value;
+            map_ = value;
           }
           onChanged();
         } else {
-          worldMapBuilder_.mergeFrom(value);
+          mapBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000001;
         return this;
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public Builder clearWorldMap() {
-        if (worldMapBuilder_ == null) {
-          worldMap_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
+      public Builder clearMap() {
+        if (mapBuilder_ == null) {
+          map_ = codeday.squareassault.protobuf.NewMessages.Map.getDefaultInstance();
           onChanged();
         } else {
-          worldMapBuilder_.clear();
+          mapBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
         return this;
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.Map.Builder getWorldMapBuilder() {
+      public codeday.squareassault.protobuf.NewMessages.Map.Builder getMapBuilder() {
         bitField0_ |= 0x00000001;
         onChanged();
-        return getWorldMapFieldBuilder().getBuilder();
+        return getMapFieldBuilder().getBuilder();
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.MapOrBuilder getWorldMapOrBuilder() {
-        if (worldMapBuilder_ != null) {
-          return worldMapBuilder_.getMessageOrBuilder();
+      public codeday.squareassault.protobuf.NewMessages.MapOrBuilder getMapOrBuilder() {
+        if (mapBuilder_ != null) {
+          return mapBuilder_.getMessageOrBuilder();
         } else {
-          return worldMap_;
+          return map_;
         }
       }
       /**
-       * <code>optional .tutorial.Map world_map = 1;</code>
+       * <code>optional .tutorial.Map map = 1;</code>
        */
       private com.google.protobuf.SingleFieldBuilder<
           codeday.squareassault.protobuf.NewMessages.Map, codeday.squareassault.protobuf.NewMessages.Map.Builder, codeday.squareassault.protobuf.NewMessages.MapOrBuilder> 
-          getWorldMapFieldBuilder() {
-        if (worldMapBuilder_ == null) {
-          worldMapBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getMapFieldBuilder() {
+        if (mapBuilder_ == null) {
+          mapBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               codeday.squareassault.protobuf.NewMessages.Map, codeday.squareassault.protobuf.NewMessages.Map.Builder, codeday.squareassault.protobuf.NewMessages.MapOrBuilder>(
-                  getWorldMap(),
+                  getMap(),
                   getParentForChildren(),
                   isClean());
-          worldMap_ = null;
+          map_ = null;
         }
-        return worldMapBuilder_;
+        return mapBuilder_;
       }
 
-      private int objectID_ ;
+      private int playerID_ ;
       /**
-       * <code>optional uint32 objectID = 2;</code>
+       * <code>optional uint32 playerID = 2;</code>
        *
        * <pre>
        * must be set to a value for old clients to work
        * </pre>
        */
-      public boolean hasObjectID() {
+      public boolean hasPlayerID() {
         return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       /**
-       * <code>optional uint32 objectID = 2;</code>
+       * <code>optional uint32 playerID = 2;</code>
        *
        * <pre>
        * must be set to a value for old clients to work
        * </pre>
        */
-      public int getObjectID() {
-        return objectID_;
+      public int getPlayerID() {
+        return playerID_;
       }
       /**
-       * <code>optional uint32 objectID = 2;</code>
+       * <code>optional uint32 playerID = 2;</code>
        *
        * <pre>
        * must be set to a value for old clients to work
        * </pre>
        */
-      public Builder setObjectID(int value) {
+      public Builder setPlayerID(int value) {
         bitField0_ |= 0x00000002;
-        objectID_ = value;
+        playerID_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 objectID = 2;</code>
+       * <code>optional uint32 playerID = 2;</code>
        *
        * <pre>
        * must be set to a value for old clients to work
        * </pre>
        */
-      public Builder clearObjectID() {
+      public Builder clearPlayerID() {
         bitField0_ = (bitField0_ & ~0x00000002);
-        objectID_ = 0;
+        playerID_ = 0;
         onChanged();
         return this;
       }
@@ -1639,244 +1640,244 @@ public final class NewMessages {
         return this;
       }
 
-      private java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> entities_ =
+      private java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> entity_ =
         java.util.Collections.emptyList();
-      private void ensureEntitiesIsMutable() {
+      private void ensureEntityIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          entities_ = new java.util.ArrayList<codeday.squareassault.protobuf.NewMessages.Entity>(entities_);
+          entity_ = new java.util.ArrayList<codeday.squareassault.protobuf.NewMessages.Entity>(entity_);
           bitField0_ |= 0x00000008;
          }
       }
 
       private com.google.protobuf.RepeatedFieldBuilder<
-          codeday.squareassault.protobuf.NewMessages.Entity, codeday.squareassault.protobuf.NewMessages.Entity.Builder, codeday.squareassault.protobuf.NewMessages.EntityOrBuilder> entitiesBuilder_;
+          codeday.squareassault.protobuf.NewMessages.Entity, codeday.squareassault.protobuf.NewMessages.Entity.Builder, codeday.squareassault.protobuf.NewMessages.EntityOrBuilder> entityBuilder_;
 
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> getEntitiesList() {
-        if (entitiesBuilder_ == null) {
-          return java.util.Collections.unmodifiableList(entities_);
+      public java.util.List<codeday.squareassault.protobuf.NewMessages.Entity> getEntityList() {
+        if (entityBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(entity_);
         } else {
-          return entitiesBuilder_.getMessageList();
+          return entityBuilder_.getMessageList();
         }
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public int getEntitiesCount() {
-        if (entitiesBuilder_ == null) {
-          return entities_.size();
+      public int getEntityCount() {
+        if (entityBuilder_ == null) {
+          return entity_.size();
         } else {
-          return entitiesBuilder_.getCount();
+          return entityBuilder_.getCount();
         }
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.Entity getEntities(int index) {
-        if (entitiesBuilder_ == null) {
-          return entities_.get(index);
+      public codeday.squareassault.protobuf.NewMessages.Entity getEntity(int index) {
+        if (entityBuilder_ == null) {
+          return entity_.get(index);
         } else {
-          return entitiesBuilder_.getMessage(index);
+          return entityBuilder_.getMessage(index);
         }
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder setEntities(
+      public Builder setEntity(
           int index, codeday.squareassault.protobuf.NewMessages.Entity value) {
-        if (entitiesBuilder_ == null) {
+        if (entityBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEntitiesIsMutable();
-          entities_.set(index, value);
+          ensureEntityIsMutable();
+          entity_.set(index, value);
           onChanged();
         } else {
-          entitiesBuilder_.setMessage(index, value);
+          entityBuilder_.setMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder setEntities(
+      public Builder setEntity(
           int index, codeday.squareassault.protobuf.NewMessages.Entity.Builder builderForValue) {
-        if (entitiesBuilder_ == null) {
-          ensureEntitiesIsMutable();
-          entities_.set(index, builderForValue.build());
+        if (entityBuilder_ == null) {
+          ensureEntityIsMutable();
+          entity_.set(index, builderForValue.build());
           onChanged();
         } else {
-          entitiesBuilder_.setMessage(index, builderForValue.build());
+          entityBuilder_.setMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder addEntities(codeday.squareassault.protobuf.NewMessages.Entity value) {
-        if (entitiesBuilder_ == null) {
+      public Builder addEntity(codeday.squareassault.protobuf.NewMessages.Entity value) {
+        if (entityBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEntitiesIsMutable();
-          entities_.add(value);
+          ensureEntityIsMutable();
+          entity_.add(value);
           onChanged();
         } else {
-          entitiesBuilder_.addMessage(value);
+          entityBuilder_.addMessage(value);
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder addEntities(
+      public Builder addEntity(
           int index, codeday.squareassault.protobuf.NewMessages.Entity value) {
-        if (entitiesBuilder_ == null) {
+        if (entityBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          ensureEntitiesIsMutable();
-          entities_.add(index, value);
+          ensureEntityIsMutable();
+          entity_.add(index, value);
           onChanged();
         } else {
-          entitiesBuilder_.addMessage(index, value);
+          entityBuilder_.addMessage(index, value);
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder addEntities(
+      public Builder addEntity(
           codeday.squareassault.protobuf.NewMessages.Entity.Builder builderForValue) {
-        if (entitiesBuilder_ == null) {
-          ensureEntitiesIsMutable();
-          entities_.add(builderForValue.build());
+        if (entityBuilder_ == null) {
+          ensureEntityIsMutable();
+          entity_.add(builderForValue.build());
           onChanged();
         } else {
-          entitiesBuilder_.addMessage(builderForValue.build());
+          entityBuilder_.addMessage(builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder addEntities(
+      public Builder addEntity(
           int index, codeday.squareassault.protobuf.NewMessages.Entity.Builder builderForValue) {
-        if (entitiesBuilder_ == null) {
-          ensureEntitiesIsMutable();
-          entities_.add(index, builderForValue.build());
+        if (entityBuilder_ == null) {
+          ensureEntityIsMutable();
+          entity_.add(index, builderForValue.build());
           onChanged();
         } else {
-          entitiesBuilder_.addMessage(index, builderForValue.build());
+          entityBuilder_.addMessage(index, builderForValue.build());
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder addAllEntities(
+      public Builder addAllEntity(
           java.lang.Iterable<? extends codeday.squareassault.protobuf.NewMessages.Entity> values) {
-        if (entitiesBuilder_ == null) {
-          ensureEntitiesIsMutable();
+        if (entityBuilder_ == null) {
+          ensureEntityIsMutable();
           com.google.protobuf.AbstractMessageLite.Builder.addAll(
-              values, entities_);
+              values, entity_);
           onChanged();
         } else {
-          entitiesBuilder_.addAllMessages(values);
+          entityBuilder_.addAllMessages(values);
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder clearEntities() {
-        if (entitiesBuilder_ == null) {
-          entities_ = java.util.Collections.emptyList();
+      public Builder clearEntity() {
+        if (entityBuilder_ == null) {
+          entity_ = java.util.Collections.emptyList();
           bitField0_ = (bitField0_ & ~0x00000008);
           onChanged();
         } else {
-          entitiesBuilder_.clear();
+          entityBuilder_.clear();
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public Builder removeEntities(int index) {
-        if (entitiesBuilder_ == null) {
-          ensureEntitiesIsMutable();
-          entities_.remove(index);
+      public Builder removeEntity(int index) {
+        if (entityBuilder_ == null) {
+          ensureEntityIsMutable();
+          entity_.remove(index);
           onChanged();
         } else {
-          entitiesBuilder_.remove(index);
+          entityBuilder_.remove(index);
         }
         return this;
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.Entity.Builder getEntitiesBuilder(
+      public codeday.squareassault.protobuf.NewMessages.Entity.Builder getEntityBuilder(
           int index) {
-        return getEntitiesFieldBuilder().getBuilder(index);
+        return getEntityFieldBuilder().getBuilder(index);
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.EntityOrBuilder getEntitiesOrBuilder(
+      public codeday.squareassault.protobuf.NewMessages.EntityOrBuilder getEntityOrBuilder(
           int index) {
-        if (entitiesBuilder_ == null) {
-          return entities_.get(index);  } else {
-          return entitiesBuilder_.getMessageOrBuilder(index);
+        if (entityBuilder_ == null) {
+          return entity_.get(index);  } else {
+          return entityBuilder_.getMessageOrBuilder(index);
         }
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
       public java.util.List<? extends codeday.squareassault.protobuf.NewMessages.EntityOrBuilder> 
-           getEntitiesOrBuilderList() {
-        if (entitiesBuilder_ != null) {
-          return entitiesBuilder_.getMessageOrBuilderList();
+           getEntityOrBuilderList() {
+        if (entityBuilder_ != null) {
+          return entityBuilder_.getMessageOrBuilderList();
         } else {
-          return java.util.Collections.unmodifiableList(entities_);
+          return java.util.Collections.unmodifiableList(entity_);
         }
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.Entity.Builder addEntitiesBuilder() {
-        return getEntitiesFieldBuilder().addBuilder(
+      public codeday.squareassault.protobuf.NewMessages.Entity.Builder addEntityBuilder() {
+        return getEntityFieldBuilder().addBuilder(
             codeday.squareassault.protobuf.NewMessages.Entity.getDefaultInstance());
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
-      public codeday.squareassault.protobuf.NewMessages.Entity.Builder addEntitiesBuilder(
+      public codeday.squareassault.protobuf.NewMessages.Entity.Builder addEntityBuilder(
           int index) {
-        return getEntitiesFieldBuilder().addBuilder(
+        return getEntityFieldBuilder().addBuilder(
             index, codeday.squareassault.protobuf.NewMessages.Entity.getDefaultInstance());
       }
       /**
-       * <code>repeated .tutorial.Entity entities = 4;</code>
+       * <code>repeated .tutorial.Entity entity = 4;</code>
        */
       public java.util.List<codeday.squareassault.protobuf.NewMessages.Entity.Builder> 
-           getEntitiesBuilderList() {
-        return getEntitiesFieldBuilder().getBuilderList();
+           getEntityBuilderList() {
+        return getEntityFieldBuilder().getBuilderList();
       }
       private com.google.protobuf.RepeatedFieldBuilder<
           codeday.squareassault.protobuf.NewMessages.Entity, codeday.squareassault.protobuf.NewMessages.Entity.Builder, codeday.squareassault.protobuf.NewMessages.EntityOrBuilder> 
-          getEntitiesFieldBuilder() {
-        if (entitiesBuilder_ == null) {
-          entitiesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+          getEntityFieldBuilder() {
+        if (entityBuilder_ == null) {
+          entityBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
               codeday.squareassault.protobuf.NewMessages.Entity, codeday.squareassault.protobuf.NewMessages.Entity.Builder, codeday.squareassault.protobuf.NewMessages.EntityOrBuilder>(
-                  entities_,
+                  entity_,
                   ((bitField0_ & 0x00000008) == 0x00000008),
                   getParentForChildren(),
                   isClean());
-          entities_ = null;
+          entity_ = null;
         }
-        return entitiesBuilder_;
+        return entityBuilder_;
       }
 
       private java.util.List<codeday.squareassault.protobuf.NewMessages.ChatLine> chat_ =
@@ -3909,24 +3910,33 @@ public final class NewMessages {
       com.google.protobuf.MessageOrBuilder {
 
     /**
-     * <code>optional uint32 speaker = 1;</code>
+     * <code>optional uint32 uid = 1;</code>
+     */
+    boolean hasUid();
+    /**
+     * <code>optional uint32 uid = 1;</code>
+     */
+    int getUid();
+
+    /**
+     * <code>optional uint32 speaker = 2;</code>
      */
     boolean hasSpeaker();
     /**
-     * <code>optional uint32 speaker = 1;</code>
+     * <code>optional uint32 speaker = 2;</code>
      */
     int getSpeaker();
 
     /**
-     * <code>optional string text = 2;</code>
+     * <code>optional string text = 3;</code>
      */
     boolean hasText();
     /**
-     * <code>optional string text = 2;</code>
+     * <code>optional string text = 3;</code>
      */
     java.lang.String getText();
     /**
-     * <code>optional string text = 2;</code>
+     * <code>optional string text = 3;</code>
      */
     com.google.protobuf.ByteString
         getTextBytes();
@@ -3985,12 +3995,17 @@ public final class NewMessages {
             }
             case 8: {
               bitField0_ |= 0x00000001;
+              uid_ = input.readUInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
               speaker_ = input.readUInt32();
               break;
             }
-            case 18: {
+            case 26: {
               com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               text_ = bs;
               break;
             }
@@ -4034,31 +4049,46 @@ public final class NewMessages {
     }
 
     private int bitField0_;
-    public static final int SPEAKER_FIELD_NUMBER = 1;
-    private int speaker_;
+    public static final int UID_FIELD_NUMBER = 1;
+    private int uid_;
     /**
-     * <code>optional uint32 speaker = 1;</code>
+     * <code>optional uint32 uid = 1;</code>
      */
-    public boolean hasSpeaker() {
+    public boolean hasUid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     /**
-     * <code>optional uint32 speaker = 1;</code>
+     * <code>optional uint32 uid = 1;</code>
+     */
+    public int getUid() {
+      return uid_;
+    }
+
+    public static final int SPEAKER_FIELD_NUMBER = 2;
+    private int speaker_;
+    /**
+     * <code>optional uint32 speaker = 2;</code>
+     */
+    public boolean hasSpeaker() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional uint32 speaker = 2;</code>
      */
     public int getSpeaker() {
       return speaker_;
     }
 
-    public static final int TEXT_FIELD_NUMBER = 2;
+    public static final int TEXT_FIELD_NUMBER = 3;
     private java.lang.Object text_;
     /**
-     * <code>optional string text = 2;</code>
+     * <code>optional string text = 3;</code>
      */
     public boolean hasText() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>optional string text = 2;</code>
+     * <code>optional string text = 3;</code>
      */
     public java.lang.String getText() {
       java.lang.Object ref = text_;
@@ -4075,7 +4105,7 @@ public final class NewMessages {
       }
     }
     /**
-     * <code>optional string text = 2;</code>
+     * <code>optional string text = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTextBytes() {
@@ -4092,6 +4122,7 @@ public final class NewMessages {
     }
 
     private void initFields() {
+      uid_ = 0;
       speaker_ = 0;
       text_ = "";
     }
@@ -4109,10 +4140,13 @@ public final class NewMessages {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeUInt32(1, speaker_);
+        output.writeUInt32(1, uid_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getTextBytes());
+        output.writeUInt32(2, speaker_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getTextBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -4125,11 +4159,15 @@ public final class NewMessages {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(1, speaker_);
+          .computeUInt32Size(1, uid_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getTextBytes());
+          .computeUInt32Size(2, speaker_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getTextBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -4248,10 +4286,12 @@ public final class NewMessages {
 
       public Builder clear() {
         super.clear();
-        speaker_ = 0;
+        uid_ = 0;
         bitField0_ = (bitField0_ & ~0x00000001);
-        text_ = "";
+        speaker_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
+        text_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -4283,9 +4323,13 @@ public final class NewMessages {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.speaker_ = speaker_;
+        result.uid_ = uid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
+        }
+        result.speaker_ = speaker_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         result.text_ = text_;
         result.bitField0_ = to_bitField0_;
@@ -4304,11 +4348,14 @@ public final class NewMessages {
 
       public Builder mergeFrom(codeday.squareassault.protobuf.NewMessages.ChatLine other) {
         if (other == codeday.squareassault.protobuf.NewMessages.ChatLine.getDefaultInstance()) return this;
+        if (other.hasUid()) {
+          setUid(other.getUid());
+        }
         if (other.hasSpeaker()) {
           setSpeaker(other.getSpeaker());
         }
         if (other.hasText()) {
-          bitField0_ |= 0x00000002;
+          bitField0_ |= 0x00000004;
           text_ = other.text_;
           onChanged();
         }
@@ -4339,33 +4386,65 @@ public final class NewMessages {
       }
       private int bitField0_;
 
-      private int speaker_ ;
+      private int uid_ ;
       /**
-       * <code>optional uint32 speaker = 1;</code>
+       * <code>optional uint32 uid = 1;</code>
        */
-      public boolean hasSpeaker() {
+      public boolean hasUid() {
         return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       /**
-       * <code>optional uint32 speaker = 1;</code>
+       * <code>optional uint32 uid = 1;</code>
+       */
+      public int getUid() {
+        return uid_;
+      }
+      /**
+       * <code>optional uint32 uid = 1;</code>
+       */
+      public Builder setUid(int value) {
+        bitField0_ |= 0x00000001;
+        uid_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional uint32 uid = 1;</code>
+       */
+      public Builder clearUid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        uid_ = 0;
+        onChanged();
+        return this;
+      }
+
+      private int speaker_ ;
+      /**
+       * <code>optional uint32 speaker = 2;</code>
+       */
+      public boolean hasSpeaker() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional uint32 speaker = 2;</code>
        */
       public int getSpeaker() {
         return speaker_;
       }
       /**
-       * <code>optional uint32 speaker = 1;</code>
+       * <code>optional uint32 speaker = 2;</code>
        */
       public Builder setSpeaker(int value) {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         speaker_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional uint32 speaker = 1;</code>
+       * <code>optional uint32 speaker = 2;</code>
        */
       public Builder clearSpeaker() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         speaker_ = 0;
         onChanged();
         return this;
@@ -4373,13 +4452,13 @@ public final class NewMessages {
 
       private java.lang.Object text_ = "";
       /**
-       * <code>optional string text = 2;</code>
+       * <code>optional string text = 3;</code>
        */
       public boolean hasText() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
-       * <code>optional string text = 2;</code>
+       * <code>optional string text = 3;</code>
        */
       public java.lang.String getText() {
         java.lang.Object ref = text_;
@@ -4396,7 +4475,7 @@ public final class NewMessages {
         }
       }
       /**
-       * <code>optional string text = 2;</code>
+       * <code>optional string text = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTextBytes() {
@@ -4412,36 +4491,36 @@ public final class NewMessages {
         }
       }
       /**
-       * <code>optional string text = 2;</code>
+       * <code>optional string text = 3;</code>
        */
       public Builder setText(
           java.lang.String value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         text_ = value;
         onChanged();
         return this;
       }
       /**
-       * <code>optional string text = 2;</code>
+       * <code>optional string text = 3;</code>
        */
       public Builder clearText() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         text_ = getDefaultInstance().getText();
         onChanged();
         return this;
       }
       /**
-       * <code>optional string text = 2;</code>
+       * <code>optional string text = 3;</code>
        */
       public Builder setTextBytes(
           com.google.protobuf.ByteString value) {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000004;
         text_ = value;
         onChanged();
         return this;
@@ -4500,17 +4579,17 @@ public final class NewMessages {
         getTilenamesBytes(int index);
 
     /**
-     * <code>repeated uint32 cells = 4;</code>
+     * <code>repeated uint32 cell = 4;</code>
      */
-    java.util.List<java.lang.Integer> getCellsList();
+    java.util.List<java.lang.Integer> getCellList();
     /**
-     * <code>repeated uint32 cells = 4;</code>
+     * <code>repeated uint32 cell = 4;</code>
      */
-    int getCellsCount();
+    int getCellCount();
     /**
-     * <code>repeated uint32 cells = 4;</code>
+     * <code>repeated uint32 cell = 4;</code>
      */
-    int getCells(int index);
+    int getCell(int index);
 
     /**
      * <code>repeated uint32 spawnX = 5;</code>
@@ -4611,21 +4690,21 @@ public final class NewMessages {
             }
             case 32: {
               if (!((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-                cells_ = new java.util.ArrayList<java.lang.Integer>();
+                cell_ = new java.util.ArrayList<java.lang.Integer>();
                 mutable_bitField0_ |= 0x00000008;
               }
-              cells_.add(input.readUInt32());
+              cell_.add(input.readUInt32());
               break;
             }
             case 34: {
               int length = input.readRawVarint32();
               int limit = input.pushLimit(length);
               if (!((mutable_bitField0_ & 0x00000008) == 0x00000008) && input.getBytesUntilLimit() > 0) {
-                cells_ = new java.util.ArrayList<java.lang.Integer>();
+                cell_ = new java.util.ArrayList<java.lang.Integer>();
                 mutable_bitField0_ |= 0x00000008;
               }
               while (input.getBytesUntilLimit() > 0) {
-                cells_.add(input.readUInt32());
+                cell_.add(input.readUInt32());
               }
               input.popLimit(limit);
               break;
@@ -4684,7 +4763,7 @@ public final class NewMessages {
           tilenames_ = tilenames_.getUnmodifiableView();
         }
         if (((mutable_bitField0_ & 0x00000008) == 0x00000008)) {
-          cells_ = java.util.Collections.unmodifiableList(cells_);
+          cell_ = java.util.Collections.unmodifiableList(cell_);
         }
         if (((mutable_bitField0_ & 0x00000010) == 0x00000010)) {
           spawnX_ = java.util.Collections.unmodifiableList(spawnX_);
@@ -4783,26 +4862,26 @@ public final class NewMessages {
       return tilenames_.getByteString(index);
     }
 
-    public static final int CELLS_FIELD_NUMBER = 4;
-    private java.util.List<java.lang.Integer> cells_;
+    public static final int CELL_FIELD_NUMBER = 4;
+    private java.util.List<java.lang.Integer> cell_;
     /**
-     * <code>repeated uint32 cells = 4;</code>
+     * <code>repeated uint32 cell = 4;</code>
      */
     public java.util.List<java.lang.Integer>
-        getCellsList() {
-      return cells_;
+        getCellList() {
+      return cell_;
     }
     /**
-     * <code>repeated uint32 cells = 4;</code>
+     * <code>repeated uint32 cell = 4;</code>
      */
-    public int getCellsCount() {
-      return cells_.size();
+    public int getCellCount() {
+      return cell_.size();
     }
     /**
-     * <code>repeated uint32 cells = 4;</code>
+     * <code>repeated uint32 cell = 4;</code>
      */
-    public int getCells(int index) {
-      return cells_.get(index);
+    public int getCell(int index) {
+      return cell_.get(index);
     }
 
     public static final int SPAWNX_FIELD_NUMBER = 5;
@@ -4853,7 +4932,7 @@ public final class NewMessages {
       width_ = 0;
       height_ = 0;
       tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
-      cells_ = java.util.Collections.emptyList();
+      cell_ = java.util.Collections.emptyList();
       spawnX_ = java.util.Collections.emptyList();
       spawnY_ = java.util.Collections.emptyList();
     }
@@ -4887,8 +4966,8 @@ public final class NewMessages {
       for (int i = 0; i < tilenames_.size(); i++) {
         output.writeBytes(3, tilenames_.getByteString(i));
       }
-      for (int i = 0; i < cells_.size(); i++) {
-        output.writeUInt32(4, cells_.get(i));
+      for (int i = 0; i < cell_.size(); i++) {
+        output.writeUInt32(4, cell_.get(i));
       }
       for (int i = 0; i < spawnX_.size(); i++) {
         output.writeUInt32(5, spawnX_.get(i));
@@ -4924,12 +5003,12 @@ public final class NewMessages {
       }
       {
         int dataSize = 0;
-        for (int i = 0; i < cells_.size(); i++) {
+        for (int i = 0; i < cell_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt32SizeNoTag(cells_.get(i));
+            .computeUInt32SizeNoTag(cell_.get(i));
         }
         size += dataSize;
-        size += 1 * getCellsList().size();
+        size += 1 * getCellList().size();
       }
       {
         int dataSize = 0;
@@ -5072,7 +5151,7 @@ public final class NewMessages {
         bitField0_ = (bitField0_ & ~0x00000002);
         tilenames_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000004);
-        cells_ = java.util.Collections.emptyList();
+        cell_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
         spawnX_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000010);
@@ -5120,10 +5199,10 @@ public final class NewMessages {
         }
         result.tilenames_ = tilenames_;
         if (((bitField0_ & 0x00000008) == 0x00000008)) {
-          cells_ = java.util.Collections.unmodifiableList(cells_);
+          cell_ = java.util.Collections.unmodifiableList(cell_);
           bitField0_ = (bitField0_ & ~0x00000008);
         }
-        result.cells_ = cells_;
+        result.cell_ = cell_;
         if (((bitField0_ & 0x00000010) == 0x00000010)) {
           spawnX_ = java.util.Collections.unmodifiableList(spawnX_);
           bitField0_ = (bitField0_ & ~0x00000010);
@@ -5166,13 +5245,13 @@ public final class NewMessages {
           }
           onChanged();
         }
-        if (!other.cells_.isEmpty()) {
-          if (cells_.isEmpty()) {
-            cells_ = other.cells_;
+        if (!other.cell_.isEmpty()) {
+          if (cell_.isEmpty()) {
+            cell_ = other.cell_;
             bitField0_ = (bitField0_ & ~0x00000008);
           } else {
-            ensureCellsIsMutable();
-            cells_.addAll(other.cells_);
+            ensureCellIsMutable();
+            cell_.addAll(other.cell_);
           }
           onChanged();
         }
@@ -5388,67 +5467,67 @@ public final class NewMessages {
         return this;
       }
 
-      private java.util.List<java.lang.Integer> cells_ = java.util.Collections.emptyList();
-      private void ensureCellsIsMutable() {
+      private java.util.List<java.lang.Integer> cell_ = java.util.Collections.emptyList();
+      private void ensureCellIsMutable() {
         if (!((bitField0_ & 0x00000008) == 0x00000008)) {
-          cells_ = new java.util.ArrayList<java.lang.Integer>(cells_);
+          cell_ = new java.util.ArrayList<java.lang.Integer>(cell_);
           bitField0_ |= 0x00000008;
          }
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
       public java.util.List<java.lang.Integer>
-          getCellsList() {
-        return java.util.Collections.unmodifiableList(cells_);
+          getCellList() {
+        return java.util.Collections.unmodifiableList(cell_);
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
-      public int getCellsCount() {
-        return cells_.size();
+      public int getCellCount() {
+        return cell_.size();
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
-      public int getCells(int index) {
-        return cells_.get(index);
+      public int getCell(int index) {
+        return cell_.get(index);
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
-      public Builder setCells(
+      public Builder setCell(
           int index, int value) {
-        ensureCellsIsMutable();
-        cells_.set(index, value);
+        ensureCellIsMutable();
+        cell_.set(index, value);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
-      public Builder addCells(int value) {
-        ensureCellsIsMutable();
-        cells_.add(value);
+      public Builder addCell(int value) {
+        ensureCellIsMutable();
+        cell_.add(value);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
-      public Builder addAllCells(
+      public Builder addAllCell(
           java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureCellsIsMutable();
+        ensureCellIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, cells_);
+            values, cell_);
         onChanged();
         return this;
       }
       /**
-       * <code>repeated uint32 cells = 4;</code>
+       * <code>repeated uint32 cell = 4;</code>
        */
-      public Builder clearCells() {
-        cells_ = java.util.Collections.emptyList();
+      public Builder clearCell() {
+        cell_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000008);
         onChanged();
         return this;
@@ -5638,24 +5717,24 @@ public final class NewMessages {
     java.lang.String[] descriptorData = {
       "\n(codeday/squareassault/protobuf/new.pro" +
       "to\022\010tutorial\"-\n\010Identify\022\014\n\004name\030\001 \001(\t\022\023" +
-      "\n\010protocol\030\002 \001(\r:\0010\"\226\001\n\005Model\022 \n\tworld_m" +
-      "ap\030\001 \001(\0132\r.tutorial.Map\022\020\n\010objectID\030\002 \001(" +
-      "\r\022\023\n\010protocol\030\003 \001(\r:\0010\022\"\n\010entities\030\004 \003(\013" +
-      "2\020.tutorial.Entity\022 \n\004chat\030\005 \003(\0132\022.tutor" +
-      "ial.ChatLine\"\277\001\n\006Entity\022\n\n\002id\030\001 \001(\r\022/\n\004t" +
-      "ype\030\002 \001(\0162\024.tutorial.EntityType:\013NONEXIS" +
-      "TENT\022\t\n\001x\030\003 \001(\r\022\t\n\001y\030\004 \001(\r\022\014\n\004name\030\005 \001(\t" +
-      "\022\014\n\004icon\030\006 \001(\t\022&\n\007private\030\007 \001(\0132\025.tutori",
-      "al.PrivateData\022\016\n\006health\030\010 \001(\r\022\016\n\006parent" +
-      "\030\t \001(\r\";\n\013PrivateData\022\024\n\014turret_count\030\001 " +
-      "\001(\r\022\026\n\016turret_maximum\030\002 \001(\r\")\n\010ChatLine\022" +
-      "\017\n\007speaker\030\001 \001(\r\022\014\n\004text\030\002 \001(\t\"f\n\003Map\022\r\n" +
-      "\005width\030\001 \002(\r\022\016\n\006height\030\002 \002(\r\022\021\n\ttilename" +
-      "s\030\003 \003(\t\022\r\n\005cells\030\004 \003(\r\022\016\n\006spawnX\030\005 \003(\r\022\016" +
-      "\n\006spawnY\030\006 \003(\r*A\n\nEntityType\022\017\n\013NONEXIST" +
-      "ENT\020\000\022\n\n\006PLAYER\020\001\022\n\n\006TURRET\020\002\022\n\n\006BULLET\020" +
-      "\003B-\n\036codeday.squareassault.protobufB\013New" +
-      "Messages"
+      "\n\010protocol\030\002 \001(\r:\0010\"\216\001\n\005Model\022\032\n\003map\030\001 \001" +
+      "(\0132\r.tutorial.Map\022\020\n\010playerID\030\002 \001(\r\022\023\n\010p" +
+      "rotocol\030\003 \001(\r:\0010\022 \n\006entity\030\004 \003(\0132\020.tutor" +
+      "ial.Entity\022 \n\004chat\030\005 \003(\0132\022.tutorial.Chat" +
+      "Line\"\277\001\n\006Entity\022\n\n\002id\030\001 \001(\r\022/\n\004type\030\002 \001(" +
+      "\0162\024.tutorial.EntityType:\013NONEXISTENT\022\t\n\001" +
+      "x\030\003 \001(\r\022\t\n\001y\030\004 \001(\r\022\014\n\004name\030\005 \001(\t\022\014\n\004icon" +
+      "\030\006 \001(\t\022&\n\007private\030\007 \001(\0132\025.tutorial.Priva",
+      "teData\022\016\n\006health\030\010 \001(\r\022\016\n\006parent\030\t \001(\r\";" +
+      "\n\013PrivateData\022\024\n\014turret_count\030\001 \001(\r\022\026\n\016t" +
+      "urret_maximum\030\002 \001(\r\"6\n\010ChatLine\022\013\n\003uid\030\001" +
+      " \001(\r\022\017\n\007speaker\030\002 \001(\r\022\014\n\004text\030\003 \001(\t\"e\n\003M" +
+      "ap\022\r\n\005width\030\001 \002(\r\022\016\n\006height\030\002 \002(\r\022\021\n\ttil" +
+      "enames\030\003 \003(\t\022\014\n\004cell\030\004 \003(\r\022\016\n\006spawnX\030\005 \003" +
+      "(\r\022\016\n\006spawnY\030\006 \003(\r*A\n\nEntityType\022\017\n\013NONE" +
+      "XISTENT\020\000\022\n\n\006PLAYER\020\001\022\n\n\006TURRET\020\002\022\n\n\006BUL" +
+      "LET\020\003B-\n\036codeday.squareassault.protobufB" +
+      "\013NewMessages"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -5680,7 +5759,7 @@ public final class NewMessages {
     internal_static_tutorial_Model_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Model_descriptor,
-        new java.lang.String[] { "WorldMap", "ObjectID", "Protocol", "Entities", "Chat", });
+        new java.lang.String[] { "Map", "PlayerID", "Protocol", "Entity", "Chat", });
     internal_static_tutorial_Entity_descriptor =
       getDescriptor().getMessageTypes().get(2);
     internal_static_tutorial_Entity_fieldAccessorTable = new
@@ -5698,13 +5777,13 @@ public final class NewMessages {
     internal_static_tutorial_ChatLine_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_ChatLine_descriptor,
-        new java.lang.String[] { "Speaker", "Text", });
+        new java.lang.String[] { "Uid", "Speaker", "Text", });
     internal_static_tutorial_Map_descriptor =
       getDescriptor().getMessageTypes().get(5);
     internal_static_tutorial_Map_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_tutorial_Map_descriptor,
-        new java.lang.String[] { "Width", "Height", "Tilenames", "Cells", "SpawnX", "SpawnY", });
+        new java.lang.String[] { "Width", "Height", "Tilenames", "Cell", "SpawnX", "SpawnY", });
   }
 
   // @@protoc_insertion_point(outer_class_scope)

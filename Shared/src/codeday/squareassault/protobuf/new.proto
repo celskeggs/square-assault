@@ -13,10 +13,10 @@ message Identify {
 // Model
 
 message Model { // used as "Connect" message as well
-  optional Map world_map = 1;
-  optional uint32 objectID = 2; // must be set to a value for old clients to work
+  optional Map map = 1;
+  optional uint32 playerID = 2; // must be set to a value for old clients to work
   optional uint32 protocol = 3 [default=0]; // must be set to 1 for this protocol
-  repeated Entity entities = 4;
+  repeated Entity entity = 4;
   repeated ChatLine chat = 5;
 }
 
@@ -45,15 +45,16 @@ message PrivateData {
 }
 
 message ChatLine {
-  optional uint32 speaker = 1;
-  optional string text = 2;
+  optional uint32 uid = 1;
+  optional uint32 speaker = 2;
+  optional string text = 3;
 }
 
 message Map {
   required uint32 width = 1;
   required uint32 height = 2;
   repeated string tilenames = 3;
-  repeated uint32 cells = 4;
+  repeated uint32 cell = 4;
   repeated uint32 spawnX = 5;
   repeated uint32 spawnY = 6;
 }

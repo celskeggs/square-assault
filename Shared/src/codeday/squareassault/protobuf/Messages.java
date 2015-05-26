@@ -4,6 +4,7 @@
 package codeday.squareassault.protobuf;
 
 @SuppressWarnings("unused")
+@Deprecated
 public final class Messages {
   private Messages() {}
   public static void registerAllExtensions(

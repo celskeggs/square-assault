@@ -6,26 +6,28 @@ import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import codeday.squareassault.protobuf.Messages;
-import codeday.squareassault.protobuf.Messages.Connect;
-import codeday.squareassault.protobuf.Messages.ToClient;
+import codeday.squareassault.protobuf.DiffEngine;
+import codeday.squareassault.protobuf.NewMessages;
 import codeday.squareassault.protobuf.QueueReceiver;
 import codeday.squareassault.protobuf.QueueSender;
 import codeday.squareassault.protobuf.SharedConfig;
 
 public class Network {
 
-	public static final int NETWORK_PROTOCOL_VERSION = 0;
+	public static final int NETWORK_PROTOCOL_VERSION = 1;
 
 	private final Socket socket;
-	private final LinkedBlockingQueue<Messages.ToServer> sendQueue = new LinkedBlockingQueue<>();
-	private final LinkedBlockingQueue<Messages.ToClient> recvQueue = new LinkedBlockingQueue<>();
-	private final Connect info;
+	private final LinkedBlockingQueue<NewMessages.Model> sendQueue = new LinkedBlockingQueue<>();
+	private final LinkedBlockingQueue<NewMessages.Model> recvQueue = new LinkedBlockingQueue<>();
+	private final MainModel status;
+	private NewMessages.Model lastReceived;
 	private final int protocol;
 
-	private static final Messages.ToClient sentinel = Messages.ToClient.newBuilder().build();
+	private static final NewMessages.Model sentinel = NewMessages.Model.newBuilder().build();
 
 	public Network(String server, String username) throws UnknownHostException, IOException {
 		socket = new Socket(InetAddress.getByName(server), SharedConfig.PORT);
@@ -33,45 +35,68 @@ public class Network {
 		InputStream input = socket.getInputStream();
 		OutputStream output = socket.getOutputStream();
 		System.out.println("Ready");
-		Messages.Identify.newBuilder().setName(username).setProtocol(NETWORK_PROTOCOL_VERSION).build().writeDelimitedTo(output);
+		NewMessages.Identify.newBuilder().setName(username).setProtocol(NETWORK_PROTOCOL_VERSION).build().writeDelimitedTo(output);
 		System.out.println("Sent");
-		this.info = Messages.Connect.parseDelimitedFrom(input);
-		if (info == null) {
+		this.status = new MainModel(NewMessages.Model.newBuilder());
+		status.model.mergeDelimitedFrom(input);
+		if (status == null) {
 			throw new IOException("No connection message!");
 		}
-		protocol = Math.min(info.getProtocol(), NETWORK_PROTOCOL_VERSION);
+		protocol = Math.min(status.model.getProtocol(), NETWORK_PROTOCOL_VERSION);
+		if (protocol != 1) {
+			throw new IOException("Server does not support same protocol version!");
+		}
+		if (!status.model.hasMap()) {
+			throw new IOException("Server did not send map!");
+		}
 		System.out.println("Got");
-		new Thread(new QueueReceiver<Messages.ToClient>(recvQueue, input, Messages.ToClient.newBuilder(), sentinel), "Receiver").start();
+		new Thread(new QueueReceiver<>(recvQueue, input, NewMessages.Model.newBuilder(), sentinel), "Receiver").start();
 		new Thread(new QueueSender<>(this.sendQueue, output), "Sender").start();
 	}
 
-	public void send(Messages.ToServer serv) throws InterruptedException {
-		sendQueue.put(serv);
+	public MainModel getNetworkedModel() {
+		return status;
 	}
 
-	public void handleAll(Context context) throws InterruptedException {
-		context.handleConnectInfo(info);
+	public void handleAll() throws InterruptedException {
+		HashMap<Integer, NewMessages.Entity.Builder> found = new HashMap<>();
+		ArrayList<NewMessages.Entity.Builder> toRemove = new ArrayList<>();
 		while (true) {
-			ToClient taken = recvQueue.take();
+			NewMessages.Model taken = recvQueue.take();
 			if (taken == sentinel) {
 				break;
 			}
-			switch (taken.getMessageCase()) {
-			case CHAT:
-				context.handleChat(taken.getChat());
-				break;
-			case COUNT:
-				context.handleTurretCount(taken.getCount());
-				break;
-			case DISCONNECT:
-				context.handleDisconnect(taken.getDisconnect());
-				break;
-			case POSITION:
-				context.handleSetPosition(taken.getPosition());
-				break;
-			default:
-				System.out.println("Bad input: " + taken);
-				break;
+			synchronized (status) {
+				if (status.model.hasMap() && taken.hasMap()) {
+					status.model.clearMap();
+				}
+				status.model.mergeFrom(taken);
+				found.clear();
+				for (NewMessages.Entity.Builder ent : status.model.getEntityBuilderList()) {
+					if (found.containsKey(ent.getId())) {
+						if (ent.getType() == NewMessages.EntityType.NONEXISTENT) {
+							toRemove.add(found.get(ent.getId()));
+						} else {
+							found.get(ent.getId()).mergeFrom(ent.build());
+						}
+						toRemove.add(ent);
+					} else {
+						found.put(ent.getId(), ent);
+					}
+				}
+				for (NewMessages.Entity.Builder ent : toRemove) {
+					status.model.removeEntity(status.model.getEntityBuilderList().indexOf(ent));
+				}
+				lastReceived = status.model.build();
+			}
+		}
+	}
+
+	public void synch() {
+		synchronized (status) {
+			NewMessages.Model model = DiffEngine.diff(lastReceived, status.model);
+			if (model != null) {
+				sendQueue.add(model);
 			}
 		}
 	}
