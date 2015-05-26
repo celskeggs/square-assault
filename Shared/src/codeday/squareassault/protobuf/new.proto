@@ -1,0 +1,59 @@
+package tutorial;
+
+option java_package = "codeday.squareassault.protobuf";
+option java_outer_classname = "NewMessages";
+
+// Handshake
+
+message Identify {
+  optional string name = 1;
+  optional uint32 protocol = 2 [default=0];
+}
+
+// Model
+
+message Model { // used as "Connect" message as well
+  optional Map world_map = 1;
+  optional uint32 objectID = 2; // must be set to a value for old clients to work
+  optional uint32 protocol = 3 [default=0]; // must be set to 1 for this protocol
+  repeated Entity entities = 4;
+  repeated ChatLine chat = 5;
+}
+
+enum EntityType {
+  NONEXISTENT = 0;
+  PLAYER = 1;
+  TURRET = 2;
+  BULLET = 3;
+}
+
+message Entity {
+  optional uint32 id = 1;
+  optional EntityType type = 2 [default=NONEXISTENT];
+  optional uint32 x = 3;
+  optional uint32 y = 4;
+  optional string name = 5;
+  optional string icon = 6;
+  optional PrivateData private = 7;
+  optional uint32 health = 8;
+  optional uint32 parent = 9;
+}
+
+message PrivateData {
+  optional uint32 turret_count = 1;
+  optional uint32 turret_maximum = 2;
+}
+
+message ChatLine {
+  optional uint32 speaker = 1;
+  optional string text = 2;
+}
+
+message Map {
+  required uint32 width = 1;
+  required uint32 height = 2;
+  repeated string tilenames = 3;
+  repeated uint32 cells = 4;
+  repeated uint32 spawnX = 5;
+  repeated uint32 spawnY = 6;
+}

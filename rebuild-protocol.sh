@@ -1,1 +1,6 @@
-protoc -I=Shared/src/ --java_out=Shared/src Shared/src/codeday/squareassault/protobuf/main.proto
+for file in Shared/src/codeday/squareassault/protobuf/*.proto
+do
+	echo Building $file
+	protoc -I=Shared/src/ --java_out=Shared/src $file
+done
+echo Done.
