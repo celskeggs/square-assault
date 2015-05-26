@@ -28,11 +28,11 @@ public class ServerContext {
 		return nextID++;
 	}
 
-	public ClientContext newClient(String name) {
+	public ClientContext newClient(String name, int protocol) {
 		if (name.toLowerCase().contains("server")) {
 			throw new RuntimeException("Bad name.");
 		}
-		ClientContext context = new ClientContext(this, name);
+		ClientContext context = new ClientContext(this, name, protocol);
 		context.reset();
 		register(context);
 		broadcastChat("[SERVER MONKEY] Welcome, " + name + "!", -1);

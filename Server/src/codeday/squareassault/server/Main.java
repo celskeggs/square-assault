@@ -92,8 +92,8 @@ public class Main implements Runnable {
 			if (!ident.hasName()) {
 				throw new RuntimeException("Failed: client did not provide name.");
 			}
-			ClientContext context = server.newClient(ident.getName());
-			Messages.Connect.newBuilder().setMap(server.getMap()).setObjectID(context.objectID).build().writeDelimitedTo(output);
+			ClientContext context = server.newClient(ident.getName(), Math.min(ident.getProtocol(), ClientContext.NETWORK_PROTOCOL_VERSION));
+			Messages.Connect.newBuilder().setProtocol(ClientContext.NETWORK_PROTOCOL_VERSION).setMap(server.getMap()).setObjectID(context.objectID).build().writeDelimitedTo(output);
 			new Thread(new QueueSender<>(context.sendQueue, output), "Sender-" + tid).start();
 			ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
 			Messages.ToServer sentinel = Messages.ToServer.newBuilder().build();

@@ -14,6 +14,8 @@ import codeday.squareassault.protobuf.SharedConfig;
 
 public final class ClientContext extends ObjectContext {
 
+	public static final int NETWORK_PROTOCOL_VERSION = 0;
+
 	private static final int COOLDOWN = 1000, UPDATE_TICKS = 5, UPDATE_SELF_MUL = 5;
 	private static final int TURRETS_MAX = 8;
 	private static final int MAX_TURRET_DISTANCE = 5 * 64;
@@ -27,10 +29,12 @@ public final class ClientContext extends ObjectContext {
 	private boolean dirty = false, avoidSelf = false;
 	private int updateCount = UPDATE_TICKS;
 	private int updateSelf = UPDATE_SELF_MUL;
+	private final int protocol;
 
-	public ClientContext(ServerContext serverContext, String name) {
+	public ClientContext(ServerContext serverContext, String name, int protocol) {
 		super(serverContext, -100, -100);
 		this.name = name;
+		this.protocol = protocol;
 	}
 
 	public synchronized void tick() {
@@ -80,14 +84,19 @@ public final class ClientContext extends ObjectContext {
 	}
 
 	public synchronized void receiveMessage(ToServer taken) {
-		if (taken.hasChat()) {
+		switch (taken.getMessageCase()) {
+		case CHAT:
 			performChat(taken.getChat());
-		} else if (taken.hasPosition()) {
+			break;
+		case POSITION:
 			performMove(taken.getPosition());
-		} else if (taken.hasTurret()) {
+			break;
+		case TURRET:
 			performTurretPlace(taken.getTurret());
-		} else {
+			break;
+		default:
 			Logger.warning("Bad message: " + taken);
+			break;
 		}
 	}
 
@@ -144,7 +153,8 @@ public final class ClientContext extends ObjectContext {
 			dirty = true;
 		} else {
 			System.out.println("Intersection!");
-			resendStatus(); // because we need to tell the client that they couldn't move
+			resendStatus(); // because we need to tell the client that they
+							// couldn't move
 		}
 	}
 
