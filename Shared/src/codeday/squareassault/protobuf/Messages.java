@@ -3,6 +3,7 @@
 
 package codeday.squareassault.protobuf;
 
+@SuppressWarnings("unused")
 public final class Messages {
   private Messages() {}
   public static void registerAllExtensions(

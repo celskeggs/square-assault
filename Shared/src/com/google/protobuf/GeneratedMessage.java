@@ -459,7 +459,7 @@ public abstract class GeneratedMessage extends AbstractMessage
         // Check that embedded messages are initialized.
         if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
           if (field.isRepeated()) {
-            @SuppressWarnings("unchecked") final
+            final
             List<Message> messageList = (List<Message>) getField(field);
             for (final Message element : messageList) {
               if (!element.isInitialized()) {

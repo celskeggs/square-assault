@@ -8,7 +8,6 @@ import codeday.squareassault.protobuf.Messages.ObjectType;
 import codeday.squareassault.protobuf.Messages.PlaceTurret;
 import codeday.squareassault.protobuf.Messages.SendChat;
 import codeday.squareassault.protobuf.Messages.SendPosition;
-import codeday.squareassault.protobuf.Messages.SetPosition;
 import codeday.squareassault.protobuf.Messages.ToClient;
 import codeday.squareassault.protobuf.Messages.ToServer;
 import codeday.squareassault.protobuf.SharedConfig;

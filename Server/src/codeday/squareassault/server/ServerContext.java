@@ -166,6 +166,11 @@ public class ServerContext {
 						next = null;
 						return out;
 					}
+
+					@Override
+					public void remove() {
+						throw new UnsupportedOperationException();
+					}
 				};
 			}
 		};

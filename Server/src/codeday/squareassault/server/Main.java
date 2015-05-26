@@ -10,7 +10,6 @@ import java.net.Socket;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 import javax.swing.JFileChooser;
 
@@ -55,14 +54,12 @@ public class Main implements Runnable {
 		final ServerContext server = new ServerContext(map);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
-			long total = 0;
 			long count = 0;
 			@Override
 			public void run() {
 				long start = System.nanoTime();
 				server.tick();
 				long len = System.nanoTime() - start;
-				total += len;
 				count++;
 				if (count % 500 == 0) {
 					System.out.println("Completed " + count + " in " + len / 1000000.0 + " ms: " + (len / 1000000.0 / count) + " ms.");

@@ -102,7 +102,6 @@ final class FieldSet<FieldDescriptorType extends
   private static final FieldSet DEFAULT_INSTANCE = new FieldSet(true);
 
   /** Make this FieldSet immutable from this point forward. */
-  @SuppressWarnings("unchecked")
   public void makeImmutable() {
     if (isImmutable) {
       return;

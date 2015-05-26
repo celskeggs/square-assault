@@ -10,7 +10,6 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import codeday.squareassault.protobuf.Messages;
 import codeday.squareassault.protobuf.Messages.Connect;
-import codeday.squareassault.protobuf.Messages.ObjectType;
 import codeday.squareassault.protobuf.Messages.ToClient;
 import codeday.squareassault.protobuf.QueueReceiver;
 import codeday.squareassault.protobuf.QueueSender;

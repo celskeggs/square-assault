@@ -393,7 +393,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
 
     /** Get the value of an extension. */
     //@Override (Java 1.6 override semantics, but we must support 1.5)
-    @SuppressWarnings("unchecked")
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, Type> extension) {
       verifyExtensionContainingType(extension);
@@ -406,7 +405,6 @@ public abstract class GeneratedMessageLite extends AbstractMessageLite
     }
 
     /** Get one element of a repeated extension. */
-    @SuppressWarnings("unchecked")
     //@Override (Java 1.6 override semantics, but we must support 1.5)
     public final <Type> Type getExtension(
         final GeneratedExtension<MessageType, List<Type>> extension,

@@ -3,6 +3,7 @@
 
 package com.google.protobuf;
 
+@SuppressWarnings("unused")
 public final class DescriptorProtos {
   private DescriptorProtos() {}
   public static void registerAllExtensions(
