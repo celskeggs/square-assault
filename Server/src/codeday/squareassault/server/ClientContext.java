@@ -3,24 +3,18 @@ package codeday.squareassault.server;
 import java.util.Random;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import codeday.squareassault.protobuf.Messages;
-import codeday.squareassault.protobuf.Messages.ObjectType;
-import codeday.squareassault.protobuf.Messages.PlaceTurret;
-import codeday.squareassault.protobuf.Messages.SendChat;
-import codeday.squareassault.protobuf.Messages.SendPosition;
-import codeday.squareassault.protobuf.Messages.ToClient;
-import codeday.squareassault.protobuf.Messages.ToServer;
+import codeday.squareassault.protobuf.NewMessages;
 import codeday.squareassault.protobuf.SharedConfig;
 
 public final class ClientContext extends ObjectContext {
 
-	public static final int NETWORK_PROTOCOL_VERSION = 0;
+	public static final int NETWORK_PROTOCOL_VERSION = 1;
 
 	private static final int COOLDOWN = 1000, UPDATE_TICKS = 5, UPDATE_SELF_MUL = 5;
 	private static final int TURRETS_MAX = 8;
 	private static final int MAX_TURRET_DISTANCE = 5 * 64;
 	private static final int MAX_MOVE = 20;
-	public final LinkedBlockingQueue<ToClient> sendQueue = new LinkedBlockingQueue<>();
+	public final LinkedBlockingQueue<NewMessages.Model> sendQueue = new LinkedBlockingQueue<>();
 	public final String name;
 	private boolean canMove = false;
 	private int turretCount = 4;
@@ -29,12 +23,10 @@ public final class ClientContext extends ObjectContext {
 	private boolean dirty = false, avoidSelf = false;
 	private int updateCount = UPDATE_TICKS;
 	private int updateSelf = UPDATE_SELF_MUL;
-	private final int protocol;
 
-	public ClientContext(ServerContext serverContext, String name, int protocol) {
+	public ClientContext(ServerContext serverContext, String name) {
 		super(serverContext, -100, -100);
 		this.name = name;
-		this.protocol = protocol;
 	}
 
 	public synchronized void tick() {
@@ -83,7 +75,7 @@ public final class ClientContext extends ObjectContext {
 		sendMessage(Messages.ToClient.newBuilder().setCount(Messages.TurretCount.newBuilder().setCount(turretCount).setMaximum(TURRETS_MAX)).build());
 	}
 
-	public synchronized void receiveMessage(ToServer taken) {
+	public synchronized void receiveMessage(NewMessages.Model taken) {
 		switch (taken.getMessageCase()) {
 		case CHAT:
 			performChat(taken.getChat());

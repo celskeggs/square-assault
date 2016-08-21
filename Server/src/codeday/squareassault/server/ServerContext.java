@@ -4,19 +4,17 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import codeday.squareassault.protobuf.Messages;
-import codeday.squareassault.protobuf.Messages.Map;
-import codeday.squareassault.protobuf.Messages.ObjectType;
+import codeday.squareassault.protobuf.NewMessages;
 
 public class ServerContext {
 
 	private final ConcurrentHashMap<Integer, ObjectContext> objects = new ConcurrentHashMap<>();
 	private int nextID = 0;
-	private Map map;
+	private NewMessages.Map map;
 	private final AtomicBoolean roundInProgress = new AtomicBoolean();
 	private final AtomicBoolean hasSentFinalization = new AtomicBoolean();
 
-	public ServerContext(Map map) {
+	public ServerContext(NewMessages.Map map) {
 		this.map = map;
 	}
 	
@@ -83,7 +81,7 @@ public class ServerContext {
 		}
 	}
 
-	public Map getMap() {
+	public NewMessages.Map getMap() {
 		return map;
 	}
 

@@ -1,7 +1,5 @@
 package codeday.squareassault.server;
 
-import codeday.squareassault.protobuf.Messages.ObjectType;
-
 public abstract class ObjectContext {
 
 	public final ServerContext server;

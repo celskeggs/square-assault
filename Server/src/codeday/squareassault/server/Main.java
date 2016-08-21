@@ -13,7 +13,7 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 import javax.swing.JFileChooser;
 
-import codeday.squareassault.protobuf.Messages;
+import codeday.squareassault.protobuf.NewMessages;
 import codeday.squareassault.protobuf.QueueReceiver;
 import codeday.squareassault.protobuf.QueueSender;
 import codeday.squareassault.protobuf.SharedConfig;
@@ -47,14 +47,15 @@ public class Main implements Runnable {
 				return;
 			}
 		}
-		Messages.Map map;
+		NewMessages.Map map;
 		try (FileInputStream fin = new FileInputStream(target)) {
-			map = Messages.Map.parseFrom(fin);
+			map = NewMessages.Map.parseFrom(fin);
 		}
 		final ServerContext server = new ServerContext(map);
 		Timer timer = new Timer();
 		timer.schedule(new TimerTask() {
 			long count = 0;
+
 			@Override
 			public void run() {
 				long start = System.nanoTime();
@@ -67,7 +68,6 @@ public class Main implements Runnable {
 			}
 		}, TICK_DELAY, TICK_DELAY);
 		ServerSocket sock = new ServerSocket(SharedConfig.PORT);
-		//sock.setPerformancePreferences(1, 2, 0);
 		try {
 			int n = 0;
 			while (true) {
@@ -88,19 +88,22 @@ public class Main implements Runnable {
 	@Override
 	public void run() {
 		try {
-			Messages.Identify ident = Messages.Identify.parseDelimitedFrom(input);
+			NewMessages.Identify ident = NewMessages.Identify.parseDelimitedFrom(input);
 			if (!ident.hasName()) {
 				throw new RuntimeException("Failed: client did not provide name.");
 			}
+			if (ident.getProtocol() != ClientContext.NETWORK_PROTOCOL_VERSION) {
+				throw new RuntimeException("Failed: client had bad protocol.");
+			}
 			ClientContext context = server.newClient(ident.getName(), Math.min(ident.getProtocol(), ClientContext.NETWORK_PROTOCOL_VERSION));
-			Messages.Connect.newBuilder().setProtocol(ClientContext.NETWORK_PROTOCOL_VERSION).setMap(server.getMap()).setObjectID(context.objectID).build().writeDelimitedTo(output);
+			NewMessages.Model.newBuilder().setProtocol(ClientContext.NETWORK_PROTOCOL_VERSION).setMap(server.getMap()).setPlayerID(context.objectID).build().writeDelimitedTo(output);
 			new Thread(new QueueSender<>(context.sendQueue, output), "Sender-" + tid).start();
-			ArrayBlockingQueue<Messages.ToServer> recvQueue = new ArrayBlockingQueue<>(128);
-			Messages.ToServer sentinel = Messages.ToServer.newBuilder().build();
-			new Thread(new QueueReceiver<Messages.ToServer>(recvQueue, input, Messages.ToServer.newBuilder(), sentinel), "Receiver-" + tid).start();
+			ArrayBlockingQueue<NewMessages.Model> recvQueue = new ArrayBlockingQueue<>(128);
+			NewMessages.Model sentinel = NewMessages.Model.newBuilder().build();
+			new Thread(new QueueReceiver<NewMessages.Model>(recvQueue, input, NewMessages.Model.newBuilder(), sentinel), "Receiver-" + tid).start();
 			try {
 				while (true) {
-					Messages.ToServer taken;
+					NewMessages.Model taken;
 					try {
 						taken = recvQueue.take();
 					} catch (InterruptedException e) {
