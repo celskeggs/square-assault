@@ -44,7 +44,7 @@ public final class ClientContext extends ObjectContext {
 			health = 100;
 			dirty = true;
 			avoidSelf = false;
-			canMove = false;
+			canMove = true; // let people move around before the game starts
 			if (--updateCount <= 0) {
 				updateCount = UPDATE_TICKS;
 				resendStatus();
@@ -134,7 +134,7 @@ public final class ClientContext extends ObjectContext {
 	}
 
 	private void performMove(SendPosition position) {
-		if (!canMove || isDead() || !server.isRoundInProgress()) {
+		if (!canMove || isDead()) {
 			System.out.println("Ignore move!");
 			return;
 		}
